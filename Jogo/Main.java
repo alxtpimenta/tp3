@@ -14,7 +14,7 @@ public class Main
     public static void main(String[] args) 
     {
         // TODO code application logic here
-        int numjogadores;
+        int numJogadores;
         boolean modoPartida; //true é modo comum, de falência, e false é com contador por tempo/jogadas/etc
         long tempoMaxMinu;
         
