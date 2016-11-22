@@ -16,7 +16,7 @@ public class Definicoes
     
     public static final int NUM_CASAS = 40;
     
-    public static final int MIN_JOGADORES = 4;
+    public static final int MIN_JOGADORES = 2;
     public static final int MAX_JOGADORES = 6;
     
     public static final int COORD_X_INICIAL = 100;
