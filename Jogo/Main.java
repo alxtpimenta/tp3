@@ -34,6 +34,11 @@ public class Main
            de jogadores.
         */
         
+        //Pedaço para testes, remover depois
+        numJogadores = 4;
+        modoPartida = false;
+        //fim pedaço para testes
+        
         Jogo partida = new Jogo (numJogadores, modoPartida);
         
     }
