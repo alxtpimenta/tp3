@@ -13,6 +13,22 @@ import Propriedades.Definicoes;
  */
 public class Imovel extends Casa
 {
+    public Imovel(String nome, int valorDeCompra, int hipoteca, int aluguel, int alugel1casa, int aluguel2casas,int aluguel3casas, int aluguel4casas, int valorDeCompraCasa, int valorDeCompraHotel)
+    {
+        this._nome = nome;
+        this.valorDeCompra = valorDeCompra;
+        this.hipoteca = hipoteca;
+        this.aluguel = aluguel;
+        this.aluguel1casas = alugel1casa;
+        this.aluguel2casas = aluguel2casas;
+        this.aluguel3casas = aluguel3casas;
+        this.aluguel4casas = aluguel4casas;
+        this.valorDeCompraCasa = valorDeCompraCasa;
+        this.valorDeCompraHotel = valorDeCompraHotel;
+        this.qtdCasas = 0;
+        this.qtdHoteis = 0;
+        this.proprietario = null;
+    }
     private int valorDeCompra;
     private int hipoteca;
     //

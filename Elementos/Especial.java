@@ -11,11 +11,19 @@ package Elementos;
  */
 public class Especial extends Casa 
 {
+    public Especial(String nome,int adicionar, int remover, boolean prisao, boolean sortereves)
+    {
+        this._nome = nome;
+        this.adicionar = adicionar;
+        this.remover = remover;
+        this.prisao = prisao;
+        this.sortereves = sortereves;
+    }
+    
     private int adicionar;
     private int remover;
-    private int prisao;
-    private boolean sorte;
-    private boolean reves;
+    private boolean prisao;
+    private boolean sortereves;
     
     public void processarCarta(Jogador p)
     {
@@ -23,11 +31,7 @@ public class Especial extends Casa
             p.adicionarSaldo(adicionar);
         else if(remover > 0)
             p.removerSaldo(remover);
-        else if(sorte)
-        {
-            //PROCEDIMENTO PARA PEGAR UMA CARTA SORTE/REVES
-        }
-        else if(reves)
+        else if(sortereves)
         {
             //PROCEDIMENTO PARA PEGAR UMA CARTA SORTE/REVES
         }

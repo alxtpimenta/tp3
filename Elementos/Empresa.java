@@ -11,6 +11,13 @@ package Elementos;
  */
 public class Empresa extends Casa
 {
+    public Empresa(String nome, int valorDeCompra,int hipoteca, int taxa)
+    {
+        this._nome = nome;
+        this.valorDeCompra = valorDeCompra;
+        this.hipoteca = hipoteca;
+        this.taxa = taxa;
+    }
     private int valorDeCompra;
     private int hipoteca;
     private int taxa;

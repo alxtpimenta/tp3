@@ -11,5 +11,8 @@ package Elementos;
  */
 public class Parada extends Casa
 {
-    
+    public Parada()
+    {
+        
+    }
 }
