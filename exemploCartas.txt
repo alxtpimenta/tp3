@@ -6,7 +6,7 @@ texto,adicionar,remover,prisao
 
 Exemplos:
 
-Renove a licença do seu automóvel. Pague 3000,0,30,0
+Renove a licença do seu automóvel. Pague 3000,0,3000,0
 
 Você esta com sorte. Suas ações na Bolsa de Valores estão em alta! Receba 20000,20000,0,0
 
