@@ -11,5 +11,26 @@ package Elementos;
  */
 public class Empresa extends Casa
 {
+    private int valorDeCompra;
+    private int hipoteca;
+    private int taxa;
     //
+    private Jogador proprietario;
+    //
+    public boolean comprarImovel(Jogador p)
+    {
+        if(p.saldoAtual() >= this.valorDeCompra) //Verifica se o jogador tem saldo suficiente
+        {
+            p.removerSaldo(valorDeCompra); //Deduz o valor do saldo
+            this.proprietario = p; //Determina o proprietario do imovel
+            return true;
+        }
+        else
+            return false; //Caso contrario, retorna falso
+    }
+    
+    public void cobrarTaxa(Jogador p, int dado)
+    {
+        p.removerSaldo(taxa*dado); //Debita a taxa do saldo do jogador
+    }
 }

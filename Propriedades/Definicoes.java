@@ -21,4 +21,7 @@ public class Definicoes
     
     public static final int COORD_X_INICIAL = 100;
     public static final int COORD_Y_INICIAL = 100;
+    
+    public static final int NUM_MAX_CASAS = 4;
+    public static final int NUM_MAX_HOTEIS = 1;
 }
