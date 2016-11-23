@@ -46,16 +46,16 @@ public class Main
          horaAtual = System.currentTimeMillis();
          horaFinal  = horaAtual + (tempoMaxMinu x 60000);
         
-        /*
-        Abre janela pedindo para inserir os dados relativos a cada jogador:
-        - nome
-        - cor
-        - lançar dados
-        */
-        
         for(i=0; i<numJogadores; i++)
         {
+            /*
+            Abre janela pedindo para inserir os dados relativos a cada jogador:
+            - nome
+            - cor escolhida
+            - lançar dados
+            */   
         }
+        
         
     }
 }
