@@ -11,15 +11,17 @@ package Elementos;
  */
 public class Jogador 
 {
-    public Jogador(String nome, int dinheiro, int cor)
+    public Jogador(String nome, int dinheiro, int cor, int id)
     {
         this._nome = nome;
         this._dinheiro = dinheiro;
         this._cor = cor;
+        this._id = id;
     }
     
     private int _dinheiro;
     private String _nome;
+    private int _id;
     private int _cor;
     private int _coordX;
     private int _coordY;
@@ -32,6 +34,11 @@ public class Jogador
     public String nome()
     {
         return this._nome;
+    }
+    
+    public int id()
+    {
+        return this._id;
     }
     
     public int cor()
