@@ -24,4 +24,6 @@ public class Definicoes
     
     public static final int NUM_MAX_CASAS = 4;
     public static final int NUM_MAX_HOTEIS = 1;
+    
+    public static final int QUANTIA_INICIAL = 2558000;
 }
