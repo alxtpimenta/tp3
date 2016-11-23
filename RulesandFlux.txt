@@ -1,0 +1,76 @@
+Objetivo: ser o único jogador com dinheiro no jogo. O restante deve perder com  <= 0
+
+Terminos alternativos: depois de x jogadas, conta-se o patrimonio, maior vence
+
+Easy mode: 
+-3 casas para construir hotel ao inves de 4
+-2 títulos de posse da mesma cor para começar a construir ao invés de todos da mesma cor
+-Proibição x liberação de hipotecas
+-Sair da detenção após primeira jogada sem jogar, após pagar fiança ao invés de 3 rodadas
+-jogo contra o relógio
+
+Fluxo
+- Escolha número de jogadores/cores (limitar)
+- Credita-se 2.558.000 na conta de cada jogador (fixo)
+- Montagem de cartas de propriedades e companhias (shuffle)
+- Montagem de cartas sorte ou revés (2 específicas) (shuffle)
+- Start do tabuleiro (ordem fixa)
+
+- Jogar dados para decidir quem começa
+- Monta-se ordem de jogadores que se manterá até o final
+
+Loop
+- Joga-se 2 dados para decidir o número de casas que irá andar (soma dos numeros)
+- Caso de 2 números iguais no dado, o jogador joga novamente
+- Caso tire 2 números iguais 3 vezes seguidas, vai direto para cadeia
+- Anda-se no tabuleiro a soma dos número que tirou nos dados
+- Avalia-se a casa do tabuleiro correspondente e cumpre seu efeito seu efeito
+- Opção compra livre se disponível (obrigar outro jogador a te vender uma propriedade sem construções)
+- Fazer ofertas a outros jogadores (AI aceita ou não, sugestão: aceita sempre pelo dobro do valor base SE não existe mais a possibilidade de juntar propriedades da mesma cor para construir) Obs: só se pode negociar propriedades sem casas
+- Construir em a partir das regras de construção (2 titulos ou todos os titulos de mesma cor?) Pagar ao banco valor correspondente. OBS: pode-se construir apenas se a atual posição do tabuleiro cumprir as regras e você estiver nela nesta jogada. A segunda casa só pode ser construida se 2 ou todas as outras de mesma cor já tiverem 1 casa pelomenos
+- Hotel: mantém ou não as casas?
+- Hipoteca: desabilita titulo de posse: recebe do banco metade do valor pago pela propriedade. Para recuperar o titulo de posse: pague o valor indicado na carta (valor base e não valor da hipoteca) + 20% de taxa de juros
+- Venda de casas/hoteis para o banco: recebe 50% do valor pago
+- Oferta de venda de propriedade: (sugestão: AI compra se oferta for <= 80% do valor base E SE abrir possibilidade de construção para o bot)
+
+
+
+Tipos de casas do tabuleiro:
+
+Propriedades:
+- Ao cair numa propriedade sem dono, o jogador tem a opção de compra-la pelo preço indicado
+- Caso compre, recebe o título de posse correspondente
+- Ao cair numa propriedade com dono, pague o jogador o que manda a carta (0 a 4 casas ou 1 hotel) Limitado
+
+Companhias:
+- Ao cair numa companhia sem dono, o jogador tem a opção de compra-la pelo preço indicado
+- Ao cair numa companhia com dono, pague o valor tirado nos dados x (vezes) o valor da companhia indicado na carta ao jogador
+- Não se pode construir em uma companhia
+
+Receita Federal:
+- Pague 200.000
+
+Restituição de imposto de renda
+- Receba 200.000
+
+Casa Início
+- Receba 200.000
+
+Sorte ou revés
+- Retire a carta sorte ou revés do baralho
+- Pague ou receba
+- 2 exceções: passe livre da cadeia (dar opção quando cair na cadeia) e compra obrigatória (colocar nas opções de jogada se jogador possuí-la)
+
+Detenção (visita) e Feriado
+
+- Casa do tabuleiro sem efeito
+
+Vá para detenção
+
+- Manda jogador para a cadeia (posição fixa no tabuleiro)
+- Condição de detento: 3 rodadas até poder pagar fiança de 50.000 (não inclusa rodada que foi preso, paga-se fiança na terceira e joga normalmente nesta mesma rodada)
+- Ou: tira-se números iguais em ambos os dados, saindo imediatamente e andando a quantidade correspondente
+- Ou: usa-se a carta habeas-corpus (sorte ou revés), jogando normalmente na próxima rodada
+
+
+
