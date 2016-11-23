@@ -14,5 +14,35 @@ public class Main
     public static void main(String[] args) 
     {
         // TODO code application logic here
+        int numJogadores;
+        boolean modoPartida; //true é modo comum, de falência, e false é com contador por tempo/jogadas/etc
+        long tempoMaxMinu;
+        
+        /*
+        Início do Jogo
+        É aberta uma janela em que o usuário escolhe:
+        
+        -modo de término do jogo
+         --depois de um tempo X
+         --ou terminar pelo modo normal de falência.
+         Com base na escolha, cria contador de tempo/passagens ou não cria.(Ou deixa a opção de trocar 
+         de modo ligada durante o jogo, e inicia o contador de tempo/passadas de qualquer forma.)
+         O JOGADOR INSERE TEMPO MAXIMO DE JOGO EM MINUTOS.
+         
+         -numero de Jogadores.
+           Após ler retorna esse numero de jogadores para serem criados aqui.
+           
+           a partir disto, instanciamos a classe jogo, entrando os parametros modo de termino e numero
+           de jogadores.
+        */
+        
+        //Pedaço para testes, remover depois
+        numJogadores = 4;
+        modoPartida = false;
+        tempoMaxMinu = 60;
+        //fim pedaço para testes
+        
+        Jogo partida = new Jogo (numJogadores, modoPartida, tempoMaxMinu);
+        
     }
 }
