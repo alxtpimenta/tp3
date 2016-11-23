@@ -5,6 +5,7 @@
  */
 package Jogo;
 
+import 
 /**
  *
  * @author alexandrepimenta
@@ -42,9 +43,7 @@ public class Main
         tempoMaxMinu = 60;
         //fim pedaço para testes
         
-        //Inicia a partida
-         horaAtual = System.currentTimeMillis();
-         horaFinal  = horaAtual + (tempoMaxMinu x 60000);
+        ArrayList<Jogador> obj = new ArrayList<Jogador>();
         
         for(i=0; i<numJogadores; i++)
         {
@@ -52,9 +51,13 @@ public class Main
             Abre janela pedindo para inserir os dados relativos a cada jogador:
             - nome
             - cor escolhida
-            - lançar dados
+            - lançar dados (retorna o resultado)
             */   
         }
+
+        //Inicia a partida
+        horaAtual = System.currentTimeMillis();
+        horaFinal  = horaAtual + (tempoMaxMinu x 60000);
         
         
     }
