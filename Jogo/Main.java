@@ -17,32 +17,45 @@ public class Main
         int numJogadores;
         boolean modoPartida; //true é modo comum, de falência, e false é com contador por tempo/jogadas/etc
         long tempoMaxMinu;
+        long horaAtual;
+        long horaFinal;
+        
+        int i;
         
         /*
         Início do Jogo
         É aberta uma janela em que o usuário escolhe:
         
         -modo de término do jogo
-         --depois de um tempo X
-         --ou terminar pelo modo normal de falência.
+         --depois de um tempo X, x em minutos escolhido pelo usuário
+         --ou terminar pelo modo normal de falência. (mas mesmo assim jogador escolhe um tempo máximo para o jogo em minutos.)
          Com base na escolha, cria contador de tempo/passagens ou não cria.(Ou deixa a opção de trocar 
-         de modo ligada durante o jogo, e inicia o contador de tempo/passadas de qualquer forma.)
-         O JOGADOR INSERE TEMPO MAXIMO DE JOGO EM MINUTOS.
+         de modo ligada durante o jogo (jogos que demoram muito) e inicia o contador de tempo/passadas de qualquer forma.)
          
          -numero de Jogadores.
            Após ler retorna esse numero de jogadores para serem criados aqui.
-           
-           a partir disto, instanciamos a classe jogo, entrando os parametros modo de termino e numero
-           de jogadores.
         */
         
         //Pedaço para testes, remover depois
         numJogadores = 4;
-        modoPartida = false;
+        modoPartida = true;
         tempoMaxMinu = 60;
         //fim pedaço para testes
         
-        Jogo partida = new Jogo (numJogadores, modoPartida, tempoMaxMinu);
+        //Inicia a partida
+         horaAtual = System.currentTimeMillis();
+         horaFinal  = horaAtual + (tempoMaxMinu x 60000);
+        
+        /*
+        Abre janela pedindo para inserir os dados relativos a cada jogador:
+        - nome
+        - cor
+        - lançar dados
+        */
+        
+        for(i=0; i<numJogadores; i++)
+        {
+        }
         
     }
 }
