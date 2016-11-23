@@ -12,21 +12,7 @@ public class Jogo{
 	  
 	//registra hora do começo
 	 horaAtual = System.currentTimeMillis();
-	 horaFinal  = horaAtual + (tmm x 60000);
-	 
-	 while(horaAtual < horaFinal) //Duração do jogo
-	 {
-		 
-		 
-		 
-		 
-		 
-		 
-		 //vê se é possível jogar ainda
-		 horaAtual = System.currentTimeMillis();
-	 }
-	  
-    
+	 horaFinal  = horaAtual + (tmm x 60000);    
   }
   
   
