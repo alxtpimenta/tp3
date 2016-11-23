@@ -1,0 +1,13 @@
+Usar virgula (,) como separador
+
+texto,adicionar,remover,prisao
+
+*Nao utilizar virgulas no texto da carta*
+
+Exemplos:
+
+Renove a licença do seu automóvel. Pague 3000,0,30,0
+
+Você esta com sorte. Suas ações na Bolsa de Valores estão em alta! Receba 20000,20000,0,0
+
+Voce foi preso!,0,0,1

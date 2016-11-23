@@ -1,0 +1,41 @@
+Usar virgula (,) como separador
+Cada tipo pode ter propriedades diferentes
+Tipo Imovel (1)
+Tipo,Nome,valorDeCompra,hipoteca,aluguel,alguel1casa,aluguel2casas,aluguel3casas,aluguel4casas,valorDeCompraCasa,valorDecompraHotel
+
+Exemplo:
+
+1,Jardim Botanico,100000,50000,6000,50000,90000,270000,400000,500000,50000,50000
+
+
+Tipo Empresa (2)
+
+Tipo,Nome,valorDeCompra,hipoteca,taxa
+
+Exemplo:
+
+2,Companhia de Viacao,80000,50000,5000
+
+
+Tipo Especial (Voce foi preso, Ganhou na loteria, sorte/reves) (3)
+
+Tipo,Nome,adicionar,remover,prisao,sorte/reves
+
+Exemplos:
+
+3,Receita Federal. Pague 200000,0,200000,0,0
+
+3,Restituicao do imposto de renda. Receba 200000,0,200000,0,0
+
+3,Sorte/Reves,0,0,0,1
+
+3,Entre no camburao e va para a detencao!,0,0,1,0
+
+Tipo Parada (Ponto de inicio, prisao) (4)
+
+Somente utilizar o ID 4 e iniciar outra linha
+
+Exemplo
+
+4
+3,Receita Federal. Pague 200000,0,200000,0,0
