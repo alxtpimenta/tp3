@@ -21,6 +21,9 @@ Tipo Especial (Voce foi preso, Ganhou na loteria, sorte/reves) (3)
 
 Tipo,Nome,adicionar,remover,prisao,sorte/reves
 
+(0 se for sorte/reves, 1 se não for)
+(O mesmo vale para prisao. 0 se não for preso, se for preso, 1)
+
 Exemplos:
 
 3,Receita Federal. Pague 200000,0,200000,0,0
