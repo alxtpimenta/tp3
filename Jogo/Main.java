@@ -9,10 +9,6 @@ import java.util.*;
 import Elementos.Jogador;
 import Propriedades.Definicoes;
 
-/**
- *
- * @author alexandrepimenta
- */
 public class Main 
 {
     public static void main(String[] args) 
