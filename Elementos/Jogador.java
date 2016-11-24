@@ -4,10 +4,6 @@
  */
 package Elementos;
 
-/**
- *
- * @author alexandrepimenta
- */
 public class Jogador implements Comparable<Jogador>
 {
     public Jogador(String nome, int dinheiro, int cor, int resultadoDados)
