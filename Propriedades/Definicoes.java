@@ -5,10 +5,6 @@
  */
 package Propriedades;
 
-/**
- *
- * @author alexandrepimenta
- */
 public class Definicoes 
 {
     public static final int RESOLUCAOX = 1000;
