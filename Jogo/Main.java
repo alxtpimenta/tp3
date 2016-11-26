@@ -41,6 +41,9 @@ public class Main
            Após ler retorna esse numero de jogadores para serem criados aqui.
         */
         
+        //TESTE DA INTERFACE
+        UserInterface.Dialogo.boasVindas();
+        
         //Pedaço para testes, remover depois
         numJogadores = 4;
         modoPartida = true;

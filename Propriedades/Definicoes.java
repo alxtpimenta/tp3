@@ -7,8 +7,8 @@ package Propriedades;
 
 public class Definicoes 
 {
-    public static final int RESOLUCAOX = 1000;
-    public static final int RESOLUCAOY = 1000;
+    public static final int RESOLUCAOX = 1280;
+    public static final int RESOLUCAOY = 800;
     
     public static final int NUM_CASAS = 40;
     
@@ -22,4 +22,11 @@ public class Definicoes
     public static final int NUM_MAX_HOTEIS = 1;
     
     public static final int QUANTIA_INICIAL = 2558000;
+    
+    public static final int BRANCO = 0;
+    public static final int PRETO = 1;
+    public static final int AZUL = 2;
+    public static final int AMARELO = 3;
+    public static final int VERDE = 4;
+    public static final int VERMELHO = 5;
 }
