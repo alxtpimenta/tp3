@@ -1,0 +1,33 @@
+id,cat,text,action,quant
+0,sorte,Tirou 1o lugar no torneio de golfe. Receba 100000,1,100000
+1,reves,Seu jatinho precisa de manutencao. Pague 9000,0,9000
+2,sorte,Vendeu parte de sua empresa para um investidor. Receba 75000,1,75000
+3,reves,Voce vai comecar um curso de MBA e ganhou um bom desconto para pagamento a vista. Pague 20000,0,20000
+4,reves,Reformou sua casa. Pague 50000,0,50000
+5,reves,Atualizou os computadores de sua empresa. Pague 30000,0,30000
+6,reves,Producao de leite de suas fazendas ficou abaixo da expectativa e tera de arcar com os prejuizos. Pague 60000,0,60000
+7,reves,Comprou obra de arte falsificada. Pague 22000,0,22000
+8,reves,Um navio afundou com suas mercadorias e nao tinha seguro. Pague 40000,0,40000
+9,sorte,Apostou no cavalo azarao vencedor do Grande Premio Brasil. Receba 100000,1,100000
+10,sorte,Ganhou sozinho na loteria! Receba 80000,1,80000
+11,sorte,Sua casa sera desapropriada para a construcao do metro. Ganhara uma gorda Idenizacao. Receba 60000,1,60000
+12,reves,Ferias no campo com toda a familia! Pague 20000,0,20000
+13,sorte,Recebeu uma heranca inesperada. Receba 75000,1,75000
+14,sorte,Seu livro sera publicado por uma grande editora. Receba 50000,1,50000
+15,sorte,Suas acoes na Bolsa de Valores estao em alta. Receba 100000,1,100000
+16,reves,Seus funcionarios entraram em greve trazendo grandes prejuizos para a producao. Pague 30000,0,30000
+17,sorte,Seu iate afundou. Mas voce tinha seguro! Receba 25000,1,25000
+18,sorte,Venceu licitacao para uma grande obra. Receba 150000,1,150000
+19,sorte,Recebeu o premio de Profissional do Ano e ganhou um carro. Receba 10000,1,10000
+20,reves,A falta de chuvas prejudicou a colheita. Pague 45000,0,45000
+21,reves,Seu filho decidiu fazer intercambio. Pague 20000,0,20000
+22,reves,Sua empresa foi multada por poluir demais. Pague 200000,0,200000
+23,reves,Sua empresa ira patrocinar uma expedicao a Antartida. Pague 50000,0,50000
+24,reves,Renovou a frota de carros de sua empresa. Pague 100000,0,100000
+25,reves,Entre no camburao e va para a Detencao (e sem reclamar!),2,0
+26,sorte,Va ate o inicio e... Receba 200.000!,3,0
+27,sorte ou reves,Se tirou numero par na soma dos dados. Receba 100.000! Se tirou impar na soma dos dados. Pague 100.000,4,0
+28,sorte,O dia de seu casamento chegou. Receba os presentes. Receba 50.000 de cada jogador,5,0
+29,sorte,Habeas Corpus. Utilize este cartao para se livrar da detencao quando necessario. Voce tambem pode negociar a venda deste cartao para outro jogador,6,0
+30,sorte,Compra Livre. Apresente este cartao a um jogador para comprar uma propriedade SEM construcoes pelo valor indicado no tabuleiro. O jogador e obrigado a aceitar. utilize em qualquer momento do jogo. Este cartao nao pode ser negociado,7,0
+31,sorte,Jogue os dados novamente e avance seu peao,8,0

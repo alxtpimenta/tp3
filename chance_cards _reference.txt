@@ -1,0 +1,9 @@
+0 - Tirar x reais
+1 - Adicionar x reais
+2 - Mover jogador para cadeia
+3 - Mover jogador para o inicio e adicionar 200.000
+4 - Se resultado da soma dos der par adicionar 100.000, caso impar retirar 100.000
+5 - Receba 50.000 de cada jogador
+6 - Beneficio de habeas corpus
+7 - Beneficio de compra livre
+8 - Jogue os dados novamente
