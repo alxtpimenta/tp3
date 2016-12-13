@@ -8,10 +8,13 @@ package Jogo;
 import java.util.*;
 import Elementos.Jogador;
 import Propriedades.Definicoes;
+import UserInterface.Sprites;
+import UserInterface.Tabuleiro;
+import java.io.IOException;
 
 public class Main 
 {
-    public static void main(String[] args) 
+    public static void main(String[] args) throws IOException 
     {
         // TODO code application logic here
         int numJogadores;
@@ -43,6 +46,11 @@ public class Main
         
         //TESTE DA INTERFACE
         UserInterface.Dialogo.boasVindas();
+        //
+        Sprites.carregarSprites();
+        //
+        Tabuleiro board = Tabuleiro.inicializarTabuleiro();
+        board.adicionarFundo();
         
         //Pedaço para testes, remover depois
         numJogadores = 4;
@@ -50,7 +58,7 @@ public class Main
         tempoMaxMinu = 60;
         //fim pedaço para testes
         
-        ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
+        ArrayList<Jogador> jogadores = new ArrayList<>();
         
         
         gerador = new Random(); //gerador de números aleatórios

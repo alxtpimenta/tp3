@@ -5,7 +5,10 @@
  */
 package UserInterface;
 
-import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -14,17 +17,20 @@ import java.awt.Image;
 public class Sprites 
 {
     //TABULEIRO
-    public Image planoDeFundo;
+    public static BufferedImage planoDeFundo;
     //PEOES DO JOGAODR
-    public Image jogadorAzul;
-    public Image jogadorAmarelo;
-    public Image jogadorVermelho;
-    public Image jogadorPreto;
-    public Image jogadorBranco;
-    public Image jogadorVerde;
+    public static BufferedImage jogadorAzul;
+    public static BufferedImage jogadorAmarelo;
+    public static BufferedImage jogadorVermelho;
+    public static BufferedImage jogadorPreto;
+    public static BufferedImage jogadorBranco;
+    public static BufferedImage jogadorVerde;
     //CASAS E HOTEIS
-    public Image casa;
-    public Image hotel;
-    //CARTAS
-    public static Image carta;
+    public static BufferedImage casa;
+    public static BufferedImage hotel;
+    
+    public static void carregarSprites() throws IOException
+    {
+        Sprites.planoDeFundo = ImageIO.read(new File("background.png"));
+    }
 }
