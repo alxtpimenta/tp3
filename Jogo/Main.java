@@ -44,51 +44,30 @@ public class Main
            Após ler retorna esse numero de jogadores para serem criados aqui.
         */
         
-        //TESTE DA INTERFACE
-        UserInterface.Dialogo.boasVindas();
-        //
+        //INICIALIZACAO DA INTERFACE
         Sprites.carregarSprites();
-        //
+        //INICIAR TABULEIRO
         Tabuleiro board = Tabuleiro.inicializarTabuleiro();
         board.adicionarFundo();
+        UserInterface.Dialogo.boasVindas();
         
         //Pedaço para testes, remover depois
-        numJogadores = 4;
         modoPartida = true;
         tempoMaxMinu = 60;
         //fim pedaço para testes
         
-        ArrayList<Jogador> jogadores = new ArrayList<>();
-        
-        
+        ArrayList<Jogador> jogadores = new ArrayList<>();    
         gerador = new Random(); //gerador de números aleatórios
-        /* Código real que vamos usar
-        for(i=0; i<numJogadores; i++)
+
+        //Preenche a lista de jogadores usando a interface
+        numJogadores = UserInterface.Dialogo.quantidadeJogadores();
+        for(i = 0;i < numJogadores; i++)
         {
-        	dados = gerador.nextInt(12)+1;
-        	
-            //Abre janela pedindo para inserir os dados relativos a cada jogador:
-            //- nome (variável nome)
-            //- cor escolhida (variável cor)
-            //- animação/imagem lançar os dados (exibe valor sorteado pela variavel dados aqui no inicio do bloco)
-            
-        	jogadores.add(new Jogador(nome, Definicoes.QUANTIA_INICIAL, cor, dados));
+            String nomeJogador = UserInterface.Dialogo.nomeJogador(i+1);
+            int corJogador = UserInterface.Dialogo.corJogador(i+1);
+            dados = gerador.nextInt(12)+1;
+            jogadores.add(new Jogador(nomeJogador,Definicoes.QUANTIA_INICIAL,corJogador,dados));
         }
-    	*/
-        
-        //Código temporário só enquanto a janela não fica pronta
-        dados = gerador.nextInt(12)+1;
-        jogadores.add(new Jogador("Alexandre", Definicoes.QUANTIA_INICIAL, 1, dados));
-        
-        dados = gerador.nextInt(12)+1;
-        jogadores.add(new Jogador("Ana Carolina", Definicoes.QUANTIA_INICIAL, 2, dados));
-        
-        dados = gerador.nextInt(12)+1;
-        jogadores.add(new Jogador("Ana Luiza", Definicoes.QUANTIA_INICIAL, 3, dados));
-        
-        dados = gerador.nextInt(12)+1;
-        jogadores.add(new Jogador("Pedro", Definicoes.QUANTIA_INICIAL, 4, dados));
-        //fim código temporário
         
         Collections.sort(jogadores); //jogadores ordenados no Array pela vez de jogar
 

@@ -39,25 +39,25 @@ public  class Dialogo
         return saida;
     }
     
-    public static String nomeJogador()
+    public static String nomeJogador(int numJogador)
     {
         //ARMAZENA OS DADOS INSERIDOS
         String nome;
         //SOLICITAR ENTRADA DO USUARIO
-        nome = JOptionPane.showInputDialog(Textos.INSERIR_NOME);
+        nome = JOptionPane.showInputDialog(Textos.INSERIR_NOME +" " + Integer.toString(numJogador));
         //RETORNA O NOME DO JOGADOR
         return nome;
     }
     
     //SOLICITA A COR DO JOGADOR
     //O VALOR E RETORNADO EM INT, DE ACORDO COM AS DEFINICOES
-    public static int corJogador()
+    public static int corJogador(int numJogador)
     {
         //ARMAZENA OS DADOS
         String [] cores = {"Branco","Preto","Azul","Amarelo","Verde","Vermelho"};
         String entrada;
         //SOLICITA ENTRADA DO USUARIO
-        entrada = (String)JOptionPane.showInputDialog(null,Textos.SELECIONAR_COR,Textos.SELECIONAR_COR,JOptionPane.QUESTION_MESSAGE,null,cores,cores[0]);
+        entrada = (String)JOptionPane.showInputDialog(null,Textos.SELECIONAR_COR +" " + Integer.toString(numJogador),Textos.SELECIONAR_COR +" " + Integer.toString(numJogador),JOptionPane.QUESTION_MESSAGE,null,cores,cores[0]);
         
         //!! A FUNCAO NAO REALIZA CONSULTA SE A COR JA FOI SELECIONADA !!
         //!! A CONSULTA DEVE SER FEITA NO BACK END !!

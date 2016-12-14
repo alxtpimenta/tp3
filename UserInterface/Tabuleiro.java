@@ -7,6 +7,7 @@ package UserInterface;
 
 import Propriedades.Definicoes;
 import java.awt.Graphics;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -39,7 +40,7 @@ public class Tabuleiro
             return null;
     }
     
-    //IMPRESSAO
+    //PLANO DE FUNDO
     public static JPanel background = new JPanel()
     {
         @Override
@@ -54,4 +55,6 @@ public class Tabuleiro
     {
         this.tabuleiro.add(Tabuleiro.background);
     }
+    
+    public JButton jogarDados = new JButton("Jogar Dados");
 }
