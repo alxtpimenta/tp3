@@ -83,4 +83,21 @@ public  class Dialogo
     {
         JOptionPane.showMessageDialog(null,Textos.COR_JA_SELECIONADA);
     }
+    
+    //Mensagem de aviso generico (aviso de cobranca, sorte, reves)
+    public static void avisoGenerico(String texto)
+    {
+        JOptionPane.showMessageDialog(null,texto);
+    }
+    
+    //Caixa de dialogo generica sim/nao (deseja comprar x imovel?)
+    //Retorna TRUE se a resposta for sim, e FALSE se for nao
+    public static boolean perguntaGenerica(String texto)
+    {
+        int resposta = JOptionPane.showConfirmDialog(null,texto,null,JOptionPane.YES_NO_OPTION);
+        if(resposta == JOptionPane.YES_OPTION)
+            return true;
+        else
+            return false;
+    }
 }

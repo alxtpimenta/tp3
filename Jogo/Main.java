@@ -47,15 +47,15 @@ public class Main
         
         //INICIALIZACAO DA INTERFACE
         UserInterface.Sprites.carregarSprites();
+        UserInterface.Botoes.iniciarBotoes();
+        UserInterface.Labels.iniciarLabels();
         //INICIAR TABULEIRO
         Tabuleiro board = Tabuleiro.inicializarTabuleiro();
         board.adicionarPainel();
-        UserInterface.Botoes.mostrarBotaoDados();
-        UserInterface.Labels.iniciarLabels();
-        UserInterface.Labels.exibirLabels();
+        Tabuleiro.setVisible();
+        //DIALOGO DA INTERFACE
         UserInterface.Dialogo.boasVindas();
-        
-        
+
         //Pedaço para testes, remover depois
         modoPartida = true;
         tempoMaxMinu = 60;
@@ -75,6 +75,11 @@ public class Main
         }
         
         Collections.sort(jogadores); //jogadores ordenados no Array pela vez de jogar
+        
+        //EXIBIR ELEMENTOS DA INTERFACE
+        UserInterface.Botoes.mostrarBotaoDados();
+        UserInterface.Botoes.mostrarBotaoTurno();
+        UserInterface.Labels.exibirLabels();
 
         //Inicia a partida
         horaAtual = System.currentTimeMillis();

@@ -31,6 +31,6 @@ public class Sprites
     
     public static void carregarSprites() throws IOException
     {
-        Sprites.planoDeFundo = ImageIO.read(new File("background.png"));
+        Sprites.planoDeFundo = ImageIO.read(new File("/Volumes/Card/Google Drive/Academic/UFMG/8º Periodo/Programacao Modular/TP3/background.png"));
     }
 }

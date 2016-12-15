@@ -6,9 +6,7 @@
 package UserInterface;
 
 import Propriedades.Definicoes;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -18,20 +16,22 @@ import javax.swing.JPanel;
  */
 public class Tabuleiro 
 {
-    private final JFrame tabuleiro;
+    private static JFrame tabuleiro;
     
     private static Tabuleiro instancia = null;
     
+    //Construtor
     protected Tabuleiro()
     {
         tabuleiro = new JFrame("Banco Imobiliario");
         tabuleiro.setSize(Definicoes.RESOLUCAOX,Definicoes.RESOLUCAOY);
         tabuleiro.setLocationRelativeTo(null);
         tabuleiro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        tabuleiro.setVisible(true);
         tabuleiro.setResizable(false);
+        tabuleiro.setVisible(true);
     }
     
+    //Instanciar o singleton do tabuleiro
     public static Tabuleiro inicializarTabuleiro()
     {
         if(instancia == null)
@@ -54,10 +54,19 @@ public class Tabuleiro
         }
     };
     
+    //Adiciona o painel ao JFrame
     public void adicionarPainel()
     {
-        this.tabuleiro.add(Tabuleiro.painel);
-        Tabuleiro.painel.setLayout(new FlowLayout());
+        Tabuleiro.tabuleiro.add(Tabuleiro.painel);
+        Tabuleiro.painel.setLayout(null);
+        Tabuleiro.painel.setVisible(true);
+    }
+    
+    //Torna os objetos swing visiveis apos a inclusao
+    public static void setVisible()
+    {
+        Tabuleiro.painel.setVisible(true);
+        Tabuleiro.tabuleiro.setVisible(true);
     }
     
 }
