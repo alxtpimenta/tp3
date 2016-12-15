@@ -8,6 +8,7 @@ package Jogo;
 import java.util.*;
 import Elementos.Jogador;
 import Propriedades.Definicoes;
+import UserInterface.Labels;
 import UserInterface.Sprites;
 import UserInterface.Tabuleiro;
 import java.io.IOException;
@@ -45,11 +46,15 @@ public class Main
         */
         
         //INICIALIZACAO DA INTERFACE
-        Sprites.carregarSprites();
+        UserInterface.Sprites.carregarSprites();
         //INICIAR TABULEIRO
         Tabuleiro board = Tabuleiro.inicializarTabuleiro();
-        board.adicionarFundo();
+        board.adicionarPainel();
+        UserInterface.Botoes.mostrarBotaoDados();
+        UserInterface.Labels.iniciarLabels();
+        UserInterface.Labels.exibirLabels();
         UserInterface.Dialogo.boasVindas();
+        
         
         //Pedaço para testes, remover depois
         modoPartida = true;

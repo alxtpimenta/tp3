@@ -6,6 +6,7 @@
 package UserInterface;
 
 import Propriedades.Definicoes;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,7 +29,9 @@ public class Tabuleiro
         tabuleiro.setLocationRelativeTo(null);
         tabuleiro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tabuleiro.setVisible(true);
+        tabuleiro.setResizable(false);
     }
+    
     public static Tabuleiro inicializarTabuleiro()
     {
         if(instancia == null)
@@ -41,7 +44,7 @@ public class Tabuleiro
     }
     
     //PLANO DE FUNDO
-    public static JPanel background = new JPanel()
+    public static JPanel painel = new JPanel()
     {
         @Override
         protected void paintComponent(Graphics g)
@@ -51,10 +54,10 @@ public class Tabuleiro
         }
     };
     
-    public void adicionarFundo()
+    public void adicionarPainel()
     {
-        this.tabuleiro.add(Tabuleiro.background);
+        this.tabuleiro.add(Tabuleiro.painel);
+        Tabuleiro.painel.setLayout(new FlowLayout());
     }
     
-    public JButton jogarDados = new JButton("Jogar Dados");
 }
