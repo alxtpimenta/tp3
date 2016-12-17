@@ -8,8 +8,6 @@ package Jogo;
 import java.util.*;
 import Elementos.Jogador;
 import Propriedades.Definicoes;
-import UserInterface.Labels;
-import UserInterface.Sprites;
 import UserInterface.Tabuleiro;
 import java.io.IOException;
 

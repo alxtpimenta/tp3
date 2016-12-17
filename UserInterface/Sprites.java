@@ -25,9 +25,6 @@ public class Sprites
     public static BufferedImage jogadorPreto;
     public static BufferedImage jogadorBranco;
     public static BufferedImage jogadorVerde;
-    //CASAS E HOTEIS
-    public static BufferedImage casa;
-    public static BufferedImage hotel;
     
     public static void carregarSprites() throws IOException
     {
