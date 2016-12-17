@@ -5,7 +5,14 @@
 package Elementos;
 
 public class Jogador implements Comparable<Jogador>
-{
+{   
+    private int _dinheiro;
+    private String _nome;
+    private int _cor;
+    private int _coordX;
+    private int _coordY;
+    private int _resultadoDados; //vou usar uma vez só, para determinar a ordem de jogada dos jogadores.
+    
     public Jogador(String nome, int dinheiro, int cor, int resultadoDados)
     {
         this._nome = nome;
@@ -13,13 +20,6 @@ public class Jogador implements Comparable<Jogador>
         this._cor = cor;
         this._resultadoDados = resultadoDados;
     }
-    
-    private int _dinheiro;
-    private String _nome;
-    private int _cor;
-    private int _coordX;
-    private int _coordY;
-    private int _resultadoDados; //vou usar uma vez só, para determinar a ordem de jogada dos jogadores.
     
     public int saldoAtual()
     {
