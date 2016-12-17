@@ -49,6 +49,7 @@ public class Main
         UserInterface.Sprites.carregarSprites();
         UserInterface.Botoes.iniciarBotoes();
         UserInterface.Labels.iniciarLabels();
+        UserInterface.Pecas.iniciarPecas();
         //INICIAR TABULEIRO
         Tabuleiro board = Tabuleiro.inicializarTabuleiro();
         board.adicionarPainel();
@@ -80,6 +81,7 @@ public class Main
         UserInterface.Botoes.mostrarBotaoDados();
         UserInterface.Botoes.mostrarBotaoTurno();
         UserInterface.Labels.exibirLabels();
+        UserInterface.Pecas.adicionarAzul();
 
         //Inicia a partida
         horaAtual = System.currentTimeMillis();
