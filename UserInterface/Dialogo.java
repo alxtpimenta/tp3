@@ -5,6 +5,7 @@
  */
 package UserInterface;
 import javax.swing.JOptionPane;
+import java.util.*;
 /**
  *
  * @author alexandrepimenta
@@ -51,16 +52,14 @@ public  class Dialogo
     
     //SOLICITA A COR DO JOGADOR
     //O VALOR E RETORNADO EM INT, DE ACORDO COM AS DEFINICOES
-    public static int corJogador(int numJogador)
+    public static int corJogador(int numJogador,  String [] cores)
     {
         //ARMAZENA OS DADOS
-        String [] cores = {"Branco","Preto","Azul","Amarelo","Verde","Vermelho"};
         String entrada;
+    	
         //SOLICITA ENTRADA DO USUARIO
         entrada = (String)JOptionPane.showInputDialog(null,Textos.SELECIONAR_COR +" " + Integer.toString(numJogador),Textos.SELECIONAR_COR +" " + Integer.toString(numJogador),JOptionPane.QUESTION_MESSAGE,null,cores,cores[0]);
         
-        //!! A FUNCAO NAO REALIZA CONSULTA SE A COR JA FOI SELECIONADA !!
-        //!! A CONSULTA DEVE SER FEITA NO BACK END !!
         if("Branco".equals(entrada))
             return 0;
         else if("Preto".equals(entrada))
