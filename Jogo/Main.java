@@ -60,7 +60,7 @@ public class Main
         tempoMaxMinu = 60;
         //fim pedaço para testes
         
-        ArrayList<Jogador> jogadores = new ArrayList<>();    
+        ArrayList<Jogador> jogadores = new ArrayList<Jogador>();    
         gerador = new Random(); //gerador de números aleatórios
 
         //Preenche a lista de jogadores usando a interface
