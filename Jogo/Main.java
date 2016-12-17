@@ -84,22 +84,21 @@ public class Main
             int corJogador = UserInterface.Dialogo.corJogador(i+1, cores);
             switch (corJogador){
             	case 0: arrayCores.remove("Branco");
-            			break;
+            		break;
             	case 1: arrayCores.remove("Preto");
-    					break;
+    			break;
             	case 2: arrayCores.remove("Azul");
-						break;
+			break;
             	case 3: arrayCores.remove("Amarelo");
-						break;
+			break;
             	case 4: arrayCores.remove("Verde");
-						break;
+			break;
             	case 5: arrayCores.remove("Vermelho");
-						break;
-				default:break;
+			break;
+		default:break;
             }
             
             dados = gerador.nextInt(12)+1;
-            
             jogadores.add(new Jogador(nomeJogador,Definicoes.QUANTIA_INICIAL,corJogador,dados));
         }
         
