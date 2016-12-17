@@ -15,9 +15,11 @@ public class Main
 {
     public static void main(String[] args) throws IOException 
     {
-        // TODO code application logic here
         int numJogadores;
-        boolean modoPartida; //true é modo comum, de falência, e false é com contador por tempo/jogadas/etc
+        ArrayList<Jogador> jogadores;
+        ArrayList<String> arrayCores;
+        String [] cores;
+        boolean modoPartida; //true Ã© modo comum, de falÃªncia, e false Ã© com contador por tempo/jogadas/etc
         long tempoMaxMinu;
         long horaAtual;
         long horaFinal;
@@ -30,17 +32,17 @@ public class Main
         Random gerador;
         
         /*
-        Início do Jogo
-        É aberta uma janela em que o usuário escolhe:
+        InÃ­cio do Jogo
+        Ã‰ aberta uma janela em que o usuÃ¡rio escolhe:
         
-        -modo de término do jogo
-         --depois de um tempo X, x em minutos escolhido pelo usuário
-         --ou terminar pelo modo normal de falência. (mas mesmo assim jogador escolhe um tempo máximo para o jogo em minutos.)
-         Com base na escolha, cria contador de tempo/passagens ou não cria.(Ou deixa a opção de trocar 
+        -modo de tÃ©rmino do jogo
+         --depois de um tempo X, x em minutos escolhido pelo usuÃ¡rio
+         --ou terminar pelo modo normal de falÃªncia. (mas mesmo assim jogador escolhe um tempo mÃ¡ximo para o jogo em minutos.)
+         Com base na escolha, cria contador de tempo/passagens ou nÃ£o cria.(Ou deixa a opÃ§Ã£o de trocar 
          de modo ligada durante o jogo (jogos que demoram muito) e inicia o contador de tempo/passadas de qualquer forma.)
          
          -numero de Jogadores. (entre MIN_JOGADORES E MAX_JOGADORES)
-           Após ler retorna esse numero de jogadores para serem criados aqui.
+           ApÃ³s ler retorna esse numero de jogadores para serem criados aqui.
         */
         
         //INICIALIZACAO DA INTERFACE
@@ -55,21 +57,49 @@ public class Main
         //DIALOGO DA INTERFACE
         UserInterface.Dialogo.boasVindas();
 
-        //Pedaço para testes, remover depois
+        //PedaÃ§o para testes, remover depois
         modoPartida = true;
         tempoMaxMinu = 60;
-        //fim pedaço para testes
+        //fim pedaÃ§o para testes
         
-        ArrayList<Jogador> jogadores = new ArrayList<Jogador>();    
-        gerador = new Random(); //gerador de números aleatórios
+        jogadores = new ArrayList<Jogador>();    
+        gerador = new Random(); //gerador de nÃºmeros aleatÃ³rios
+        
+    	arrayCores = new ArrayList<String>();
+    	arrayCores.add("Branco");
+    	arrayCores.add("Preto");
+    	arrayCores.add("Azul");
+    	arrayCores.add("Amarelo");
+    	arrayCores.add("Verde");
+    	arrayCores.add("Vermelho");
 
         //Preenche a lista de jogadores usando a interface
         numJogadores = UserInterface.Dialogo.quantidadeJogadores();
-        for(i = 0;i < numJogadores; i++)
+        for(i = 0; i < numJogadores; i++)
         {
             String nomeJogador = UserInterface.Dialogo.nomeJogador(i+1);
-            int corJogador = UserInterface.Dialogo.corJogador(i+1);
+            
+            cores = new String[arrayCores.size()];
+            cores = arrayCores.toArray(cores);
+            int corJogador = UserInterface.Dialogo.corJogador(i+1, cores);
+            switch (corJogador){
+            	case 0: arrayCores.remove("Branco");
+            			break;
+            	case 1: arrayCores.remove("Preto");
+    					break;
+            	case 2: arrayCores.remove("Azul");
+						break;
+            	case 3: arrayCores.remove("Amarelo");
+						break;
+            	case 4: arrayCores.remove("Verde");
+						break;
+            	case 5: arrayCores.remove("Vermelho");
+						break;
+				default:break;
+            }
+            
             dados = gerador.nextInt(12)+1;
+            
             jogadores.add(new Jogador(nomeJogador,Definicoes.QUANTIA_INICIAL,corJogador,dados));
         }
         
