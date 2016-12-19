@@ -7,6 +7,8 @@ package Jogo;
 
 import java.util.*;
 import Elementos.Jogador;
+import Elementos.JogadorLocal;
+import Elementos.JogadorComputador;
 import Propriedades.Definicoes;
 import UserInterface.Tabuleiro;
 import java.io.IOException;
@@ -15,7 +17,8 @@ public class Main
 {
     public static void main(String[] args) throws IOException 
     {
-        int numJogadores;
+        int numJogadoresLocais;
+        int numJogadoresComputador;
         ArrayList<Jogador> jogadores;
         ArrayList<String> arrayCores;
         String [] cores;
@@ -74,15 +77,15 @@ public class Main
     	arrayCores.add("Vermelho");
 
         //Preenche a lista de jogadores usando a interface
-        numJogadores = UserInterface.Dialogo.quantidadeJogadores();
-        for(i = 0; i < numJogadores; i++)
+        numJogadoresLocais = UserInterface.Dialogo.quantidadeJogadoresLocais();
+        for(i = 0; i < numJogadoresLocais; i++)
         {
-            String nomeJogador = UserInterface.Dialogo.nomeJogador(i+1);
+            String nomeJogadorLocal = UserInterface.Dialogo.nomeJogador(i+1);
             
             cores = new String[arrayCores.size()];
             cores = arrayCores.toArray(cores);
-            int corJogador = UserInterface.Dialogo.corJogador(i+1, cores);
-            switch (corJogador){
+            int corJogadorLocal = UserInterface.Dialogo.corJogador(i+1, cores);
+            switch (corJogadorLocal){
             	case 0: arrayCores.remove("Branco");
             		break;
             	case 1: arrayCores.remove("Preto");
@@ -95,14 +98,56 @@ public class Main
 			break;
             	case 5: arrayCores.remove("Vermelho");
 			break;
-		default:break;
+            default:break;
             }
             
             dados = gerador.nextInt(12)+1;
-            jogadores.add(new Jogador(nomeJogador,Definicoes.QUANTIA_INICIAL,corJogador,dados));
+            JogadorLocal humanPlayer = new JogadorLocal();
+            humanPlayer.setCor(corJogadorLocal);
+            humanPlayer.setName(nomeJogadorLocal);
+            humanPlayer.setSaldo(Definicoes.QUANTIA_INICIAL);
+            humanPlayer.setResultadoDados(dados);
+            humanPlayer.setTipo("humano");
+            
+            jogadores.add(humanPlayer);
+        }
+        numJogadoresComputador = UserInterface.Dialogo.quantidadeJogadoresComputador();
+        int j;
+        for(j=0;j<numJogadoresComputador;j++)
+        {
+        	String nomeJogadorComputador = UserInterface.Dialogo.nomeJogadorComputador(j+1);
+        	
+        	cores = new String[arrayCores.size()];
+            cores = arrayCores.toArray(cores);
+            int corJogadorComputador = UserInterface.Dialogo.corJogador(j+1, cores);
+            switch (corJogadorComputador){
+            	case 0: arrayCores.remove("Branco");
+            		break;
+            	case 1: arrayCores.remove("Preto");
+    			break;
+            	case 2: arrayCores.remove("Azul");
+			break;
+            	case 3: arrayCores.remove("Amarelo");
+			break;
+            	case 4: arrayCores.remove("Verde");
+			break;
+            	case 5: arrayCores.remove("Vermelho");
+			break;
+            default:break;
+            }
+            
+            dados = gerador.nextInt(12)+1;
+            JogadorComputador computerPlayer = new JogadorComputador();
+            computerPlayer.setCor(corJogadorComputador);
+            computerPlayer.setName(nomeJogadorComputador);
+            computerPlayer.setSaldo(Definicoes.QUANTIA_INICIAL);
+            computerPlayer.setResultadoDados(dados);
+            computerPlayer.setTipo("computador");
+            
+            jogadores.add(computerPlayer);
         }
         
-        Collections.sort(jogadores); //jogadores ordenados no Array pela vez de jogar
+        //Collections.sort(jogadores); //jogadores ordenados no Array pela vez de jogar
         
         //EXIBIR ELEMENTOS DA INTERFACE
         UserInterface.Botoes.mostrarBotaoDados();
@@ -113,6 +158,9 @@ public class Main
         //Inicia a partida
         horaAtual = System.currentTimeMillis();
         horaFinal  = horaAtual + (tempoMaxMinu * 60000);
+        
+        
+        
         
         
     }

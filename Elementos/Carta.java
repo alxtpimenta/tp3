@@ -9,23 +9,64 @@ package Elementos;
  *
  * @author alexandrepimenta
  */
-public class Carta 
+public abstract class Carta 
 {
-    private String texto;
-    private int adicionar;
-    private int remover;
-    private boolean prisao;
+   	private int _id;
+    private String _nome;
+    private String _categoria;   
+    private String _cor;
+    private int _owner;
     
-    void processarCarta(Jogador p)
+    public void setId(int id)
     {
-        if(adicionar > 0)
-            p.adicionarSaldo(adicionar);
-        else if(remover > 0)
-            p.removerSaldo(remover);
-        else if (prisao)
-        {
-            //ENVIAR JOGADOR PARA PRISAO
-        }
+    	this._id = id;
+    }
+    public int getId()
+    {
+    	return this._id;
+    }
+    
+    public void setCategoria(String cat)
+    {
+    	this._categoria = cat;
+    }
+    
+    public String getCategoria()
+    {
+    	return this._categoria;
+    }
+    
+    public void setCor(String cor)
+    {
+    	this._cor = cor;
+    }
+    
+    public String getCor()
+    {
+    	return this._cor;
+    }
+    
+    public void setNome(String nome)
+    {
+    	this._nome = nome;
+    }
+    
+    public String getNome()
+    {
+    	return this._nome;
+    }
+    
+    public void setOwner(int owner)
+    {
+    	this._owner = owner;
+    }
+    public int getOwner()
+    {
+    	return this._owner;
+    }    
+    
+    public void Efeito(){
+    	
     }
     
 }
