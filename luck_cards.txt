@@ -1,0 +1,32 @@
+0,sorte,grey,Tirou 1o lugar no torneio de golfe. Receba 100000,1,100000,null
+1,reves,grey,Seu jatinho precisa de manutencao. Pague 9000,0,9000,null
+2,sorte,grey,Vendeu parte de sua empresa para um investidor. Receba 75000,1,75000,null
+3,reves,grey,Voce vai comecar um curso de MBA e ganhou um bom desconto para pagamento a vista. Pague 20000,0,20000,null
+4,reves,grey,Reformou sua casa. Pague 50000,0,50000,null
+5,reves,grey,Atualizou os computadores de sua empresa. Pague 30000,0,30000,null
+6,reves,grey,Producao de leite de suas fazendas ficou abaixo da expectativa e tera de arcar com os prejuizos. Pague 60000,0,60000,null
+7,reves,grey,Comprou obra de arte falsificada. Pague 22000,0,22000,null
+8,reves,grey,Um navio afundou com suas mercadorias e nao tinha seguro. Pague 40000,0,40000,null
+9,sorte,grey,Apostou no cavalo azarao vencedor do Grande Premio Brasil. Receba 100000,1,100000,null
+10,sorte,grey,Ganhou sozinho na loteria! Receba 80000,1,80000,null
+11,sorte,grey,Sua casa sera desapropriada para a construcao do metro. Ganhara uma gorda Idenizacao. Receba 60000,1,60000,null
+12,reves,grey,Ferias no campo com toda a familia! Pague 20000,0,20000,null
+13,sorte,grey,Recebeu uma heranca inesperada. Receba 75000,1,75000,null
+14,sorte,grey,Seu livro sera publicado por uma grande editora. Receba 50000,1,50000,null
+15,sorte,grey,Suas acoes na Bolsa de Valores estao em alta. Receba 100000,1,100000,null
+16,reves,grey,Seus funcionarios entraram em greve trazendo grandes prejuizos para a producao. Pague 30000,0,30000,null
+17,sorte,grey,Seu iate afundou. Mas voce tinha seguro! Receba 25000,1,25000,null
+18,sorte,grey,Venceu licitacao para uma grande obra. Receba 150000,1,150000,null
+19,sorte,grey,Recebeu o premio de Profissional do Ano e ganhou um carro. Receba 10000,1,10000,null
+20,reves,grey,A falta de chuvas prejudicou a colheita. Pague 45000,0,45000,null
+21,reves,grey,Seu filho decidiu fazer intercambio. Pague 20000,0,20000,null
+22,reves,grey,Sua empresa foi multada por poluir demais. Pague 200000,0,200000,null
+23,reves,grey,Sua empresa ira patrocinar uma expedicao a Antartida. Pague 50000,0,50000,null
+24,reves,grey,Renovou a frota de carros de sua empresa. Pague 100000,0,100000,null
+25,reves,grey,Entre no camburao e va para a Detencao (e sem reclamar!),2,0,null
+26,sorte,grey,Va ate o inicio e... Receba 200.000!,3,0,null
+27,sorte ou reves,grey,Se tirou numero par na soma dos dados. Receba 100.000! Se tirou impar na soma dos dados. Pague 100.000,4,0,null
+28,sorte,grey,O dia de seu casamento chegou. Receba os presentes. Receba 50.000 de cada jogador,5,0,null
+29,sorte,grey,Habeas Corpus. Utilize este cartao para se livrar da detencao quando necessario. Voce tambem pode negociar a venda deste cartao para outro jogador,6,0,null
+30,sorte,grey,Compra Livre. Apresente este cartao a um jogador para comprar uma propriedade SEM construcoes pelo valor indicado no tabuleiro. O jogador e obrigado a aceitar. utilize em qualquer momento do jogo. Este cartao nao pode ser negociado,7,0,null
+31,sorte,grey,Jogue os dados novamente e avance seu peao,8,0,null
