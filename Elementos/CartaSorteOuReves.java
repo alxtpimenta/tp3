@@ -16,7 +16,7 @@ public class CartaSorteOuReves extends Carta {
 	
 	public void setAction(int action_ref)
 	{
-		this._quant = action_ref;
+		this._action = action_ref;
 	}
 	public int getAction()
 	{
