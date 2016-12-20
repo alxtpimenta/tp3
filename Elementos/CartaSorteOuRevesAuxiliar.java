@@ -14,7 +14,7 @@ public class CartaSorteOuRevesAuxiliar extends Carta{
 		//tira carta do topo
 		CartaSorteOuReves card = cartas_sorte_ou_reves.pop();
 		
-		System.out.println("Sua carta de sorte ou reves e de +" + card.getCategoria() + "!");		
+		System.out.println("Sua carta de sorte ou reves e de " + card.getCategoria() + "!");		
 		
 		if(card.getAction() == 0)
 		{
