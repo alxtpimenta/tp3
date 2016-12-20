@@ -4,8 +4,9 @@
  */
 package Elementos;
 
-public abstract class Jogador
+public abstract class Jogador implements Comparable<Jogador>
 {   
+	private int _id;
     private int _dinheiro;
     private String _nome;
     private int _cor;
@@ -13,6 +14,18 @@ public abstract class Jogador
     private int _coordY;
     private int _resultadoDados; //vou usar uma vez só, para determinar a ordem de jogada dos jogadores.
     private String _tipo;
+    private int _posicao_no_tabuleiro;
+    private boolean _preso;
+    private int _dias_de_prisao_restantes;
+    
+    public void setId(int id)
+    {
+    	this._id = id;
+    }
+    public int getId()
+    {
+    	return this._id;
+    }
         
     public void setName(String name){
     	this._nome = name;    	
@@ -75,6 +88,10 @@ public abstract class Jogador
     {
     	this._resultadoDados = dados;
     }
+    public int getResultados()
+    {
+    	return this._resultadoDados;
+    }
     
     public void adicionarSaldo(int quantia)
     {
@@ -86,6 +103,35 @@ public abstract class Jogador
         this._dinheiro -= quantia;
     }
     
+    public void setPosicaoTabuleiro(int posicao)
+    {
+    	this._posicao_no_tabuleiro = posicao;
+    }
+    
+    public int getPosicaoTabuleiro()
+    {
+    	return this._posicao_no_tabuleiro;
+    }
+    
+    public void setPreso(boolean preso)
+    {
+    	this._preso = preso;
+    }
+    public boolean getPreso()
+    {
+    	return this._preso;
+    }
+    
+    public void setDiasDePrisaoRestantes(int dias)
+    {
+    	this._dias_de_prisao_restantes = dias;
+    }
+    public int getDiasDePrisaoRestantes()
+    {
+    	return this._dias_de_prisao_restantes;
+    }
+    
+    
     public static boolean verificarFalencia(Jogador o)
     {
         if(o.getSaldo() <= 0)
@@ -94,13 +140,17 @@ public abstract class Jogador
             return false;
     }
     
-    public int compareTo(Jogador outroJogador) {
-        if (this._resultadoDados < outroJogador._resultadoDados) {
-            return -1;
-        }
-        if (this._resultadoDados > outroJogador._resultadoDados) {
-            return 1;
-        }
-        return 0;
-    }
+    public int compareTo(Jogador outro_jogador)
+	{
+		if(this.getResultados() < outro_jogador.getResultados())
+		{
+			return -1;
+		}
+		else if(this.getResultados() > outro_jogador.getResultados())
+		{
+			return 1;
+		}
+		else
+			return 0;
+	}
 }

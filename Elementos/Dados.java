@@ -12,8 +12,7 @@ public class Dados {
 		dado1 = randomGenerator.nextInt(6) + 1;
 		dado2 = randomGenerator.nextInt(6) + 1;
 		
-		return dado1+dado2;
-			
+		return dado1+dado2;			
 		
 	}
 	

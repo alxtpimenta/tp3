@@ -18,6 +18,7 @@ public abstract class Casa
     protected int _x2;
     protected int _y1;
     protected int _y2;
+    protected int card;
     //RETORNA O NOME DA CASA
     public String nome()
     {

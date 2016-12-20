@@ -55,21 +55,21 @@ public class Labels
     }
     
     //Altera o nome do jogador ativo na interface
-    public void alterarNomeJogador(String nome)
+    public static void alterarNomeJogador(String nome)
     {
         Labels.jogadorAtivo.setText(nome);
         Tabuleiro.painel.repaint();
     }
     
     //Altera a quantia de dinheiro exibida na interface
-    public void alterarDinheiro(int quantia)
+    public static void alterarDinheiro(int quantia)
     {
         Labels.dinheiro.setText(Integer.toString(quantia));
         Tabuleiro.painel.repaint();
     }
     
     //Altera o tooltip de descricao da casa atual do jogador
-    public void alterarTooltip(String texto)
+    public static void alterarTooltip(String texto)
     {
         Labels.tooltip.setText("<html>"+texto+"</html>");
         Tabuleiro.painel.repaint();

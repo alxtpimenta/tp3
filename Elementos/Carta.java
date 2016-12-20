@@ -5,6 +5,9 @@
  */
 package Elementos;
 
+import java.util.ArrayList;
+import java.util.Deque;
+
 /**
  *
  * @author alexandrepimenta
@@ -65,7 +68,7 @@ public abstract class Carta
     	return this._owner;
     }    
     
-    public void Efeito(){
+    public void Efeito(Jogador jogador, ArrayList<Jogador> jogadores, int resultado_dados,ArrayList<Carta> cartas_ordem_tabuleiro,Deque<CartaSorteOuReves> cartas_sorte_ou_reves,ArrayList<CartaPropriedade> cartas_propriedades, ArrayList<CartaCompanhia> cartas_companhias){
     	
     }
     

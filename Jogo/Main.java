@@ -5,6 +5,8 @@
  */
 package Jogo;
 
+
+
 import java.util.*;
 import Elementos.Jogador;
 import Elementos.JogadorLocal;
@@ -12,6 +14,17 @@ import Elementos.JogadorComputador;
 import Propriedades.Definicoes;
 import UserInterface.Tabuleiro;
 import java.io.IOException;
+import Elementos.Dados;
+import Elementos.Setup;
+import Elementos.Carta;
+import Elementos.CartaCompanhia;
+import Elementos.CartaPropriedade;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
+import Elementos.Rodada;
+import UserInterface.Labels;
+import Elementos.CartaSorteOuReves;
 
 public class Main 
 {
@@ -28,6 +41,7 @@ public class Main
         long horaFinal;
         
         int i;
+        int numero_jogadores = 0;
         
         String nome;
         int cor;
@@ -103,11 +117,16 @@ public class Main
             
             dados = gerador.nextInt(12)+1;
             JogadorLocal humanPlayer = new JogadorLocal();
+            humanPlayer.setId(numero_jogadores);
             humanPlayer.setCor(corJogadorLocal);
             humanPlayer.setName(nomeJogadorLocal);
             humanPlayer.setSaldo(Definicoes.QUANTIA_INICIAL);
             humanPlayer.setResultadoDados(dados);
             humanPlayer.setTipo("humano");
+            humanPlayer.setPosicaoTabuleiro(0);
+            humanPlayer.setPreso(false);
+            humanPlayer.setDiasDePrisaoRestantes(0);
+            numero_jogadores++;
             
             jogadores.add(humanPlayer);
         }
@@ -126,29 +145,60 @@ public class Main
             	case 1: arrayCores.remove("Preto");
     			break;
             	case 2: arrayCores.remove("Azul");
-			break;
+            	break;
             	case 3: arrayCores.remove("Amarelo");
-			break;
+            	break;
             	case 4: arrayCores.remove("Verde");
-			break;
+            	break;
             	case 5: arrayCores.remove("Vermelho");
-			break;
-            default:break;
+            	break;
+            	default:break;
             }
             
             dados = gerador.nextInt(12)+1;
             JogadorComputador computerPlayer = new JogadorComputador();
+            computerPlayer.setId(numero_jogadores);
             computerPlayer.setCor(corJogadorComputador);
             computerPlayer.setName(nomeJogadorComputador);
             computerPlayer.setSaldo(Definicoes.QUANTIA_INICIAL);
             computerPlayer.setResultadoDados(dados);
             computerPlayer.setTipo("computador");
+            computerPlayer.setPosicaoTabuleiro(0);
+            computerPlayer.setPreso(false);
+            computerPlayer.setDiasDePrisaoRestantes(0);
+            numero_jogadores++;
             
             jogadores.add(computerPlayer);
         }
         
-        //Collections.sort(jogadores); //jogadores ordenados no Array pela vez de jogar
+        //lista jogadores ok
+        System.out.println("Jogadores no jogo:");
+        for(int k=0;k<jogadores.size();k++)
+        {
+        	System.out.println(jogadores.get(k).getName() + " " + jogadores.get(k).getTipo());
+        }
         
+        //construcao do deque e das cartas na ordem do tabuleiro
+        Deque<CartaSorteOuReves> deque_cartas_sorte_ou_reves = Setup.MontarBaralhoSorteOuReves();
+        ArrayList<Carta> cartas_na_ordem_do_tabuleiro = Setup.MontarBaralhoGeral();
+        
+        //construcao do baralho so de propriedade
+        ArrayList<CartaPropriedade> cartas_propriedades = new ArrayList<>();
+        //construcao do baralho so de companhias
+        ArrayList<CartaCompanhia> cartas_companhia = new ArrayList<>();
+        for(Carta card:cartas_na_ordem_do_tabuleiro)
+        {
+        	if(card.getCategoria().compareTo("property") == 0)
+        	{
+        		cartas_propriedades.add((CartaPropriedade)card);
+        	}
+        	else if(card.getCategoria().compareTo("company") == 0)
+        	{
+        		cartas_companhia.add((CartaCompanhia)card);
+        	}
+        	
+        }
+                
         //EXIBIR ELEMENTOS DA INTERFACE
         UserInterface.Botoes.mostrarBotaoDados();
         UserInterface.Botoes.mostrarBotaoTurno();
@@ -159,9 +209,54 @@ public class Main
         horaAtual = System.currentTimeMillis();
         horaFinal  = horaAtual + (tempoMaxMinu * 60000);
         
+        //decidindo a ordem dos jogadores
+        System.out.println("Decidindo ordem dos jogadores:");
         
+        Dados resultado_dados = new Dados();
         
+        //rolando dados para cada jogador, disputa de vez
+        for(int k=0;k<jogadores.size();k++)
+        {
+        	jogadores.get(k).setResultadoDados(resultado_dados.RolarDados());
+        	System.out.println("O jogador " + jogadores.get(k).getName() + " rolou os dados e tirou " + jogadores.get(k).getResultados() + "!");
+        }
         
+        //ordena jogadores de acordo com o numero tirado no dado. Esta ordem vai se manter ate o final
+        Collections.sort(jogadores);
         
+        //inicia nova rodada até que só tenha um jogador, que será o vencedor
+        int indice_jogador_da_vez = 0;
+        System.out.println("Iniciando nova rodada: vez do " + jogadores.get(indice_jogador_da_vez).getName());
+        Rodada nova_rodada = new Rodada();
+        
+        //inicializar todos os labels ancorados a um jogador
+        //teste de labels
+        Labels.alterarNomeJogador("Pedro");
+        Labels.alterarDinheiro(10000);
+        Labels.alterarTooltip("no ideia");
+        
+        //ACTION_LISTENER > SÓ VAI PARA FRENTE SE O JOGADOR CLICAR "JOGAR DADOS"
+        //"JOGAR DADOS" DEVE SER O UNICO BOTAO VISIVEL        
+        
+        //teste com 1 loop
+        int t=0;
+        //jogadores.size() > 1
+        while(t < 1)
+        {
+        	nova_rodada.NovaRodada(jogadores.get(indice_jogador_da_vez),jogadores,cartas_na_ordem_do_tabuleiro,deque_cartas_sorte_ou_reves,cartas_propriedades,cartas_companhia);
+        	
+        	if(jogadores.get(indice_jogador_da_vez).getSaldo() <= 0)
+        	{
+        		jogadores.remove(indice_jogador_da_vez);
+        		System.out.println("O jogador " + jogadores.get(indice_jogador_da_vez).getName() + "perdeu e foi removido do jogo.");
+        	}
+        	indice_jogador_da_vez++;
+        	if(indice_jogador_da_vez >= jogadores.size())
+        	{
+        		indice_jogador_da_vez = 0;
+        	}
+        	t++;
+        }
+                
     }
 }
