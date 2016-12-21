@@ -273,7 +273,7 @@ public class Main
             //ATUALIZAR POSIÇÃO DOS PINOS DE CADA JOGADOR
             RefreshGUI.atualizarJogadoresXY(jogadores, casasInterface);
             RefreshGUI.atualizarPinos(jogadores);
-            RefreshGUI.atualizarTooltip(cartas_na_ordem_do_tabuleiro, jogadores,jogadores.get(indice_jogador_da_vez).getId());
+            RefreshGUI.atualizarTooltip(cartas_na_ordem_do_tabuleiro, jogadores,indice_jogador_da_vez);
             RefreshGUI.atualizarLabels(jogadores, indice_jogador_da_vez);
             UserInterface.Tabuleiro.refresh();
             //ATIVAR OS BOTOES DA GUI
@@ -281,6 +281,7 @@ public class Main
             //FIM DA ATUALIZAÇÃO DA INTERFACE
             nova_rodada.NovaRodada(jogadores.get(indice_jogador_da_vez),jogadores,cartas_na_ordem_do_tabuleiro,deque_cartas_sorte_ou_reves,cartas_propriedades,cartas_companhia,casasInterface, indice_jogador_da_vez);
             //ATUALIZA A INTERFACE APOS A JOGADA
+            RefreshGUI.atualizarTooltip(cartas_na_ordem_do_tabuleiro, jogadores, indice_jogador_da_vez);
             RefreshGUI.atualizarJogadoresXY(jogadores, casasInterface);
             RefreshGUI.atualizarPinos(jogadores);
             //RefreshGUI.atualizarLabels(jogadores, indice_jogador_da_vez);

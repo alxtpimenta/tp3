@@ -26,8 +26,9 @@ public class Botoes
         Botoes.jogarDados.setBounds(25, 213, 120, 50);
         Botoes.comprar.setBounds(25, 213, 120, 50);
         Botoes.finalizarTurno.setBounds(340, 213, 120, 50);
-        Botoes.adicionarCasa.setBounds(25, 213, 120, 50);
-        Botoes.adicionarHotel.setBounds(170, 213, 120, 50);
+        Botoes.adicionarCasa.setBounds(185, 213, 120, 50);
+        Botoes.adicionarHotel.setBounds(25, 213, 120, 50);
+        Botoes.comprar.setBounds(25, 213, 120, 50);
     }
     
     //Exibe o botao de jogar os dados
@@ -46,7 +47,7 @@ public class Botoes
     }
     
     //Exibe o botao de compra (imovel ou empresa)
-    public void mostrarBotaoCompra()
+    public static void mostrarBotaoCompra()
     {
         Tabuleiro.painel.add(Botoes.comprar);
         Tabuleiro.setVisible();
@@ -76,7 +77,7 @@ public class Botoes
     }
     
     //Exibe o botao de construir hotel
-    public void mostrarBotaoHotel()
+    public static void mostrarBotaoHotel()
     {
         Tabuleiro.painel.add(Botoes.adicionarHotel);
         Tabuleiro.setVisible();

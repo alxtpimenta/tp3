@@ -5,7 +5,6 @@
  */
 package UserInterface;
 import javax.swing.JOptionPane;
-import java.util.*;
 /**
  *
  * @author alexandrepimenta
@@ -22,7 +21,7 @@ public  class Dialogo
     public static void jogarDados(int valor)
     {
         //EXIBE UMA CAIXA DE DIALOGO COM O VALOR SORTEADO
-        JOptionPane.showMessageDialog(null,"Resultado: "+Integer.toString(valor));
+        JOptionPane.showMessageDialog(null,"Dados jogados! Resultado: "+Integer.toString(valor));
     }
     
     //SOLICITA A QUANTIDADE DE JOGADORES
