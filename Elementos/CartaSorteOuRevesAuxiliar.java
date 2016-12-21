@@ -78,12 +78,17 @@ public class CartaSorteOuRevesAuxiliar extends Carta{
 		else if(card.getAction() == 8)
 		{
 			System.out.println(card.getNome());
-			Rodada nova_rodada = new Rodada();
-			nova_rodada.NovaRodada(jogador, jogadores, cartas_ordem_tabuleiro, cartas_sorte_ou_reves, cartas_propriedades, cartas_companhias);
+			//Rodada nova_rodada = new Rodada();
+			//cartas_sorte_ou_reves.add(card);
+			//nova_rodada.NovaRodada(jogador, jogadores, cartas_ordem_tabuleiro, cartas_sorte_ou_reves, cartas_propriedades, cartas_companhias);
 		}
 		
 		//bota a carta no fundo se nao for atribuida a um jogador
-		cartas_sorte_ou_reves.add(card);
+		if(card.getAction() != 6 && card.getAction() != 7)
+		{
+			cartas_sorte_ou_reves.add(card);
+		}
+		
 		
 	}	
 }

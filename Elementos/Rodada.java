@@ -47,8 +47,10 @@ public class Rodada {
 			}
 			//seta nova posicao do jogador no tabuleiro (pode ser mudada com efeito a seguir)
 			jogador.setPosicaoTabuleiro(posicao_jogador);
-			cartas_ordem_tabuleiro.get(posicao_jogador).Efeito(jogador, jogadores,resultado_dados,cartas_ordem_tabuleiro,cartas_sorte_ou_reves,cartas_propriedades,cartas_companhias);
-							
+			//invoca efeito da carta da posicao do jogador
+			cartas_ordem_tabuleiro.get(6).Efeito(jogador, jogadores,resultado_dados,cartas_ordem_tabuleiro,cartas_sorte_ou_reves,cartas_propriedades,cartas_companhias);
+			
+			
 			//PARTE DE OPCOES - DEPENDE DA POSICAO
 			//*********
 			//se carta for PROPRIEDADE OU COMPANHIA e owner == 9 > mostrar opcao de comprar
