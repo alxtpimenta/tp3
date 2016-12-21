@@ -22,5 +22,10 @@ public class CartaSorteOuReves extends Carta {
 	{
 		return this._action;
 	}
+        
+        public String tooltip()
+        {
+            return this.getNome();
+        }
 	
 }

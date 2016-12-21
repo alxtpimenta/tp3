@@ -176,5 +176,33 @@ public class CartaPropriedade extends Carta{
 		}
 		
 	}
+        
+        public String tooltip(ArrayList<Jogador> jogadores)
+        {
+            String newline = System.getProperty("line.separator");
+            String saida;
+            String proprietario = "Nenhum";
+            saida = this.getNome() + newline + "Valor de compra: " + Integer.toString(this.getValorDeCompra()) + newline + "Valor de hipoteca: " + Integer.toString(this.getValorHipoteca()) + newline +
+                    newline + "Aluguel: " + this._aluguel + newline + "Aluguel com 1 casa: " + this._aluguel_com_uma_casa + newline + "Aluguel com 2 casas: " + this._aluguel_com_duas_casas + newline + "Aluguel com 3 casas: " + this._aluguel_com_tres_casas + newline +
+                    "Aluguel com 4 casas: " + this._aluguel_com_quatro_casas + newline + "Aluguel com hotel: " + this._aluguel_com_hotel;
+            //Busca na lista de jogadores o proprietario da companhia
+            for(int i = 0; i < jogadores.size(); i++)
+            {
+                //Se encontrar, altera o nome
+                if(jogadores.get(i).getId() == this.getOwner())
+                    proprietario = jogadores.get(i).getName();
+            }
+            
+            if(this._numero_casas < 5)
+            {
+                saida = saida + newline + "Proprietario: " + proprietario + newline + "Numero de casas: " + Integer.toString(this._numero_casas);
+                return saida;
+            }
+            else
+            {
+                saida = saida + newline + "Proprietario: " + proprietario + newline + "Numero de casas: 4" + newline + "Hotel construido";
+                return saida;
+            }
+        }
 	
 }

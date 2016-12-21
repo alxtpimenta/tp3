@@ -21,7 +21,6 @@ import Elementos.CartaCompanhia;
 import Elementos.CartaPropriedade;
 import java.util.ArrayList;
 import java.util.Deque;
-import java.util.List;
 import Elementos.Rodada;
 import UserInterface.Labels;
 import Elementos.CartaSorteOuReves;
@@ -203,12 +202,6 @@ public class Main
         	}
         	
         }
-                
-        /*//EXIBIR ELEMENTOS DA INTERFACE
-        UserInterface.Botoes.mostrarBotaoDados();
-        UserInterface.Botoes.mostrarBotaoTurno();
-        UserInterface.Labels.exibirLabels();
-        UserInterface.Pecas.adicionarAzul();*/
         
         //INICIALIZAR ELEMENTOS DA INTERFACE
         //ADICIONAR AS PECAS DE CADA JOGADOR

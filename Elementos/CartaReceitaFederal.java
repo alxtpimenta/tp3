@@ -12,5 +12,10 @@ public class CartaReceitaFederal extends Carta{
 		UserInterface.Dialogo.avisoGenerico("Receita federal! " + jogador.getName() + " pague $200.000!.");
 		jogador.setSaldo(jogador.getSaldo() - 200000);
 		
-	}	
+	}
+        
+        public String tooltip()
+        {
+            return this.getNome();
+        }
 }

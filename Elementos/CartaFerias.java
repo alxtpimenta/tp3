@@ -12,5 +12,10 @@ public class CartaFerias extends Carta {
             UserInterface.Dialogo.avisoGenerico("O jogador " + jogador.getName() + " esta apenas visitando a cadeia! Que sorte! Sem efeitos nesta casa.");
             //System.out.println("O jogador + " + jogador.getName() + " esta apenas visitando a cadeia! Que sorte! Sem efeitos nesta casa.");
 	}
+        
+        public String tooltip()
+        {
+            return this.getNome();
+        }
 	
 }

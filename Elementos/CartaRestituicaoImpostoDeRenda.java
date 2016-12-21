@@ -12,6 +12,11 @@ public class CartaRestituicaoImpostoDeRenda extends Carta {
 		UserInterface.Dialogo.avisoGenerico("Restituicao de imposto de renda! " + jogador.getName() + " recebeu $200.000!.");
 		jogador.setSaldo(jogador.getSaldo() + 200000);
 		
-	}	
+	}
+        
+        public String tooltip()
+        {
+            return this.getNome();
+        }
 	
 }

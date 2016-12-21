@@ -47,7 +47,7 @@ public class CartaCompanhia extends Carta{
 			{
 				if(cartas_companhias.get(j).getId() == cartas_ordem_tabuleiro.get(jogador.getPosicaoTabuleiro()).getId())
 				{
-					System.out.println("O jogador pagou " + resultado_dados * cartas_companhias.get(j).getValorDeAluguelBase() +" por parar nessa companhia!");
+					UserInterface.Dialogo.avisoGenerico("O jogador pagou " + resultado_dados * cartas_companhias.get(j).getValorDeAluguelBase() +" por parar nessa companhia!");
 					jogador.setSaldo(jogador.getSaldo() - resultado_dados * cartas_companhias.get(j).getValorDeAluguelBase());
 				}
 			
@@ -55,6 +55,24 @@ public class CartaCompanhia extends Carta{
 		}
 		
 		
-	}	
+	}
+        
+        public String tooltip(ArrayList<Jogador> jogadores)
+        {
+            String newline = System.getProperty("line.separator");
+            String saida;
+            String proprietario = "Nenhum";
+            saida = this.getNome() + newline + "Valor de compra: " + Integer.toString(this.getValorDeCompra()) + newline + "Valor de hipoteca: " + Integer.toString(this.getValorHipoteca()) + newline + "Valor base de aluguel: " + Integer.toString(this.getValorDeAluguelBase());
+            //Busca na lista de jogadores o proprietario da companhia
+            for(int i = 0; i < jogadores.size(); i++)
+            {
+                //Se encontrar, altera o nome
+                if(jogadores.get(i).getId() == this.getOwner())
+                    proprietario = jogadores.get(i).getName();
+            }
+            
+            saida = saida + newline + "Proprietario: " + proprietario;
+            return saida;
+        }
 	
 }

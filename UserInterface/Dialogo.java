@@ -21,8 +21,8 @@ public  class Dialogo
     //EXIBE O VALOR SORTEADO DOS DADOS
     public static void jogarDados(int valor)
     {
-        //EXIBE UMA CAIXA DE DIALOGO COM O VALOR SORTEADO (ENQUANTO NAO SAO FEITOS OS SPRITES)
-        JOptionPane.showMessageDialog(null,Integer.toString(valor));
+        //EXIBE UMA CAIXA DE DIALOGO COM O VALOR SORTEADO
+        JOptionPane.showMessageDialog(null,"Resultado: "+Integer.toString(valor));
     }
     
     //SOLICITA A QUANTIDADE DE JOGADORES

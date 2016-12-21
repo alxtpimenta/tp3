@@ -14,5 +14,10 @@ public class CartaInicio extends Carta{
                 UserInterface.Dialogo.avisoGenerico("Casa inicio! " + jogador.getName() + " receba o seu pro-labore de $200.000!.");
 		jogador.setSaldo(jogador.getSaldo() + 200000);
 		
-	}	
+	}
+        
+        public String tooltip()
+        {
+            return this.getNome();
+        }
 }
