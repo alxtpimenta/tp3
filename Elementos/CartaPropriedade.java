@@ -142,71 +142,37 @@ public class CartaPropriedade extends Carta{
 					//olha para o numero de casas para definir quanto pagar de aluguel
 					if(cartas_propriedades.get(j).getNumeroCasas() == 0)
 					{
-						int valor = cartas_propriedades.get(j).getAluguel();
-						int id_jogador_dono_da_carta = cartas_propriedades.get(j).getOwner();
-						
-						
-						System.out.println("Jogador pagou aluguel sem casas no valor de:" + valor + " para o jogador " + jogadores.get(id_jogador_dono_da_carta).getName());
-						jogador.setSaldo(jogador.getSaldo() - valor);
-						jogadores.get(id_jogador_dono_da_carta).setSaldo(jogadores.get(id_jogador_dono_da_carta).getSaldo() + valor);
+						System.out.println("Jogador pagou aluguel sem casas no valor de:" + cartas_propriedades.get(j).getAluguel());
+						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguel());
 					}
 					else if(cartas_propriedades.get(j).getNumeroCasas() == 1)
 					{
-						int valor = cartas_propriedades.get(j).getAluguelComUmaCasa();
-						int id_jogador_dono_da_carta = cartas_propriedades.get(j).getOwner();
-						
-						
-						System.out.println("Jogador pagou aluguel com 1 casa no valor de:" + valor + " para o jogador " + jogadores.get(id_jogador_dono_da_carta).getName());
-						jogador.setSaldo(jogador.getSaldo() - valor);
-						jogadores.get(id_jogador_dono_da_carta).setSaldo(jogadores.get(id_jogador_dono_da_carta).getSaldo() + valor);
+						System.out.println("Jogador pagou aluguel com uma casa no valor de:" + cartas_propriedades.get(j).getAluguelComUmaCasa());
+						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguelComUmaCasa());
 					}
 					else if(cartas_propriedades.get(j).getNumeroCasas() == 2)
 					{
-						int valor = cartas_propriedades.get(j).getAluguelComDuasCasas();
-						int id_jogador_dono_da_carta = cartas_propriedades.get(j).getOwner();
-						
-						
-						System.out.println("Jogador pagou aluguel com 2 casas no valor de:" + valor + " para o jogador " + jogadores.get(id_jogador_dono_da_carta).getName());
-						jogador.setSaldo(jogador.getSaldo() - valor);
-						jogadores.get(id_jogador_dono_da_carta).setSaldo(jogadores.get(id_jogador_dono_da_carta).getSaldo() + valor);
+						System.out.println("Jogador pagou aluguel com duas casas no valor de:" + cartas_propriedades.get(j).getAluguelComDuasCasas());
+						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguelComDuasCasas());
 					}
 					else if(cartas_propriedades.get(j).getNumeroCasas() == 3)
 					{
-						int valor = cartas_propriedades.get(j).getAluguelComTresCasas();
-						int id_jogador_dono_da_carta = cartas_propriedades.get(j).getOwner();
-						
-						
-						System.out.println("Jogador pagou aluguel com 3 casas no valor de:" + valor + " para o jogador " + jogadores.get(id_jogador_dono_da_carta).getName());
-						jogador.setSaldo(jogador.getSaldo() - valor);
-						jogadores.get(id_jogador_dono_da_carta).setSaldo(jogadores.get(id_jogador_dono_da_carta).getSaldo() + valor);
+						System.out.println("Jogador pagou aluguel com tres casas no valor de:" + cartas_propriedades.get(j).getAluguelComTresCasas());
+						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguelComTresCasas());
 					}
 					else if(cartas_propriedades.get(j).getNumeroCasas() == 4)
 					{
-						int valor = cartas_propriedades.get(j).getAluguelComQuatroCasas();
-						int id_jogador_dono_da_carta = cartas_propriedades.get(j).getOwner();
-						
-						
-						System.out.println("Jogador pagou aluguel com 4 casas no valor de:" + valor + " para o jogador " + jogadores.get(id_jogador_dono_da_carta).getName());
-						jogador.setSaldo(jogador.getSaldo() - valor);
-						jogadores.get(id_jogador_dono_da_carta).setSaldo(jogadores.get(id_jogador_dono_da_carta).getSaldo() + valor);
+						System.out.println("Jogador pagou aluguel com quatro casas no valor de:" + cartas_propriedades.get(j).getAluguelComQuatroCasas());
+						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguelComQuatroCasas());
 					}
 					else if(cartas_propriedades.get(j).getNumeroCasas() == 5)
 					{
-						int valor = cartas_propriedades.get(j).getAluguelComHotel();
-						int id_jogador_dono_da_carta = cartas_propriedades.get(j).getOwner();
-						
-						
-						System.out.println("Jogador pagou aluguel com 4 casas e um hotel no valor de:" + valor + " para o jogador " + jogadores.get(id_jogador_dono_da_carta).getName());
-						jogador.setSaldo(jogador.getSaldo() - valor);
-						jogadores.get(id_jogador_dono_da_carta).setSaldo(jogadores.get(id_jogador_dono_da_carta).getSaldo() + valor);
+						System.out.println("Jogador pagou aluguel com quatro casas e hotel no valor de:" + cartas_propriedades.get(j).getAluguelComHotel());
+						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguelComHotel());
 					}
 				}
 			}
 			
-		}
-		else
-		{
-			System.out.println("Ninguem possui esta propriedade ainda. Sem efeitos!");
 		}
 		
 	}

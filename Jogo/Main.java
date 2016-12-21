@@ -79,10 +79,10 @@ public class Main
         tempoMaxMinu = 60;
         //fim pedaÃƒÂ§o para testes
         
-        jogadores = new ArrayList<Jogador>();    
+        jogadores = new ArrayList<>();    
         gerador = new Random(); //gerador de nÃƒÂºmeros aleatÃƒÂ³rios
         
-    	arrayCores = new ArrayList<String>();
+    	arrayCores = new ArrayList<>();
     	arrayCores.add("Branco");
     	arrayCores.add("Preto");
     	arrayCores.add("Azul");
@@ -224,7 +224,7 @@ public class Main
         //ordena jogadores de acordo com o numero tirado no dado. Esta ordem vai se manter ate o final
         Collections.sort(jogadores);
         
-        //inicia nova rodada até que só tenha um jogador, que será o vencedor
+        //inicia nova rodada atï¿½ que sï¿½ tenha um jogador, que serï¿½ o vencedor
         int indice_jogador_da_vez = 0;
         System.out.println("Iniciando nova rodada: vez do " + jogadores.get(indice_jogador_da_vez).getName());
         Rodada nova_rodada = new Rodada();
@@ -235,7 +235,7 @@ public class Main
         Labels.alterarDinheiro(10000);
         Labels.alterarTooltip("no ideia");
         
-        //ACTION_LISTENER > SÓ VAI PARA FRENTE SE O JOGADOR CLICAR "JOGAR DADOS"
+        //ACTION_LISTENER > Sï¿½ VAI PARA FRENTE SE O JOGADOR CLICAR "JOGAR DADOS"
         //"JOGAR DADOS" DEVE SER O UNICO BOTAO VISIVEL        
         
         //teste com 1 loop
