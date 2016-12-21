@@ -15,7 +15,7 @@ public class Setup {
 	public static ArrayList<Carta> MontarBaralhoGeral() throws FileNotFoundException
 	{
 		List<Carta> lista_geral_cartas = new ArrayList<>();
-		Scanner scan = new Scanner(new File("C:/Users/SALA/workspace/BancoImobiliario/src/board_cards.txt"));
+		Scanner scan = new Scanner(new File("board_cards.txt"));
 		while(scan.hasNext())
 		{
 			String line = scan.nextLine();
@@ -92,7 +92,7 @@ public class Setup {
 	public static Deque<CartaSorteOuReves> MontarBaralhoSorteOuReves() throws FileNotFoundException
 	{
 		List<CartaSorteOuReves> lista_de_cartas = new ArrayList<>();
-		Scanner scan = new Scanner(new File("C:/Users/SALA/workspace/BancoImobiliario/src/luck_cards.txt"));
+		Scanner scan = new Scanner(new File("luck_cards.txt"));
 		
 		while(scan.hasNext())
 		{

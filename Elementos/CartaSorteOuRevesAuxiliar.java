@@ -91,7 +91,7 @@ public class CartaSorteOuRevesAuxiliar extends Carta{
 	}
         
         @Override
-        public String tooltip()
+        public String tooltip(ArrayList<Jogador> jogadores)
         {
             return this.getNome();
         }

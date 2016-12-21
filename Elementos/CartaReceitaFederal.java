@@ -15,7 +15,7 @@ public class CartaReceitaFederal extends Carta{
 	}
         
         @Override
-        public String tooltip()
+        public String tooltip(ArrayList<Jogador> jogadores)
         {
             return this.getNome();
         }

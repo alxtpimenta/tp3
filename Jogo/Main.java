@@ -170,6 +170,8 @@ public class Main
             computerPlayer.setPosicaoTabuleiro(0);
             computerPlayer.setPreso(false);
             computerPlayer.setDiasDePrisaoRestantes(0);
+            computerPlayer.setX(casasInterface.get(Definicoes.CASA_INICIAL_GUI).x());
+            computerPlayer.setY(casasInterface.get(Definicoes.CASA_INICIAL_GUI).y());
             numero_jogadores++;
             
             jogadores.add(computerPlayer);
@@ -190,20 +192,49 @@ public class Main
         ArrayList<CartaPropriedade> cartas_propriedades = new ArrayList<>();
         //construcao do baralho so de companhias
         ArrayList<CartaCompanhia> cartas_companhia = new ArrayList<>();
-        for(Carta card:cartas_na_ordem_do_tabuleiro)
-        {
-        	if(card.getCategoria().compareTo("property") == 0)
-        	{
-        		cartas_propriedades.add((CartaPropriedade)card);
-        	}
-        	else if(card.getCategoria().compareTo("company") == 0)
-        	{
-        		cartas_companhia.add((CartaCompanhia)card);
-        	}
-        	
-        }
+        cartas_na_ordem_do_tabuleiro.forEach((card) -> {
+            if(card.getCategoria().compareTo("property") == 0)
+            {
+                cartas_propriedades.add((CartaPropriedade)card);
+            }
+            else if(card.getCategoria().compareTo("company") == 0)
+            {
+                cartas_companhia.add((CartaCompanhia)card);
+            }
+        });
         
         //INICIALIZAR ELEMENTOS DA INTERFACE
+        //EXIBIR LABELS
+        UserInterface.Labels.exibirLabels();
+
+        //Inicia a partida
+        horaAtual = System.currentTimeMillis();
+        horaFinal  = horaAtual + (tempoMaxMinu * 60000);
+        
+        //decidindo a ordem dos jogadores
+        System.out.println("Decidindo ordem dos jogadores:");
+        
+        Dados resultado_dados = new Dados();
+        
+        //rolando dados para cada jogador, disputa de vez
+        for(int k=0;k<jogadores.size();k++)
+        {
+        	jogadores.get(k).setResultadoDados(resultado_dados.RolarDados());
+        }
+        
+        //ordena jogadores de acordo com o numero tirado no dado. Esta ordem vai se manter ate o final
+        Collections.sort(jogadores);
+        
+        //inicia nova rodada at� que s� tenha um jogador, que ser� o vencedor
+        int indice_jogador_da_vez = 0;
+        //
+        UserInterface.Dialogo.avisoGenerico("O jogador " + jogadores.get(0).getName() + " rolou os dados e tirou " + jogadores.get(0).getResultados()+", e sera o primeiro a jogar!");
+        //System.out.println("Iniciando nova rodada: vez do " + jogadores.get(indice_jogador_da_vez).getName());
+        Rodada nova_rodada = new Rodada();
+        
+        //ACTION_LISTENER > S� VAI PARA FRENTE SE O JOGADOR CLICAR "JOGAR DADOS"
+        //"JOGAR DADOS" DEVE SER O UNICO BOTAO VISIVEL        
+        
         //ADICIONAR AS PECAS DE CADA JOGADOR
         for( i =0; i < jogadores.size();i++)
         {
@@ -229,48 +260,46 @@ public class Main
             }
                     
         }
-        //EXIBIR LABELS
-        UserInterface.Labels.exibirLabels();
-
-        //Inicia a partida
-        horaAtual = System.currentTimeMillis();
-        horaFinal  = horaAtual + (tempoMaxMinu * 60000);
-        
-        //decidindo a ordem dos jogadores
-        System.out.println("Decidindo ordem dos jogadores:");
-        
-        Dados resultado_dados = new Dados();
-        
-        //rolando dados para cada jogador, disputa de vez
-        for(int k=0;k<jogadores.size();k++)
-        {
-        	jogadores.get(k).setResultadoDados(resultado_dados.RolarDados());
-                UserInterface.Dialogo.avisoGenerico("O jogador " + jogadores.get(k).getName() + " rolou os dados e tirou " + jogadores.get(k).getResultados() + "!");
-        }
-        
-        //ordena jogadores de acordo com o numero tirado no dado. Esta ordem vai se manter ate o final
-        Collections.sort(jogadores);
-        
-        //inicia nova rodada at� que s� tenha um jogador, que ser� o vencedor
-        int indice_jogador_da_vez = 0;
-        //System.out.println("Iniciando nova rodada: vez do " + jogadores.get(indice_jogador_da_vez).getName());
-        Rodada nova_rodada = new Rodada();
-        
-        //ACTION_LISTENER > S� VAI PARA FRENTE SE O JOGADOR CLICAR "JOGAR DADOS"
-        //"JOGAR DADOS" DEVE SER O UNICO BOTAO VISIVEL        
-        
         //teste com 1 loop
         int t=0;
         //jogadores.size() > 1
         while(t < 1)
         {
             //ATUALIZA A INTERFACE
+            //ATUALIZAR POSIÇÃO DOS PINOS DE CADA JOGADOR
+            for(i = 0; i < jogadores.size(); i++)
+            {
+                switch(jogadores.get(i).getCor())
+                {
+                case Definicoes.BRANCO:
+                    UserInterface.Pecas.atualizarBranco(jogadores.get(i).getX(), jogadores.get(i).getY());
+                    break;
+                case Definicoes.PRETO:
+                    UserInterface.Pecas.atualizarPreto(jogadores.get(i).getX(), jogadores.get(i).getY());
+                    break;
+                case Definicoes.AZUL:
+                    UserInterface.Pecas.atualizarAzul(jogadores.get(i).getX(), jogadores.get(i).getY());
+                    break;
+                case Definicoes.AMARELO:
+                    UserInterface.Pecas.atualizarAmarelo(jogadores.get(i).getX(), jogadores.get(i).getY());
+                    break;
+                case Definicoes.VERDE:
+                    UserInterface.Pecas.atualizarVerde(jogadores.get(i).getX(), jogadores.get(i).getY());
+                    break;
+                case Definicoes.VERMELHO:
+                    UserInterface.Pecas.atualizarVermelho(jogadores.get(i).getX(), jogadores.get(i).getY());
+                }
+                    
+            }
+            //ATUALIZA AS LABELS
             Labels.alterarNomeJogador(jogadores.get(indice_jogador_da_vez).getName());
             Labels.alterarDinheiro(jogadores.get(indice_jogador_da_vez).getSaldo());
-            Labels.alterarTooltip("TBI");
+            Labels.alterarTooltip("TESTE");
+            //
             UserInterface.Dialogo.avisoGenerico("Iniciando nova rodada: vez do " + jogadores.get(indice_jogador_da_vez).getName());
             UserInterface.Botoes.mostrarBotaoTurno();
             UserInterface.Botoes.mostrarBotaoDados();
+            
             //Buscar carta referente à posição do jogador para atualizar o tooltip
             for(i = 0; i < cartas_na_ordem_do_tabuleiro.size(); i++)
             {
@@ -278,15 +307,13 @@ public class Main
                 {
                     if(cartas_na_ordem_do_tabuleiro.get(i).getId() == jogadores.get(j).getPosicaoTabuleiro())
                     {
-                        //Atualiza a label com a tooltip da carta
-                        if("property".equals(cartas_na_ordem_do_tabuleiro.get(i).getCategoria()) || "company".equals(cartas_na_ordem_do_tabuleiro.get(i).getCategoria()))
-                            UserInterface.Labels.alterarTooltip(cartas_na_ordem_do_tabuleiro.get(i).tooltip(jogadores));
-                        else
-                            UserInterface.Labels.alterarTooltip(cartas_na_ordem_do_tabuleiro.get(i).tooltip());
+                        //Atualiza a label com a tooltip da carta <--- NÃO FUNCIONA
+                        UserInterface.Labels.alterarTooltip(cartas_na_ordem_do_tabuleiro.get(i).tooltip(jogadores));
                     }
                 }
             }
-            //
+            
+            //FIM DA ATUALIZAÇÃO DA INTERFACE
             nova_rodada.NovaRodada(jogadores.get(indice_jogador_da_vez),jogadores,cartas_na_ordem_do_tabuleiro,deque_cartas_sorte_ou_reves,cartas_propriedades,cartas_companhia);
         	
             if(jogadores.get(indice_jogador_da_vez).getSaldo() <= 0)

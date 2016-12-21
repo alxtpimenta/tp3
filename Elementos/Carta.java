@@ -14,7 +14,7 @@ import java.util.Deque;
  */
 public abstract class Carta 
 {
-   	private int _id;
+    private int _id;
     private String _nome;
     private String _categoria;   
     private String _cor;
@@ -70,12 +70,6 @@ public abstract class Carta
     
     public void Efeito(Jogador jogador, ArrayList<Jogador> jogadores, int resultado_dados,ArrayList<Carta> cartas_ordem_tabuleiro,Deque<CartaSorteOuReves> cartas_sorte_ou_reves,ArrayList<CartaPropriedade> cartas_propriedades, ArrayList<CartaCompanhia> cartas_companhias){
     	
-    }
-    
-    public String tooltip()
-    {
-        String empty = null;
-        return null;
     }
     
     public String tooltip(ArrayList<Jogador> jogadores)

@@ -1,5 +1,7 @@
 package Elementos;
 
+import java.util.ArrayList;
+
 public class CartaSorteOuReves extends Carta {
 
 	private int _quant;
@@ -24,7 +26,7 @@ public class CartaSorteOuReves extends Carta {
 	}
         
         @Override
-        public String tooltip()
+        public String tooltip(ArrayList<Jogador> jogadores)
         {
             return this.getNome();
         }
