@@ -14,6 +14,7 @@ public class CartaReceitaFederal extends Carta{
 		
 	}
         
+        @Override
         public String tooltip()
         {
             return this.getNome();

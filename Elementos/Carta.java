@@ -72,4 +72,16 @@ public abstract class Carta
     	
     }
     
+    public String tooltip()
+    {
+        String empty = null;
+        return null;
+    }
+    
+    public String tooltip(ArrayList<Jogador> jogadores)
+    {
+        String empty = null;
+        return null;
+    }
+  
 }

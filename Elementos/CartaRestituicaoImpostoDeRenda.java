@@ -14,6 +14,7 @@ public class CartaRestituicaoImpostoDeRenda extends Carta {
 		
 	}
         
+        @Override
         public String tooltip()
         {
             return this.getNome();

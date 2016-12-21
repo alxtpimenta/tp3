@@ -23,6 +23,7 @@ public class CartaSorteOuReves extends Carta {
 		return this._action;
 	}
         
+        @Override
         public String tooltip()
         {
             return this.getNome();

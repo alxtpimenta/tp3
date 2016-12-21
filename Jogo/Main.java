@@ -271,6 +271,21 @@ public class Main
             UserInterface.Dialogo.avisoGenerico("Iniciando nova rodada: vez do " + jogadores.get(indice_jogador_da_vez).getName());
             UserInterface.Botoes.mostrarBotaoTurno();
             UserInterface.Botoes.mostrarBotaoDados();
+            //Buscar carta referente à posição do jogador para atualizar o tooltip
+            for(i = 0; i < cartas_na_ordem_do_tabuleiro.size(); i++)
+            {
+                for(j = 0; j < jogadores.size(); j ++)
+                {
+                    if(cartas_na_ordem_do_tabuleiro.get(i).getId() == jogadores.get(j).getPosicaoTabuleiro())
+                    {
+                        //Atualiza a label com a tooltip da carta
+                        if("property".equals(cartas_na_ordem_do_tabuleiro.get(i).getCategoria()) || "company".equals(cartas_na_ordem_do_tabuleiro.get(i).getCategoria()))
+                            UserInterface.Labels.alterarTooltip(cartas_na_ordem_do_tabuleiro.get(i).tooltip(jogadores));
+                        else
+                            UserInterface.Labels.alterarTooltip(cartas_na_ordem_do_tabuleiro.get(i).tooltip());
+                    }
+                }
+            }
             //
             nova_rodada.NovaRodada(jogadores.get(indice_jogador_da_vez),jogadores,cartas_na_ordem_do_tabuleiro,deque_cartas_sorte_ou_reves,cartas_propriedades,cartas_companhia);
         	

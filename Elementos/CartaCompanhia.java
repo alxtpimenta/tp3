@@ -57,6 +57,7 @@ public class CartaCompanhia extends Carta{
 		
 	}
         
+        @Override
         public String tooltip(ArrayList<Jogador> jogadores)
         {
             String newline = System.getProperty("line.separator");

@@ -16,6 +16,7 @@ public class CartaPolicia extends Carta{
             jogador.setDiasDePrisaoRestantes(3);
 	}
 	
+        @Override
         public String tooltip()
         {
             return this.getNome();

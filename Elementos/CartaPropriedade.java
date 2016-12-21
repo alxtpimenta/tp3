@@ -177,6 +177,7 @@ public class CartaPropriedade extends Carta{
 		
 	}
         
+        @Override
         public String tooltip(ArrayList<Jogador> jogadores)
         {
             String newline = System.getProperty("line.separator");

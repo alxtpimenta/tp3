@@ -12,6 +12,7 @@ public class CartaVisitante extends Carta {
 		UserInterface.Dialogo.avisoGenerico("O jogador " + jogador.getName() + " entrou de ferias com a familia. Sem efeitos nesta casa.");
 	}
         
+        @Override
         public String tooltip()
         {
             return this.getNome();

@@ -88,5 +88,11 @@ public class CartaSorteOuRevesAuxiliar extends Carta{
 		}
 		
 		
-	}	
+	}
+        
+        @Override
+        public String tooltip()
+        {
+            return this.getNome();
+        }
 }

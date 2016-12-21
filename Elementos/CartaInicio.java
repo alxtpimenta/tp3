@@ -16,6 +16,7 @@ public class CartaInicio extends Carta{
 		
 	}
         
+        @Override
         public String tooltip()
         {
             return this.getNome();

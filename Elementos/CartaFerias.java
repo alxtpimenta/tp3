@@ -13,6 +13,7 @@ public class CartaFerias extends Carta {
             //System.out.println("O jogador + " + jogador.getName() + " esta apenas visitando a cadeia! Que sorte! Sem efeitos nesta casa.");
 	}
         
+        @Override
         public String tooltip()
         {
             return this.getNome();
