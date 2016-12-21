@@ -47,11 +47,19 @@ public class CartaCompanhia extends Carta{
 			{
 				if(cartas_companhias.get(j).getId() == cartas_ordem_tabuleiro.get(jogador.getPosicaoTabuleiro()).getId())
 				{
-					System.out.println("O jogador pagou " + resultado_dados * cartas_companhias.get(j).getValorDeAluguelBase() +" por parar nessa companhia!");
-					jogador.setSaldo(jogador.getSaldo() - resultado_dados * cartas_companhias.get(j).getValorDeAluguelBase());
+					int valor = resultado_dados * cartas_companhias.get(j).getValorDeAluguelBase();
+					int id_jogador_dono_da_carta = cartas_companhias.get(j).getOwner();
+					
+					System.out.println("O jogador pagou " + valor +" por parar nessa companhia ao jogador " + jogadores.get(id_jogador_dono_da_carta).getName());
+					jogador.setSaldo(jogador.getSaldo() - valor);
+					jogadores.get(id_jogador_dono_da_carta).setSaldo(jogadores.get(id_jogador_dono_da_carta).getSaldo() + valor);
 				}
 			
 			}
+		}
+		else
+		{
+			System.out.println("Ninguem possui esta propriedade ainda. Sem efeitos!");
 		}
 		
 		

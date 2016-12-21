@@ -49,7 +49,7 @@ public class Rodada {
 			jogador.setPosicaoTabuleiro(posicao_jogador);
 			//invoca efeito da carta da posicao do jogador
 			cartas_ordem_tabuleiro.get(23).Efeito(jogador, jogadores,resultado_dados,cartas_ordem_tabuleiro,cartas_sorte_ou_reves,cartas_propriedades,cartas_companhias);
-			
+						
 			System.out.println(jogador.getPosicaoTabuleiro() + " " + jogador.getPreso() + " " + jogador.getSaldo());
 			//PARTE DE OPCOES - DEPENDE DA POSICAO
 			//*********
