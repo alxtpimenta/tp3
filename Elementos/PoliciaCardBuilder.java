@@ -1,10 +1,8 @@
 package Elementos;
 
-import Elementos.CartaPolicia;
-
 public class PoliciaCardBuilder {
 
-	private CartaPolicia _carta_policia;
+	private final CartaPolicia _carta_policia;
 	
 	public PoliciaCardBuilder()
 	{

@@ -5,7 +5,6 @@
  */
 package Propriedades;
 
-import Elementos.Carta;
 import Elementos.Casa;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,15 +17,8 @@ import java.util.Scanner;
  */
 public class Leitores 
 {
-    public ArrayList<Carta> carregarCartas()
-    {
-        ArrayList<Carta> entrada = new ArrayList<>();
-        //ABRE O ARQUIVO, REALIZA A LEITURA ADICIONANDO AS CARTAS
-        //DEPOIS RETORNA A LISTA
-        return entrada;
-    }
     
-    public ArrayList<Casa> carregarCasas() throws FileNotFoundException
+    public static ArrayList<Casa> carregarCasas() throws FileNotFoundException
     {
         ArrayList<Casa> entrada = new ArrayList<>();
         //ABRE O ARQUIVO, REALIZA A LEITURA ADICIONANDO AS CASAS

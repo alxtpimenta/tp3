@@ -142,32 +142,32 @@ public class CartaPropriedade extends Carta{
 					//olha para o numero de casas para definir quanto pagar de aluguel
 					if(cartas_propriedades.get(j).getNumeroCasas() == 0)
 					{
-						System.out.println("Jogador pagou aluguel sem casas no valor de:" + cartas_propriedades.get(j).getAluguel());
-						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguel());
+                                            UserInterface.Dialogo.avisoGenerico("Jogador pagou aluguel sem casas no valor de:" + cartas_propriedades.get(j).getAluguel());
+                                            jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguel());
 					}
 					else if(cartas_propriedades.get(j).getNumeroCasas() == 1)
 					{
-						System.out.println("Jogador pagou aluguel com uma casa no valor de:" + cartas_propriedades.get(j).getAluguelComUmaCasa());
+						UserInterface.Dialogo.avisoGenerico("Jogador pagou aluguel com uma casa no valor de:" + cartas_propriedades.get(j).getAluguelComUmaCasa());
 						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguelComUmaCasa());
 					}
 					else if(cartas_propriedades.get(j).getNumeroCasas() == 2)
 					{
-						System.out.println("Jogador pagou aluguel com duas casas no valor de:" + cartas_propriedades.get(j).getAluguelComDuasCasas());
+						UserInterface.Dialogo.avisoGenerico("Jogador pagou aluguel com duas casas no valor de:" + cartas_propriedades.get(j).getAluguelComDuasCasas());
 						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguelComDuasCasas());
 					}
 					else if(cartas_propriedades.get(j).getNumeroCasas() == 3)
 					{
-						System.out.println("Jogador pagou aluguel com tres casas no valor de:" + cartas_propriedades.get(j).getAluguelComTresCasas());
+						UserInterface.Dialogo.avisoGenerico("Jogador pagou aluguel com tres casas no valor de:" + cartas_propriedades.get(j).getAluguelComTresCasas());
 						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguelComTresCasas());
 					}
 					else if(cartas_propriedades.get(j).getNumeroCasas() == 4)
 					{
-						System.out.println("Jogador pagou aluguel com quatro casas no valor de:" + cartas_propriedades.get(j).getAluguelComQuatroCasas());
+						UserInterface.Dialogo.avisoGenerico("Jogador pagou aluguel com quatro casas no valor de:" + cartas_propriedades.get(j).getAluguelComQuatroCasas());
 						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguelComQuatroCasas());
 					}
 					else if(cartas_propriedades.get(j).getNumeroCasas() == 5)
 					{
-						System.out.println("Jogador pagou aluguel com quatro casas e hotel no valor de:" + cartas_propriedades.get(j).getAluguelComHotel());
+						UserInterface.Dialogo.avisoGenerico("Jogador pagou aluguel com quatro casas e hotel no valor de:" + cartas_propriedades.get(j).getAluguelComHotel());
 						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguelComHotel());
 					}
 				}

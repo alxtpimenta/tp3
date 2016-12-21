@@ -33,5 +33,14 @@ public class Casa
         else
             return false;
     }
+    //RETORNA O X E Y PARA IMPRESSAO NO TABULEIRO
+    public int x()
+    {
+        return this._x2-this._x1;
+    }
+    public int y()
+    {
+        return this._y2-this._y1;
+    }
     
 }

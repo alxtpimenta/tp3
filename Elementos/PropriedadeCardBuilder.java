@@ -1,10 +1,9 @@
 package Elementos;
-import Elementos.CartaPropriedade;
 
 
 public class PropriedadeCardBuilder {
 
-	private CartaPropriedade _carta_propriedade;
+	private final CartaPropriedade _carta_propriedade;
 	
 	public PropriedadeCardBuilder(){
 		this._carta_propriedade = new CartaPropriedade();

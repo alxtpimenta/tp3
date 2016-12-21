@@ -25,6 +25,8 @@ import java.util.List;
 import Elementos.Rodada;
 import UserInterface.Labels;
 import Elementos.CartaSorteOuReves;
+import Elementos.Casa;
+import Propriedades.Leitores;
 
 public class Main 
 {
@@ -63,6 +65,7 @@ public class Main
         */
         
         //INICIALIZACAO DA INTERFACE
+        ArrayList<Casa> casasInterface = Leitores.carregarCasas();
         UserInterface.Sprites.carregarSprites();
         UserInterface.Botoes.iniciarBotoes();
         UserInterface.Labels.iniciarLabels();
@@ -126,6 +129,8 @@ public class Main
             humanPlayer.setPosicaoTabuleiro(0);
             humanPlayer.setPreso(false);
             humanPlayer.setDiasDePrisaoRestantes(0);
+            humanPlayer.setX(casasInterface.get(Definicoes.CASA_INICIAL_GUI).x());
+            humanPlayer.setY(casasInterface.get(Definicoes.CASA_INICIAL_GUI).y());
             numero_jogadores++;
             
             jogadores.add(humanPlayer);
@@ -199,11 +204,40 @@ public class Main
         	
         }
                 
-        //EXIBIR ELEMENTOS DA INTERFACE
+        /*//EXIBIR ELEMENTOS DA INTERFACE
         UserInterface.Botoes.mostrarBotaoDados();
         UserInterface.Botoes.mostrarBotaoTurno();
         UserInterface.Labels.exibirLabels();
-        UserInterface.Pecas.adicionarAzul();
+        UserInterface.Pecas.adicionarAzul();*/
+        
+        //INICIALIZAR ELEMENTOS DA INTERFACE
+        //ADICIONAR AS PECAS DE CADA JOGADOR
+        for( i =0; i < jogadores.size();i++)
+        {
+            switch(jogadores.get(i).getCor())
+            {
+                case Definicoes.BRANCO:
+                    UserInterface.Pecas.adicionarBranco();
+                    break;
+                case Definicoes.PRETO:
+                    UserInterface.Pecas.adicionarPreto();
+                    break;
+                case Definicoes.AZUL:
+                    UserInterface.Pecas.adicionarAzul();
+                    break;
+                case Definicoes.AMARELO:
+                    UserInterface.Pecas.adicionarAmarelo();
+                    break;
+                case Definicoes.VERDE:
+                    UserInterface.Pecas.adicionarVerde();
+                    break;
+                case Definicoes.VERMELHO:
+                    UserInterface.Pecas.adicionarVermelho();
+            }
+                    
+        }
+        //EXIBIR LABELS
+        UserInterface.Labels.exibirLabels();
 
         //Inicia a partida
         horaAtual = System.currentTimeMillis();
@@ -218,7 +252,7 @@ public class Main
         for(int k=0;k<jogadores.size();k++)
         {
         	jogadores.get(k).setResultadoDados(resultado_dados.RolarDados());
-        	System.out.println("O jogador " + jogadores.get(k).getName() + " rolou os dados e tirou " + jogadores.get(k).getResultados() + "!");
+                UserInterface.Dialogo.avisoGenerico("O jogador " + jogadores.get(k).getName() + " rolou os dados e tirou " + jogadores.get(k).getResultados() + "!");
         }
         
         //ordena jogadores de acordo com o numero tirado no dado. Esta ordem vai se manter ate o final
@@ -226,14 +260,8 @@ public class Main
         
         //inicia nova rodada at� que s� tenha um jogador, que ser� o vencedor
         int indice_jogador_da_vez = 0;
-        System.out.println("Iniciando nova rodada: vez do " + jogadores.get(indice_jogador_da_vez).getName());
+        //System.out.println("Iniciando nova rodada: vez do " + jogadores.get(indice_jogador_da_vez).getName());
         Rodada nova_rodada = new Rodada();
-        
-        //inicializar todos os labels ancorados a um jogador
-        //teste de labels
-        Labels.alterarNomeJogador("Pedro");
-        Labels.alterarDinheiro(10000);
-        Labels.alterarTooltip("no ideia");
         
         //ACTION_LISTENER > S� VAI PARA FRENTE SE O JOGADOR CLICAR "JOGAR DADOS"
         //"JOGAR DADOS" DEVE SER O UNICO BOTAO VISIVEL        
@@ -243,19 +271,27 @@ public class Main
         //jogadores.size() > 1
         while(t < 1)
         {
-        	nova_rodada.NovaRodada(jogadores.get(indice_jogador_da_vez),jogadores,cartas_na_ordem_do_tabuleiro,deque_cartas_sorte_ou_reves,cartas_propriedades,cartas_companhia);
+            //ATUALIZA A INTERFACE
+            Labels.alterarNomeJogador(jogadores.get(indice_jogador_da_vez).getName());
+            Labels.alterarDinheiro(jogadores.get(indice_jogador_da_vez).getSaldo());
+            Labels.alterarTooltip("TBI");
+            UserInterface.Dialogo.avisoGenerico("Iniciando nova rodada: vez do " + jogadores.get(indice_jogador_da_vez).getName());
+            UserInterface.Botoes.mostrarBotaoTurno();
+            UserInterface.Botoes.mostrarBotaoDados();
+            //
+            nova_rodada.NovaRodada(jogadores.get(indice_jogador_da_vez),jogadores,cartas_na_ordem_do_tabuleiro,deque_cartas_sorte_ou_reves,cartas_propriedades,cartas_companhia);
         	
-        	if(jogadores.get(indice_jogador_da_vez).getSaldo() <= 0)
-        	{
-        		jogadores.remove(indice_jogador_da_vez);
-        		System.out.println("O jogador " + jogadores.get(indice_jogador_da_vez).getName() + "perdeu e foi removido do jogo.");
-        	}
-        	indice_jogador_da_vez++;
-        	if(indice_jogador_da_vez >= jogadores.size())
-        	{
-        		indice_jogador_da_vez = 0;
-        	}
-        	t++;
+            if(jogadores.get(indice_jogador_da_vez).getSaldo() <= 0)
+            {
+                jogadores.remove(indice_jogador_da_vez);
+                UserInterface.Dialogo.avisoGenerico("O jogador " + jogadores.get(indice_jogador_da_vez).getName() + "perdeu e foi removido do jogo.");
+            }
+            indice_jogador_da_vez++;
+            if(indice_jogador_da_vez >= jogadores.size())
+            {
+        	indice_jogador_da_vez = 0;
+            }
+            t++;
         }
                 
     }

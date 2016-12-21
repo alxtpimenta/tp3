@@ -1,10 +1,8 @@
 package Elementos;
 
-import Elementos.CartaFerias;
-
 public class FeriasCardBuilder {
 
-	private CartaFerias _carta_ferias;
+	private final CartaFerias _carta_ferias;
 	
 	public FeriasCardBuilder()
 	{

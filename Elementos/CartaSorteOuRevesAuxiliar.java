@@ -2,8 +2,6 @@ package Elementos;
 
 import java.util.ArrayList;
 import java.util.Deque;
-import Elementos.Carta;
-import Elementos.CartaSorteOuReves;
 
 public class CartaSorteOuRevesAuxiliar extends Carta{
 
@@ -14,7 +12,7 @@ public class CartaSorteOuRevesAuxiliar extends Carta{
 		//tira carta do topo
 		CartaSorteOuReves card = cartas_sorte_ou_reves.pop();
 		
-		System.out.println("Sua carta de sorte ou reves e de " + card.getCategoria() + "!");		
+		UserInterface.Dialogo.avisoGenerico("Sua carta de sorte ou reves e de " + card.getCategoria() + "!");		
 		
 		if(card.getAction() == 0)
 		{

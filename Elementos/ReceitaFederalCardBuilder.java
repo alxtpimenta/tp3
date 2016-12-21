@@ -1,10 +1,8 @@
 package Elementos;
 
-import Elementos.CartaReceitaFederal;
-
 public class ReceitaFederalCardBuilder {
 
-	private CartaReceitaFederal _carta_receita;
+	private final CartaReceitaFederal _carta_receita;
 	
 	public ReceitaFederalCardBuilder()
 	{

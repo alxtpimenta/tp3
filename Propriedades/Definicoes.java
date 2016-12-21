@@ -15,8 +15,9 @@ public class Definicoes
     public static final int MIN_JOGADORES = 2;
     public static final int MAX_JOGADORES = 6;
     
-    public static final int COORD_X_INICIAL = 100;
-    public static final int COORD_Y_INICIAL = 100;
+    //DEFINICOES DA GUI
+    public static final int CASA_INICIAL_GUI = 19;
+    public static final int PRINT_OFFSET = 5;
     
     public static final int NUM_MAX_CASAS = 4;
     public static final int NUM_MAX_HOTEIS = 1;

@@ -4,9 +4,12 @@
  */
 package Elementos;
 
+import Propriedades.Definicoes;
+import java.util.Random;
+
 public abstract class Jogador implements Comparable<Jogador>
 {   
-	private int _id;
+    private int _id;
     private int _dinheiro;
     private String _nome;
     private int _cor;
@@ -64,24 +67,28 @@ public abstract class Jogador implements Comparable<Jogador>
         return this._cor;
     }    
     
-    public void setX()
+    public void setX(int x)
     {
-    	
+    	this._coordX = x;
     }    
     
     public int getX()
     {
-        return this._coordX;
+        Random random = new Random();
+        int offset = random.nextInt(Definicoes.PRINT_OFFSET);
+        return this._coordX + offset;
     }
     
-    public void setY()
+    public void setY(int y)
     {
-    	
+    	this._coordY = y;
     }   
     
     public int getY()
     {
-        return this._coordY;
+        Random random = new Random();
+        int offset = random.nextInt(Definicoes.PRINT_OFFSET);
+        return this._coordY + offset;
     }
     
     public void setResultadoDados(int dados)
@@ -140,6 +147,7 @@ public abstract class Jogador implements Comparable<Jogador>
             return false;
     }
     
+    @Override
     public int compareTo(Jogador outro_jogador)
 	{
 		if(this.getResultados() < outro_jogador.getResultados())

@@ -9,31 +9,6 @@ import java.util.Deque;
 import java.util.List;
 import java.util.Scanner;
 
-import Elementos.Carta;
-import Elementos.CartaSorteOuReves;
-import Elementos.CartaPropriedade;
-import Elementos.CartaPolicia;
-import Elementos.CartaReceitaFederal;
-import Elementos.CartaFerias;
-import Elementos.CartaRestituicaoImpostoDeRenda;
-import Elementos.CartaVisitante;
-import Elementos.CartaInicio;
-
-
-import Elementos.LuckCardBuilder;
-import Elementos.PropriedadeCardBuilder;
-import Elementos.CompanhiaCardBuilder;
-import Elementos.PoliciaCardBuilder;
-import Elementos.ReceitaFederalCardBuilder;
-import Elementos.InicioCardBuilder;
-import Elementos.VisitanteCardBuilder;
-import Elementos.RestituicaoCardBuilder;
-import Elementos.FeriasCardBuilder;
-import Elementos.CartaSorteOuRevesAuxiliar;
-
-import Elementos.Jogador;
-import Elementos.JogadorComputador;
-import Elementos.JogadorLocal;
 
 public class Setup {
 

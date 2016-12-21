@@ -1,9 +1,8 @@
 package Elementos;
-import Elementos.CartaSorteOuReves;
 
 public class LuckCardBuilder {
 
-	private CartaSorteOuReves _carta_sorte_reves;
+	private final CartaSorteOuReves _carta_sorte_reves;
 	
 	public LuckCardBuilder()
 	{

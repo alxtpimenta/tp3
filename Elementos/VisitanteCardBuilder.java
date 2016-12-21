@@ -1,10 +1,8 @@
 package Elementos;
 
-import Elementos.CartaVisitante;
-
 public class VisitanteCardBuilder {
 
-private CartaVisitante _carta_visitante;
+private final CartaVisitante _carta_visitante;
 	
 	public VisitanteCardBuilder()
 	{

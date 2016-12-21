@@ -1,10 +1,8 @@
 package Elementos;
 
-import Elementos.CartaRestituicaoImpostoDeRenda;
-
 public class RestituicaoCardBuilder {
 
-private CartaRestituicaoImpostoDeRenda _carta_restituicao;
+private final CartaRestituicaoImpostoDeRenda _carta_restituicao;
 	
 	public RestituicaoCardBuilder()
 	{

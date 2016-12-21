@@ -1,10 +1,8 @@
 package Elementos;
 
-import Elementos.CartaSorteOuRevesAuxiliar;
-
 public class SorteOuRevesAuxiliarCardbuilder {
 
-	private CartaSorteOuRevesAuxiliar _carta_sorte_ou_reves_auxliar;
+	private final CartaSorteOuRevesAuxiliar _carta_sorte_ou_reves_auxliar;
 	
 	public SorteOuRevesAuxiliarCardbuilder()
 	{

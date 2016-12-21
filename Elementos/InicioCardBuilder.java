@@ -1,10 +1,8 @@
 package Elementos;
 
-import Elementos.CartaInicio;
-
 public class InicioCardBuilder {
 
-	private CartaInicio _carta_inicio;
+	private final CartaInicio _carta_inicio;
 	
 	public InicioCardBuilder()
 	{

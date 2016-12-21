@@ -1,10 +1,8 @@
 package Elementos;
 
-import Elementos.CartaCompanhia;
-
 public class CompanhiaCardBuilder {
 
-	private CartaCompanhia _carta_companhia;
+	private final CartaCompanhia _carta_companhia;
 	
 	public CompanhiaCardBuilder(){
 		

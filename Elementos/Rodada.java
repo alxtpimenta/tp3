@@ -1,11 +1,6 @@
 package Elementos;
 import java.util.ArrayList;
-import Elementos.Jogador;
-import Elementos.JogadorComputador;
-import Elementos.JogadorLocal;
-import Elementos.Carta;
 import java.util.Deque;
-import Elementos.Dados;
 
 
 public class Rodada {
@@ -22,7 +17,7 @@ public class Rodada {
 		//check se o jogador esta preso
 		if(jogador.getPreso() == true)
 		{
-			System.out.println("Voce ainda esta preso. Se tiver e se quiser, use a carta de habeas corpus ou finalize a rodada.");
+			UserInterface.Dialogo.avisoGenerico("Voce ainda esta preso. Se tiver e se quiser, use a carta de habeas corpus ou finalize a rodada.");
 			//se tiver habeas corpus o botao de usa-lo deve aparecer
 			//se nao tiver nenhuma outra opcao pode ser mostrada, e apenas a finalizar rodada
 			
