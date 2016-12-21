@@ -22,9 +22,9 @@ import Elementos.CartaPropriedade;
 import java.util.ArrayList;
 import java.util.Deque;
 import Elementos.Rodada;
-import UserInterface.Labels;
 import Elementos.CartaSorteOuReves;
 import Elementos.Casa;
+import Elementos.RefreshGUI;
 import Propriedades.Leitores;
 
 public class Main 
@@ -93,6 +93,7 @@ public class Main
     	arrayCores.add("Vermelho");
 
         //Preenche a lista de jogadores usando a interface
+        int ID = 0;
         numJogadoresLocais = UserInterface.Dialogo.quantidadeJogadoresLocais();
         for(i = 0; i < numJogadoresLocais; i++)
         {
@@ -102,24 +103,24 @@ public class Main
             cores = arrayCores.toArray(cores);
             int corJogadorLocal = UserInterface.Dialogo.corJogador(i+1, cores);
             switch (corJogadorLocal){
-            	case 0: arrayCores.remove("Branco");
+            	case Definicoes.BRANCO: arrayCores.remove("Branco");
             		break;
-            	case 1: arrayCores.remove("Preto");
+            	case Definicoes.PRETO: arrayCores.remove("Preto");
     			break;
-            	case 2: arrayCores.remove("Azul");
+            	case Definicoes.AZUL: arrayCores.remove("Azul");
 			break;
-            	case 3: arrayCores.remove("Amarelo");
+            	case Definicoes.AMARELO: arrayCores.remove("Amarelo");
 			break;
-            	case 4: arrayCores.remove("Verde");
+            	case Definicoes.VERDE: arrayCores.remove("Verde");
 			break;
-            	case 5: arrayCores.remove("Vermelho");
+            	case Definicoes.VERMELHO: arrayCores.remove("Vermelho");
 			break;
             default:break;
             }
             
             dados = gerador.nextInt(12)+1;
             JogadorLocal humanPlayer = new JogadorLocal();
-            humanPlayer.setId(numero_jogadores);
+            humanPlayer.setId(ID);
             humanPlayer.setCor(corJogadorLocal);
             humanPlayer.setName(nomeJogadorLocal);
             humanPlayer.setSaldo(Definicoes.QUANTIA_INICIAL);
@@ -131,6 +132,7 @@ public class Main
             humanPlayer.setX(casasInterface.get(Definicoes.CASA_INICIAL_GUI).x());
             humanPlayer.setY(casasInterface.get(Definicoes.CASA_INICIAL_GUI).y());
             numero_jogadores++;
+            ID++;
             
             jogadores.add(humanPlayer);
         }
@@ -185,8 +187,8 @@ public class Main
         }
         
         //construcao do deque e das cartas na ordem do tabuleiro
-        Deque<CartaSorteOuReves> deque_cartas_sorte_ou_reves = Setup.MontarBaralhoSorteOuReves();
         ArrayList<Carta> cartas_na_ordem_do_tabuleiro = Setup.MontarBaralhoGeral();
+        Deque<CartaSorteOuReves> deque_cartas_sorte_ou_reves = Setup.MontarBaralhoSorteOuReves();
         
         //construcao do baralho so de propriedade
         ArrayList<CartaPropriedade> cartas_propriedades = new ArrayList<>();
@@ -262,59 +264,28 @@ public class Main
         }
         //teste com 1 loop
         int t=0;
+        boolean loop = true;
         //jogadores.size() > 1
-        while(t < 1)
+        while(loop)
         {
+
             //ATUALIZA A INTERFACE
             //ATUALIZAR POSIÇÃO DOS PINOS DE CADA JOGADOR
-            for(i = 0; i < jogadores.size(); i++)
-            {
-                switch(jogadores.get(i).getCor())
-                {
-                case Definicoes.BRANCO:
-                    UserInterface.Pecas.atualizarBranco(jogadores.get(i).getX(), jogadores.get(i).getY());
-                    break;
-                case Definicoes.PRETO:
-                    UserInterface.Pecas.atualizarPreto(jogadores.get(i).getX(), jogadores.get(i).getY());
-                    break;
-                case Definicoes.AZUL:
-                    UserInterface.Pecas.atualizarAzul(jogadores.get(i).getX(), jogadores.get(i).getY());
-                    break;
-                case Definicoes.AMARELO:
-                    UserInterface.Pecas.atualizarAmarelo(jogadores.get(i).getX(), jogadores.get(i).getY());
-                    break;
-                case Definicoes.VERDE:
-                    UserInterface.Pecas.atualizarVerde(jogadores.get(i).getX(), jogadores.get(i).getY());
-                    break;
-                case Definicoes.VERMELHO:
-                    UserInterface.Pecas.atualizarVermelho(jogadores.get(i).getX(), jogadores.get(i).getY());
-                }
-                    
-            }
-            //ATUALIZA AS LABELS
-            Labels.alterarNomeJogador(jogadores.get(indice_jogador_da_vez).getName());
-            Labels.alterarDinheiro(jogadores.get(indice_jogador_da_vez).getSaldo());
-            Labels.alterarTooltip("TESTE");
-            //
-            UserInterface.Dialogo.avisoGenerico("Iniciando nova rodada: vez do " + jogadores.get(indice_jogador_da_vez).getName());
-            UserInterface.Botoes.mostrarBotaoTurno();
-            UserInterface.Botoes.mostrarBotaoDados();
-            
-            //Buscar carta referente à posição do jogador para atualizar o tooltip
-            for(i = 0; i < cartas_na_ordem_do_tabuleiro.size(); i++)
-            {
-                for(j = 0; j < jogadores.size(); j ++)
-                {
-                    if(cartas_na_ordem_do_tabuleiro.get(i).getId() == jogadores.get(j).getPosicaoTabuleiro())
-                    {
-                        //Atualiza a label com a tooltip da carta <--- NÃO FUNCIONA
-                        UserInterface.Labels.alterarTooltip(cartas_na_ordem_do_tabuleiro.get(i).tooltip(jogadores));
-                    }
-                }
-            }
-            
+            RefreshGUI.atualizarJogadoresXY(jogadores, casasInterface);
+            RefreshGUI.atualizarPinos(jogadores);
+            RefreshGUI.atualizarTooltip(cartas_na_ordem_do_tabuleiro, jogadores,jogadores.get(indice_jogador_da_vez).getId());
+            RefreshGUI.atualizarLabels(jogadores, indice_jogador_da_vez);
+            UserInterface.Tabuleiro.refresh();
+            //ATIVAR OS BOTOES DA GUI
+            UserInterface.Dialogo.avisoGenerico("Iniciando nova rodada: " + jogadores.get(indice_jogador_da_vez).getName());
             //FIM DA ATUALIZAÇÃO DA INTERFACE
-            nova_rodada.NovaRodada(jogadores.get(indice_jogador_da_vez),jogadores,cartas_na_ordem_do_tabuleiro,deque_cartas_sorte_ou_reves,cartas_propriedades,cartas_companhia);
+            nova_rodada.NovaRodada(jogadores.get(indice_jogador_da_vez),jogadores,cartas_na_ordem_do_tabuleiro,deque_cartas_sorte_ou_reves,cartas_propriedades,cartas_companhia,casasInterface, indice_jogador_da_vez);
+            //ATUALIZA A INTERFACE APOS A JOGADA
+            RefreshGUI.atualizarJogadoresXY(jogadores, casasInterface);
+            RefreshGUI.atualizarPinos(jogadores);
+            //RefreshGUI.atualizarLabels(jogadores, indice_jogador_da_vez);
+            UserInterface.Tabuleiro.refresh();
+            //
         	
             if(jogadores.get(indice_jogador_da_vez).getSaldo() <= 0)
             {

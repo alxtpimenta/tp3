@@ -5,6 +5,7 @@
  */
 package UserInterface;
 
+import Propriedades.Definicoes;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -55,9 +56,33 @@ public class Labels
     }
     
     //Altera o nome do jogador ativo na interface
-    public static void alterarNomeJogador(String nome)
+    public static void alterarNomeJogador(String nome, int cor)
     {
         Labels.jogadorAtivo.setText(nome);
+        switch(cor)
+        {
+            case Definicoes.BRANCO:
+                Labels.jogadorAtivo.setForeground(Color.WHITE);
+                break;
+            case Definicoes.PRETO:
+                Labels.jogadorAtivo.setForeground(Color.BLACK);
+                break;
+            case Definicoes.AZUL:
+                Labels.jogadorAtivo.setForeground(Color.BLUE);
+                break;
+            case Definicoes.AMARELO:
+                Labels.jogadorAtivo.setForeground(Color.YELLOW);
+                break;
+            case Definicoes.VERDE:
+                Labels.jogadorAtivo.setForeground(Color.GREEN);
+                break;
+            case Definicoes.VERMELHO:
+                Labels.jogadorAtivo.setForeground(Color.RED);
+                break;
+            default:
+                break;
+        }
+        
         Tabuleiro.painel.repaint();
     }
     

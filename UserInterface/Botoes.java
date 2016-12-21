@@ -14,11 +14,11 @@ import javax.swing.JButton;
  */
 public class Botoes 
 {
-    protected static JButton jogarDados = new JButton("Jogar Dados");
-    protected static JButton comprar = new JButton("Comprar");
-    protected static JButton adicionarCasa = new JButton("Adicionar casa");
-    protected static JButton adicionarHotel = new JButton("Adicionar Hotel");
-    protected static JButton finalizarTurno = new JButton("Finalizar turno");
+    public static JButton jogarDados = new JButton("Jogar Dados");
+    public static JButton comprar = new JButton("Comprar");
+    public static JButton adicionarCasa = new JButton("Adicionar casa");
+    public static JButton adicionarHotel = new JButton("Adicionar Hotel");
+    public static JButton finalizarTurno = new JButton("Finalizar turno");
     
     //Inicializa os botoes
     public static void iniciarBotoes()
@@ -105,4 +105,5 @@ public class Botoes
         Tabuleiro.painel.repaint();
     }
     
+
 }

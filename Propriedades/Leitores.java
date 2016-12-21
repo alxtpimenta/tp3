@@ -44,6 +44,7 @@ public class Leitores
             //ADICIONAR CARTAS DE CIMA
             entrada.add(new Casa(x1,x2,y1,y2));
         }
+        scan.close();
         //DEPOIS RETORNA A LISTA
         return entrada;
     }

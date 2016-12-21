@@ -1,6 +1,7 @@
 package Elementos;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -15,11 +16,13 @@ public class Setup {
 	public static ArrayList<Carta> MontarBaralhoGeral() throws FileNotFoundException
 	{
 		List<Carta> lista_geral_cartas = new ArrayList<>();
-            try (Scanner scan = new Scanner(new File("board_cards.txt"))) {
+                Scanner scan = new Scanner(new FileInputStream(new File("board_cards.txt")));
+                String line;
+                String[] separator;
                 while(scan.hasNext())
                 {
-                    String line = scan.nextLine();
-                    String[] separator = line.split(",");
+                    line = scan.nextLine();
+                    separator = line.split(",");
                     
                     
                     //propriedade ref:
@@ -76,7 +79,9 @@ public class Setup {
                     }
                     
                 }
-            }
+                
+                scan.close();
+            
 		
 		ArrayList<Carta> list = new ArrayList<>();
 		for(Carta card:lista_geral_cartas)
@@ -92,7 +97,7 @@ public class Setup {
 	public static Deque<CartaSorteOuReves> MontarBaralhoSorteOuReves() throws FileNotFoundException
 	{
 		List<CartaSorteOuReves> lista_de_cartas = new ArrayList<>();
-            try (Scanner scan = new Scanner(new File("luck_cards.txt"))) {
+                Scanner scan = new Scanner(new File("luck_cards.txt"));
                 while(scan.hasNext())
                 {
                     String line = scan.nextLine();
@@ -103,7 +108,8 @@ public class Setup {
                     lista_de_cartas.add(carta);
                     
                 }
-            }
+                scan.close();
+            
 		Collections.shuffle(lista_de_cartas);
 		
 		//Montagem do Deque (tira de cima e coloca no fundo)

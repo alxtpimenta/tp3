@@ -7,6 +7,7 @@ package UserInterface;
 
 import Propriedades.Definicoes;
 import java.awt.Graphics;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -68,5 +69,16 @@ public class Tabuleiro
         Tabuleiro.painel.setVisible(true);
         Tabuleiro.tabuleiro.setVisible(true);
     }
+    
+    public static void refresh()
+    {
+        Tabuleiro.painel.repaint();
+    }
+    
+    public static JButton jogarDados = new JButton("Jogar Dados");
+    public static JButton comprar = new JButton("Comprar");
+    public static JButton adicionarCasa = new JButton("Adicionar casa");
+    public static JButton adicionarHotel = new JButton("Adicionar Hotel");
+    public static JButton finalizarTurno = new JButton("Finalizar turno");
     
 }
