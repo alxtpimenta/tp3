@@ -23,16 +23,6 @@ public class Casa
     protected int _x2;
     protected int _y1;
     protected int _y2;
-    //DETECTA MOUSEOVER SOBRE A CASA
-    public boolean mouseOver(int x, int y)
-    {
-        //SE AS COORDENADAS DO MOUSE ESTIVEREM DENTRO DAS PAREDES DA CASA
-        //RETORNE TRUE, CASO CONTRARIO, RETORNE FALSE
-        if( (_x1 > x) && (_x2 < x) && (_y1 > y) && (_y1 < y) )
-            return true;
-        else
-            return false;
-    }
     //RETORNA O X E Y PARA IMPRESSAO NO TABULEIRO
     public int x()
     {

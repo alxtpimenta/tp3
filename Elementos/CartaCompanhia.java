@@ -47,7 +47,7 @@ public class CartaCompanhia extends Carta{
 			{
 				if(cartas_companhias.get(j).getId() == cartas_ordem_tabuleiro.get(jogador.getPosicaoTabuleiro()).getId())
 				{
-					UserInterface.Dialogo.avisoGenerico("O jogador pagou " + resultado_dados * cartas_companhias.get(j).getValorDeAluguelBase() +" por parar nessa companhia!");
+					UserInterface.Dialogo.avisoGenerico(jogador.getName()+" pagou " + resultado_dados * cartas_companhias.get(j).getValorDeAluguelBase() +" por parar em "+ cartas_companhias.get(j).getNome()+"!");
 					jogador.setSaldo(jogador.getSaldo() - resultado_dados * cartas_companhias.get(j).getValorDeAluguelBase());
 				}
 			

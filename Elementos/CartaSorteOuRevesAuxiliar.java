@@ -12,74 +12,67 @@ public class CartaSorteOuRevesAuxiliar extends Carta{
 		//tira carta do topo
 		CartaSorteOuReves card = cartas_sorte_ou_reves.pop();
 		
-		UserInterface.Dialogo.avisoGenerico("Sua carta de sorte ou reves e de " + card.getCategoria().toUpperCase() + "! " + card.getNome());		
+		UserInterface.Dialogo.avisoGenerico("Sorte ou reves: " + card.getNome());		
 		
-		if(card.getAction() == 0)
-		{
-			System.out.println(card.getNome());
-			jogador.setSaldo(jogador.getSaldo() - card.getQuantidade());
-		}
-		else if(card.getAction() == 1)
-		{
-			System.out.println(card.getNome());
-			jogador.setSaldo(jogador.getSaldo() + card.getQuantidade());
-		}
-		else if(card.getAction() == 2)
-		{
-			System.out.println(card.getNome());			
-			jogador.setPosicaoTabuleiro(10);
-			jogador.setPreso(true);
-			jogador.setDiasDePrisaoRestantes(3);
-		}
-		else if(card.getAction() == 3)
-		{
-			System.out.println(card.getNome());
-			jogador.setSaldo(jogador.getSaldo() + 200000);
-			jogador.setPosicaoTabuleiro(0);
-		}
-		else if(card.getAction() == 4)
-		{
-			System.out.println(card.getNome());
-			if(resultado_dados % 2 == 0)
-			{
-				jogador.setSaldo(jogador.getSaldo() + 100000);
-			}
-			else
-			{
-				jogador.setSaldo(jogador.getSaldo() - 100000);
-			}
-		}
-		else if(card.getAction() == 5)
-		{
-			System.out.println(card.getNome());	
-			for(int i=0;i<jogadores.size();i++)
-			{
-				if(jogadores.get(i).getId() != jogador.getId())
-				{
-					jogadores.get(i).setSaldo(jogadores.get(i).getSaldo() - 50000);
-					jogador.setSaldo(jogador.getSaldo() + 50000);
-				}
-			}
-			
-		}
-		else if(card.getAction() == 6)
-		{
-			System.out.println(card.getNome());	
-			card.setOwner(jogador.getId());
-		}
-		else if(card.getAction() == 7)
-		{
-			System.out.println(card.getNome());
-			card.setOwner(jogador.getId());
-			
-		}
-		else if(card.getAction() == 8)
-		{
-			System.out.println(card.getNome());
-			//Rodada nova_rodada = new Rodada();
-			//cartas_sorte_ou_reves.add(card);
-			//nova_rodada.NovaRodada(jogador, jogadores, cartas_ordem_tabuleiro, cartas_sorte_ou_reves, cartas_propriedades, cartas_companhias);
-		}
+            switch (card.getAction()) {
+                case 0:
+                    System.out.println(card.getNome());
+                    jogador.setSaldo(jogador.getSaldo() - card.getQuantidade());
+                    break;
+                case 1:
+                    System.out.println(card.getNome());
+                    jogador.setSaldo(jogador.getSaldo() + card.getQuantidade());
+                    break;
+                case 2:
+                    System.out.println(card.getNome());
+                    jogador.setPosicaoTabuleiro(10);
+                    jogador.setPreso(true);
+                    jogador.setDiasDePrisaoRestantes(3);
+                    break;
+                case 3:
+                    System.out.println(card.getNome());
+                    jogador.setSaldo(jogador.getSaldo() + 200000);
+                    jogador.setPosicaoTabuleiro(0);
+                    break;
+                case 4:
+                    System.out.println(card.getNome());
+                    if(resultado_dados % 2 == 0)
+                    {
+                        jogador.setSaldo(jogador.getSaldo() + 100000);
+                    }
+                    else
+                    {
+                        jogador.setSaldo(jogador.getSaldo() - 100000);
+                    }
+                    break;
+                case 5:
+                    System.out.println(card.getNome());
+                    for(int i=0;i<jogadores.size();i++)
+                    {
+                        if(jogadores.get(i).getId() != jogador.getId())
+                        {
+                            jogadores.get(i).setSaldo(jogadores.get(i).getSaldo() - 50000);
+                            jogador.setSaldo(jogador.getSaldo() + 50000);
+                        }
+                    }
+                    break;
+                case 6:
+                    System.out.println(card.getNome());
+                    card.setOwner(jogador.getId());
+                    break;
+                case 7:
+                    System.out.println(card.getNome());
+                    card.setOwner(jogador.getId());
+                    break;
+                case 8:
+                    System.out.println(card.getNome());
+                    //Rodada nova_rodada = new Rodada();
+                    //cartas_sorte_ou_reves.add(card);
+                    //nova_rodada.NovaRodada(jogador, jogadores, cartas_ordem_tabuleiro, cartas_sorte_ou_reves, cartas_propriedades, cartas_companhias);
+                    break;
+                default:
+                    break;
+            }
 		
 		//bota a carta no fundo se nao for atribuida a um jogador
 		if(card.getAction() != 6 && card.getAction() != 7)

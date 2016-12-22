@@ -31,37 +31,16 @@ public class Main
 {
     public static void main(String[] args) throws IOException 
     {
-        int numJogadoresLocais;
+        int numJogadoresLocais = -1;
         int numJogadoresComputador;
         ArrayList<Jogador> jogadores;
         ArrayList<String> arrayCores;
         String [] cores;
-        boolean modoPartida; //true Ã© modo comum, de falÃªncia, e false Ã© com contador por tempo/jogadas/etc
         long tempoMaxMinu;
         long horaAtual;
-        long horaFinal;
-        
         int i;
-        int numero_jogadores = 0;
-        
-        String nome;
-        int cor;
         int dados;
         Random gerador;
-        
-        /*
-        InÃ­cio do Jogo
-        Ã‰ aberta uma janela em que o usuÃ¡rio escolhe:
-        
-        -modo de tÃ©rmino do jogo
-         --depois de um tempo X, x em minutos escolhido pelo usuÃ¡rio
-         --ou terminar pelo modo normal de falÃªncia. (mas mesmo assim jogador escolhe um tempo mÃ¡ximo para o jogo em minutos.)
-         Com base na escolha, cria contador de tempo/passagens ou nÃ£o cria.(Ou deixa a opÃ§Ã£o de trocar 
-         de modo ligada durante o jogo (jogos que demoram muito) e inicia o contador de tempo/passadas de qualquer forma.)
-         
-         -numero de Jogadores. (entre MIN_JOGADORES E MAX_JOGADORES)
-           ApÃ³s ler retorna esse numero de jogadores para serem criados aqui.
-        */
         
         //INICIALIZACAO DA INTERFACE
         ArrayList<Casa> casasInterface = Leitores.carregarCasas();
@@ -75,11 +54,6 @@ public class Main
         Tabuleiro.setVisible();
         //DIALOGO DA INTERFACE
         UserInterface.Dialogo.boasVindas();
-
-        //PedaÃ§o para testes, remover depois
-        modoPartida = true;
-        tempoMaxMinu = 60;
-        //fim pedaÃ§o para testes
         
         jogadores = new ArrayList<>();    
         gerador = new Random(); //gerador de nÃºmeros aleatÃ³rios
@@ -94,7 +68,16 @@ public class Main
 
         //Preenche a lista de jogadores usando a interface
         int ID = 0;
-        numJogadoresLocais = UserInterface.Dialogo.quantidadeJogadoresLocais();
+        //GARANTE QUE A ENTRADA IRÁ SER SEMRPE UM INTEIRO MAIOR OU IGUAL DOIS E MENOR OU IGUAL A SEIS
+        while(true)
+        {
+            numJogadoresLocais = UserInterface.Dialogo.quantidadeJogadoresLocais();
+            if((numJogadoresLocais > Definicoes.MIN_JOGADORES-1) && (numJogadoresLocais < Definicoes.MAX_JOGADORES +1))
+                break;
+            else
+                UserInterface.Dialogo.avisoGenerico("Entrada inválida!");
+        }
+        
         for(i = 0; i < numJogadoresLocais; i++)
         {
             String nomeJogadorLocal = UserInterface.Dialogo.nomeJogador(i+1);
@@ -131,11 +114,12 @@ public class Main
             humanPlayer.setDiasDePrisaoRestantes(0);
             humanPlayer.setX(casasInterface.get(Definicoes.CASA_INICIAL_GUI).x());
             humanPlayer.setY(casasInterface.get(Definicoes.CASA_INICIAL_GUI).y());
-            numero_jogadores++;
             ID++;
             
             jogadores.add(humanPlayer);
         }
+        
+        /*
         numJogadoresComputador = UserInterface.Dialogo.quantidadeJogadoresComputador();
         int j;
         for(j=0;j<numJogadoresComputador;j++)
@@ -178,13 +162,7 @@ public class Main
             
             jogadores.add(computerPlayer);
         }
-        
-        //lista jogadores ok
-        System.out.println("Jogadores no jogo:");
-        for(int k=0;k<jogadores.size();k++)
-        {
-        	System.out.println(jogadores.get(k).getName() + " " + jogadores.get(k).getTipo());
-        }
+        */
         
         //construcao do deque e das cartas na ordem do tabuleiro
         ArrayList<Carta> cartas_na_ordem_do_tabuleiro = Setup.MontarBaralhoGeral();
@@ -205,17 +183,6 @@ public class Main
             }
         });
         
-        //INICIALIZAR ELEMENTOS DA INTERFACE
-        //EXIBIR LABELS
-        UserInterface.Labels.exibirLabels();
-
-        //Inicia a partida
-        horaAtual = System.currentTimeMillis();
-        horaFinal  = horaAtual + (tempoMaxMinu * 60000);
-        
-        //decidindo a ordem dos jogadores
-        System.out.println("Decidindo ordem dos jogadores:");
-        
         Dados resultado_dados = new Dados();
         
         //rolando dados para cada jogador, disputa de vez
@@ -232,10 +199,7 @@ public class Main
         //
         UserInterface.Dialogo.avisoGenerico("O jogador " + jogadores.get(0).getName() + " rolou os dados e tirou " + jogadores.get(0).getResultados()+", e sera o primeiro a jogar!");
         //System.out.println("Iniciando nova rodada: vez do " + jogadores.get(indice_jogador_da_vez).getName());
-        Rodada nova_rodada = new Rodada();
-        
-        //ACTION_LISTENER > S� VAI PARA FRENTE SE O JOGADOR CLICAR "JOGAR DADOS"
-        //"JOGAR DADOS" DEVE SER O UNICO BOTAO VISIVEL        
+        Rodada nova_rodada = new Rodada(); 
         
         //ADICIONAR AS PECAS DE CADA JOGADOR
         for( i =0; i < jogadores.size();i++)
@@ -259,14 +223,14 @@ public class Main
                     break;
                 case Definicoes.VERMELHO:
                     UserInterface.Pecas.adicionarVermelho();
-            }
-                    
+            } 
         }
-        //teste com 1 loop
-       
+        //INICIALIZAR ELEMENTOS DA INTERFACE
+        //EXIBIR LABELS
+        UserInterface.Labels.exibirLabels();
+        //INÍCIO DO LOOP DE JOOGO
         while(jogadores.size() > 1)
         {
-
             //ATUALIZA A INTERFACE
             //ATUALIZAR POSIÇÃO DOS PINOS DE CADA JOGADOR
             RefreshGUI.atualizarJogadoresXY(jogadores, casasInterface);
@@ -274,7 +238,6 @@ public class Main
             RefreshGUI.atualizarTooltip(cartas_na_ordem_do_tabuleiro, jogadores,indice_jogador_da_vez);
             RefreshGUI.atualizarLabels(jogadores, indice_jogador_da_vez);
             UserInterface.Tabuleiro.refresh();
-            //ATIVAR OS BOTOES DA GUI
             UserInterface.Dialogo.avisoGenerico("Iniciando nova rodada: " + jogadores.get(indice_jogador_da_vez).getName());
             //FIM DA ATUALIZAÇÃO DA INTERFACE
             nova_rodada.NovaRodada(jogadores.get(indice_jogador_da_vez),jogadores,cartas_na_ordem_do_tabuleiro,deque_cartas_sorte_ou_reves,cartas_propriedades,cartas_companhia,casasInterface, indice_jogador_da_vez);
@@ -282,21 +245,20 @@ public class Main
             RefreshGUI.atualizarTooltip(cartas_na_ordem_do_tabuleiro, jogadores, indice_jogador_da_vez);
             RefreshGUI.atualizarJogadoresXY(jogadores, casasInterface);
             RefreshGUI.atualizarPinos(jogadores);
-            //RefreshGUI.atualizarLabels(jogadores, indice_jogador_da_vez);
+            RefreshGUI.atualizarLabels(jogadores, indice_jogador_da_vez);
             UserInterface.Tabuleiro.refresh();
-            //
-        	
+            //VERIFICAR FALENCIA
             if(jogadores.get(indice_jogador_da_vez).getSaldo() <= 0)
             {
                 jogadores.remove(indice_jogador_da_vez);
-                UserInterface.Dialogo.avisoGenerico("O jogador " + jogadores.get(indice_jogador_da_vez).getName() + "perdeu e foi removido do jogo.");
+                UserInterface.Dialogo.avisoGenerico("" + jogadores.get(indice_jogador_da_vez).getName() + "faliu e saiu do jogo.");
             }
+            //AVANÇAR JOGADOR
             indice_jogador_da_vez++;
             if(indice_jogador_da_vez >= jogadores.size())
             {
         	indice_jogador_da_vez = 0;
             }
-            
         }
                 
     }
