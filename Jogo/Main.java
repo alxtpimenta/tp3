@@ -263,10 +263,8 @@ public class Main
                     
         }
         //teste com 1 loop
-        int t=0;
-        boolean loop = true;
-        //jogadores.size() > 1
-        while(loop)
+       
+        while(jogadores.size() > 1)
         {
 
             //ATUALIZA A INTERFACE
@@ -298,7 +296,7 @@ public class Main
             {
         	indice_jogador_da_vez = 0;
             }
-            t++;
+            
         }
                 
     }

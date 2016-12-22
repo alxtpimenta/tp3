@@ -142,8 +142,8 @@ public class CartaPropriedade extends Carta{
 					//olha para o numero de casas para definir quanto pagar de aluguel
 					if(cartas_propriedades.get(j).getNumeroCasas() == 0)
 					{
-                                            UserInterface.Dialogo.avisoGenerico("Jogador pagou aluguel sem casas no valor de:" + cartas_propriedades.get(j).getAluguel());
-                                            jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguel());
+                        UserInterface.Dialogo.avisoGenerico("Jogador pagou aluguel sem casas no valor de:" + cartas_propriedades.get(j).getAluguel());
+                        jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguel());
 					}
 					else if(cartas_propriedades.get(j).getNumeroCasas() == 1)
 					{

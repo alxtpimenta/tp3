@@ -12,7 +12,7 @@ public class CartaSorteOuRevesAuxiliar extends Carta{
 		//tira carta do topo
 		CartaSorteOuReves card = cartas_sorte_ou_reves.pop();
 		
-		UserInterface.Dialogo.avisoGenerico("Sua carta de sorte ou reves e de " + card.getCategoria() + "!");		
+		UserInterface.Dialogo.avisoGenerico("Sua carta de sorte ou reves e de " + card.getCategoria().toUpperCase() + "! " + card.getNome());		
 		
 		if(card.getAction() == 0)
 		{

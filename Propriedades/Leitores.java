@@ -22,7 +22,7 @@ public class Leitores
     {
         ArrayList<Casa> entrada = new ArrayList<>();
         //ABRE O ARQUIVO, REALIZA A LEITURA ADICIONANDO AS CASAS
-        Scanner scan = new Scanner(new File("coords.txt"));
+        Scanner scan = new Scanner(new File("C:/Users/SALA/workspace/BancoImobiliario/src/coords.txt"));
         int x1,x2,y1,y2;
         String line;
         String[] separator;

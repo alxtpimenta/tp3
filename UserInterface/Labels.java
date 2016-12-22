@@ -89,7 +89,7 @@ public class Labels
     //Altera a quantia de dinheiro exibida na interface
     public static void alterarDinheiro(int quantia)
     {
-        Labels.dinheiro.setText("Saldo: €"+Integer.toString(quantia));
+        Labels.dinheiro.setText("Saldo: $"+Integer.toString(quantia));
         Tabuleiro.painel.repaint();
     }
     
