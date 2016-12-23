@@ -13,17 +13,15 @@ import Propriedades.Definicoes;
 import UserInterface.Tabuleiro;
 import java.io.IOException;
 import Elementos.Dados;
-import Elementos.Setup;
+import Propriedades.Setup;
 import Elementos.Carta;
 import Elementos.CartaCompanhia;
 import Elementos.CartaPropriedade;
 import java.util.ArrayList;
 import java.util.Deque;
-import Elementos.Rodada;
 import Elementos.CartaSorteOuReves;
 import Elementos.Casa;
-import Elementos.RefreshGUI;
-import Propriedades.Leitores;
+import Proxy.RefreshGUI;
 
 public class Main 
 {
@@ -41,7 +39,7 @@ public class Main
         Random gerador;
         
         //INICIALIZACAO DA INTERFACE
-        ArrayList<Casa> casasInterface = Leitores.carregarCasas();
+        ArrayList<Casa> casasInterface = Setup.carregarCasas();
         UserInterface.Sprites.carregarSprites();
         UserInterface.Botoes.iniciarBotoes();
         UserInterface.Labels.iniciarLabels();
