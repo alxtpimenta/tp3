@@ -28,5 +28,3 @@
 27,sorte ou reves,grey,Se tirou numero par na soma dos dados. Receba 100.000! Se tirou impar na soma dos dados. Pague 100.000,4,0,9
 28,sorte,grey,O dia de seu casamento chegou. Receba os presentes. Receba 50.000 de cada jogador,5,0,9
 29,sorte,grey,Habeas Corpus. Utilize este cartao para se livrar da detencao quando necessario. Voce tambem pode negociar a venda deste cartao para outro jogador,6,0,9
-30,sorte,grey,Compra Livre. Apresente este cartao a um jogador para comprar uma propriedade SEM construcoes pelo valor indicado no tabuleiro. O jogador e obrigado a aceitar. utilize em qualquer momento do jogo. Este cartao nao pode ser negociado,7,0,9
-31,sorte,grey,Jogue os dados novamente e avance seu peao,8,0,9
