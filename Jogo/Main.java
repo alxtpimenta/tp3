@@ -228,11 +228,6 @@ public class Main
         //INICIALIZAR ELEMENTOS DA INTERFACE
         //EXIBIR LABELS
         UserInterface.Labels.exibirLabels();
-        //DEBUG
-        for(i = 0; i < cartas_na_ordem_do_tabuleiro.size();i++)
-        {
-            System.out.println(cartas_na_ordem_do_tabuleiro.get(i).getCategoria() + " " + cartas_na_ordem_do_tabuleiro.get(i).getNome());
-        }
         //INÍCIO DO LOOP DE JOOGO
         while(jogadores.size() > 1)
         {

@@ -163,7 +163,6 @@ public class Rodada {
 		{
                     posicao_jogador = posicao_jogador - 40;
 		}
-                UserInterface.Dialogo.avisoGenerico("Debug. Pos: "+Integer.toString(posicao_jogador));
 		//Nova posição do tabuleiro
 		jogador.setPosicaoTabuleiro(posicao_jogador);
                 //Atualiza a GUI antes do efeito da carta
@@ -219,7 +218,6 @@ public class Rodada {
                     //REALIZAR COMPRA
                 	if("property".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria()))
                 	{
-                            UserInterface.Dialogo.avisoGenerico("Debug. Pos: "+Integer.toString(posicao_jogador));
 	                    UserInterface.Dialogo.avisoGenerico(jogador.getName() + " comprou " + cartas_ordem_tabuleiro.get(posicao_jogador).getNome()+"!");
 	                    cartas_ordem_tabuleiro.get(posicao_jogador).setOwner(jogador.getId());
 	                    //busca valor de compra da carta correta
@@ -235,7 +233,6 @@ public class Rodada {
                         }
                         else if("company".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria()))
                 	{
-                            UserInterface.Dialogo.avisoGenerico("Debug. Pos: "+Integer.toString(posicao_jogador));
 	                    UserInterface.Dialogo.avisoGenerico(jogador.getName() + " comprou " + cartas_ordem_tabuleiro.get(posicao_jogador).getNome()+"!");
 	                    cartas_ordem_tabuleiro.get(posicao_jogador).setOwner(jogador.getId());
 	                    int k =0;
