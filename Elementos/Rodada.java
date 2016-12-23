@@ -163,13 +163,14 @@ public class Rodada {
 		{
                     posicao_jogador = posicao_jogador - 40;
 		}
+                UserInterface.Dialogo.avisoGenerico("Debug. Pos: "+Integer.toString(posicao_jogador));
 		//Nova posição do tabuleiro
 		jogador.setPosicaoTabuleiro(posicao_jogador);
                 //Atualiza a GUI antes do efeito da carta
                 RefreshGUI.atualizarJogadoresXY(jogadores, casasInterface);
                 RefreshGUI.atualizarLabels(jogadores, ID);
                 RefreshGUI.atualizarPinos(jogadores);
-                RefreshGUI.atualizarTooltip(cartas_ordem_tabuleiro, jogadores, ID);
+                RefreshGUI.atualizarTooltip(cartas_ordem_tabuleiro, jogadores, jogador);
                 UserInterface.Tabuleiro.refresh();
 		//invoca efeito da carta da posicao do jogador
 		cartas_ordem_tabuleiro.get(posicao_jogador).Efeito(jogador, jogadores,resultado_dados,cartas_ordem_tabuleiro,cartas_sorte_ou_reves,cartas_propriedades,cartas_companhias);
@@ -177,7 +178,7 @@ public class Rodada {
                 RefreshGUI.atualizarJogadoresXY(jogadores, casasInterface);
                 RefreshGUI.atualizarLabels(jogadores, ID);
                 RefreshGUI.atualizarPinos(jogadores);
-                RefreshGUI.atualizarTooltip(cartas_ordem_tabuleiro, jogadores, ID);
+                RefreshGUI.atualizarTooltip(cartas_ordem_tabuleiro, jogadores, jogador);
                 UserInterface.Tabuleiro.refresh();
                 //Se for uma propriedade ou companhia e o jogador nao for dono, ir para o modo de compra
                 if(("company".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria())
@@ -218,6 +219,7 @@ public class Rodada {
                     //REALIZAR COMPRA
                 	if("property".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria()))
                 	{
+                            UserInterface.Dialogo.avisoGenerico("Debug. Pos: "+Integer.toString(posicao_jogador));
 	                    UserInterface.Dialogo.avisoGenerico(jogador.getName() + " comprou " + cartas_ordem_tabuleiro.get(posicao_jogador).getNome()+"!");
 	                    cartas_ordem_tabuleiro.get(posicao_jogador).setOwner(jogador.getId());
 	                    //busca valor de compra da carta correta
@@ -233,6 +235,7 @@ public class Rodada {
                         }
                         else if("company".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria()))
                 	{
+                            UserInterface.Dialogo.avisoGenerico("Debug. Pos: "+Integer.toString(posicao_jogador));
 	                    UserInterface.Dialogo.avisoGenerico(jogador.getName() + " comprou " + cartas_ordem_tabuleiro.get(posicao_jogador).getNome()+"!");
 	                    cartas_ordem_tabuleiro.get(posicao_jogador).setOwner(jogador.getId());
 	                    int k =0;
@@ -264,8 +267,7 @@ public class Rodada {
                 }
             }
             //Se a propriedade for do jogador
-            else if(("company".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria())
-                    || "property".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria()))
+            else if(("property".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria()))
                     && cartas_ordem_tabuleiro.get(posicao_jogador).getOwner() == jogador.getId())
             {
             	//busca carta propriedade referente
@@ -352,6 +354,38 @@ public class Rodada {
                     Botoes.removerBotao(Botoes.adicionarHotel);
                 }
             }
+            else if(("company".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria()))
+                    && cartas_ordem_tabuleiro.get(posicao_jogador).getOwner() == jogador.getId())
+                {
+                //MOSTRAR BOTOES DA GUI
+                Botoes.removerBotao(Botoes.jogarDados);
+                Botoes.mostrarBotao(Botoes.finalizarTurno);
+                while(!esperarAcao)
+                {
+                    //LISTENER PARA TERMINAR O TURNO
+                    Botoes.finalizarTurno.addActionListener(new ActionListener()
+                    {
+                        @Override
+                        public void actionPerformed(ActionEvent e) 
+                        {
+                            Rodada.esperarAcao = true;
+                            Rodada.finalizarTurno = true;
+                        }        
+                    });
+                    
+                }
+                if(Rodada.finalizarTurno)
+                {
+                    //Anula os controladores do loop para pular o turno
+                    Rodada.esperarAcao = false;
+                    Rodada.finalizarTurno = false;
+                    Botoes.finalizarTurno.removeAll();
+                    Botoes.removerBotao(Botoes.finalizarTurno);
+                    Botoes.removerBotao(Botoes.adicionarCasa);
+                    Botoes.removerBotao(Botoes.adicionarHotel);
+                }
+                
+                }
                 //Anular os controladores para a proxima rodada
                 Rodada.rolarDados = false;
                 Botoes.jogarDados.removeAll();

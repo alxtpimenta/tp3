@@ -98,13 +98,7 @@ public  class Dialogo
         return -1;
     }
     
-    //MOSTRA MENSAGEM DE ERRO CASO A COR JA TENHA SIDO SELECIONADA
-    public static void erroCorSelecionada()
-    {
-        JOptionPane.showMessageDialog(null,Textos.COR_JA_SELECIONADA);
-    }
-    
-    //Mensagem de aviso generico (aviso de cobranca, sorte, reves)
+    //Mensagem de aviso generico
     public static void avisoGenerico(String texto)
     {
         JOptionPane.showMessageDialog(null,texto);

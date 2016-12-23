@@ -51,30 +51,15 @@ public class RefreshGUI
         }
     }
     
-    public static void atualizarTooltip(ArrayList<Carta> cartas_na_ordem_do_tabuleiro, ArrayList<Jogador> jogadores, int ID)
+    public static void atualizarTooltip(ArrayList<Carta> cartas_na_ordem_do_tabuleiro, ArrayList<Jogador> jogadores,Jogador jogador)
     {
             for(int i = 0; i < cartas_na_ordem_do_tabuleiro.size(); i++)
             {
-                    if(cartas_na_ordem_do_tabuleiro.get(i).getId() == jogadores.get(ID).getPosicaoTabuleiro())
+                    if(cartas_na_ordem_do_tabuleiro.get(i).getId() == jogador.getPosicaoTabuleiro())
                     {
                         //Atualiza a label com a tooltip da carta
                         UserInterface.Labels.alterarTooltip(cartas_na_ordem_do_tabuleiro.get(i).tooltip(jogadores));
                     }
-            }
-    }
-    
-    public static void atualizarTooltip2(ArrayList<Carta> cartas_na_ordem_do_tabuleiro, ArrayList<Jogador> jogadores)
-    {
-            for(int i = 0; i < cartas_na_ordem_do_tabuleiro.size(); i++)
-            {
-                for(int j = 0; j < jogadores.size(); j ++)
-                {
-                    if(cartas_na_ordem_do_tabuleiro.get(i).getId() == jogadores.get(j).getPosicaoTabuleiro())
-                    {
-                        //Atualiza a label com a tooltip da carta
-                        UserInterface.Labels.alterarTooltip(cartas_na_ordem_do_tabuleiro.get(i).tooltip(jogadores));
-                    }
-                }
             }
     }
     

@@ -19,6 +19,9 @@ public class Botoes
     public static JButton adicionarCasa = new JButton("Adicionar casa");
     public static JButton adicionarHotel = new JButton("Adicionar Hotel");
     public static JButton finalizarTurno = new JButton("Finalizar turno");
+    public static JButton habeasCorpus = new JButton("Habeas Corpus");
+    public static JButton tentarSorte = new JButton("Tentar a sorte");
+    public static JButton hipotecar = new JButton("Hipotecar");
     
     //Inicializa os botoes
     public static void iniciarBotoes()
@@ -29,8 +32,48 @@ public class Botoes
         Botoes.adicionarCasa.setBounds(185, 213, 120, 50);
         Botoes.adicionarHotel.setBounds(25, 213, 120, 50);
         Botoes.comprar.setBounds(25, 213, 120, 50);
+        Botoes.habeasCorpus.setBounds(25, 213, 120, 50);
+        Botoes.tentarSorte.setBounds(185, 213, 120, 50);
+        Botoes.hipotecar.setBounds(25, 273, 120, 50);
     }
     
+    public static void mostrarBotao(JButton botao)
+    {
+        Tabuleiro.painel.add(botao);
+        Tabuleiro.setVisible();
+        Tabuleiro.painel.repaint();
+    }
+    
+    public static void removerBotao(JButton botao)
+    {
+        Tabuleiro.painel.remove(botao);
+        Tabuleiro.painel.repaint();
+    }
+    /*public static void mostrarSorte()
+    {
+        Tabuleiro.painel.add(Botoes.tentarSorte);
+        Tabuleiro.setVisible();
+        Tabuleiro.painel.repaint();
+    }
+    
+    public static void removerSorte()
+    {
+        Tabuleiro.painel.remove(Botoes.tentarSorte);
+        Tabuleiro.painel.repaint();
+    }
+    
+    public static void mostrarHabeasCorpus()
+    {
+        Tabuleiro.painel.add(Botoes.habeasCorpus);
+        Tabuleiro.setVisible();
+        Tabuleiro.painel.repaint();
+    }
+    
+    public static void removerHabeasCorpus()
+    {
+        Tabuleiro.painel.remove(Botoes.habeasCorpus);
+        Tabuleiro.painel.repaint();
+    }
     //Exibe o botao de jogar os dados
     public static void mostrarBotaoDados()
     {
@@ -105,6 +148,6 @@ public class Botoes
         Tabuleiro.painel.remove(Botoes.finalizarTurno);
         Tabuleiro.painel.repaint();
     }
-    
+    */
 
 }

@@ -23,7 +23,7 @@ public class Labels
     
     public static void iniciarLabels()
     {
-        Font grande = new Font("SansSerif", Font.BOLD, 30);
+        Font grande = new Font("SansSerif", Font.BOLD, 50);
         Labels.jogadorAtivo.setBounds(73, 15, 340, 35);
         Labels.jogadorAtivo.setForeground(Color.white);
         Labels.jogadorAtivo.setText(null);
@@ -31,7 +31,7 @@ public class Labels
         Labels.jogadorAtivo.setVerticalAlignment(SwingConstants.CENTER);
         Labels.jogadorAtivo.setFont(grande);
         //
-        Font medium = new Font("SansSerif", Font.BOLD, 20);
+        Font medium = new Font("SansSerif", Font.BOLD, 30);
         Labels.dinheiro.setBounds(81, 85, 300, 40);
         Labels.dinheiro.setText(null);
         Labels.dinheiro.setForeground(Color.white);
@@ -39,6 +39,8 @@ public class Labels
         Labels.dinheiro.setVerticalAlignment(SwingConstants.CENTER);
         Labels.dinheiro.setFont(medium);
         //
+        Font small = new Font("SansSerif", Font.PLAIN, 17);
+        Labels.tooltip.setFont(small);
         Labels.tooltip.setBounds(65, 548, 354, 197);
         Labels.tooltip.setText(null);
         Labels.tooltip.setForeground(Color.white);
