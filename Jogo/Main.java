@@ -100,7 +100,7 @@ public class Main
             }
             
             dados = gerador.nextInt(12)+1;
-            JogadorLocal humanPlayer = new JogadorLocal();
+            Jogador humanPlayer = new Jogador();
             humanPlayer.setId(ID);
             humanPlayer.setCor(corJogadorLocal);
             humanPlayer.setName(nomeJogadorLocal);

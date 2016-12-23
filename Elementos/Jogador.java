@@ -7,7 +7,7 @@ package Elementos;
 import Propriedades.Definicoes;
 import java.util.Random;
 
-public abstract class Jogador implements Comparable<Jogador>
+public class Jogador implements Comparable<Jogador>
 {   
     private int _id;
     private int _dinheiro;
