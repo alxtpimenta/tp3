@@ -9,8 +9,6 @@ package Jogo;
 
 import java.util.*;
 import Elementos.Jogador;
-import Elementos.JogadorLocal;
-import Elementos.JogadorComputador;
 import Propriedades.Definicoes;
 import UserInterface.Tabuleiro;
 import java.io.IOException;

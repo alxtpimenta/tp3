@@ -88,9 +88,6 @@ public class Setup {
 		{
 			list.add(card);
 		}
-		
-		//cartas do tabuleiro, print de teste
-		
 		return list;
 		
 	}
