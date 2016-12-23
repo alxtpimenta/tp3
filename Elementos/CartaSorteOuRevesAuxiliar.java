@@ -7,7 +7,7 @@ public class CartaSorteOuRevesAuxiliar extends Carta{
 
 	//funcao retira uma carta do topo da lista sorte_ou_reves e cumpre seu efeito
 	@Override
-	public void Efeito(Jogador jogador,ArrayList<Jogador> jogadores, int resultado_dados, ArrayList<Carta> cartas_ordem_tabuleiro, Deque<CartaSorteOuReves> cartas_sorte_ou_reves,ArrayList<CartaPropriedade> cartas_propriedades, ArrayList<CartaCompanhia> cartas_companhias)
+	public void Efeito(Jogador jogador,ArrayList<Jogador> jogadores, int resultado_dados, ArrayList<Carta> cartas_ordem_tabuleiro, Deque<CartaSorteOuReves> cartas_sorte_ou_reves,ArrayList<CartaPropriedade> cartas_propriedades, ArrayList<CartaCompanhia> cartas_companhias,ArrayList<CartaSorteOuReves> cartas_nao_devolvidas_sorteoureves)
 	{		
 		//tira carta do topo
 		CartaSorteOuReves card = cartas_sorte_ou_reves.pop();
@@ -68,7 +68,7 @@ public class CartaSorteOuRevesAuxiliar extends Carta{
 		//bota a carta no fundo se nao for atribuida a um jogador
 		if(card.getAction() != 6 && card.getAction() != 7)
 		{
-			cartas_sorte_ou_reves.add(card);
+			cartas_nao_devolvidas_sorteoureves.add(card);
 		}
 		
 		

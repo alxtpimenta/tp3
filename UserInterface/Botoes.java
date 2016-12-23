@@ -22,6 +22,7 @@ public class Botoes
     public static JButton habeasCorpus = new JButton("Habeas Corpus");
     public static JButton tentarSorte = new JButton("Tentar a sorte");
     public static JButton hipotecar = new JButton("Hipotecar");
+    public static JButton venderCasa = new JButton("Vender");
     
     //Inicializa os botoes
     public static void iniciarBotoes()
@@ -34,7 +35,7 @@ public class Botoes
         Botoes.comprar.setBounds(25, 213, 120, 50);
         Botoes.habeasCorpus.setBounds(25, 213, 120, 50);
         Botoes.tentarSorte.setBounds(185, 213, 120, 50);
-        Botoes.hipotecar.setBounds(25, 273, 120, 50);
+        Botoes.venderCasa.setBounds(25, 273, 120, 50);
     }
     
     public static void mostrarBotao(JButton botao)

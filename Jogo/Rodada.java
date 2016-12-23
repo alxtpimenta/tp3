@@ -26,21 +26,39 @@ public class Rodada {
     private static boolean modoCompraCasa = false;
     private static boolean modoTentarSorte = false;
     private static boolean modoHabeasCorpus = false;
+    private static boolean modoVenderCasa = false;
+    private static boolean modoVenderCompanhia = false;
     
-    public void NovaRodada(Jogador jogador, ArrayList<Jogador> jogadores,ArrayList<Carta> cartasTabuleiro, Deque<CartaSorteOuReves> cartasSorteReves,ArrayList<CartaPropriedade> cartasPropriedade, ArrayList<CartaCompanhia> cartasCompanhia,ArrayList<Casa> casasInterface, int indiceJogador)
+    
+    public void NovaRodada(Jogador jogador, ArrayList<Jogador> jogadores,ArrayList<Carta> cartasTabuleiro, Deque<CartaSorteOuReves> cartasSorteReves,ArrayList<CartaPropriedade> cartasPropriedade, ArrayList<CartaCompanhia> cartasCompanhia,ArrayList<Casa> casasInterface, int indiceJogador,ArrayList<CartaSorteOuReves> cartas_nao_devolvidas_sorteoureves)
 	{
+    	
+    	
                 //SE O JOGADOR ESTIVER PRESO
 		if(jogador.getPreso() == true)
 		{
                     //ADICIONAR BOTOES
                     Botoes.mostrarBotao(Botoes.finalizarTurno);
                     Botoes.mostrarBotao(Botoes.tentarSorte);
-                    Botoes.mostrarBotao(Botoes.habeasCorpus);
-                    UserInterface.Dialogo.avisoGenerico("Voce ainda esta preso por mais " + Integer.toString(jogador.getDiasDePrisaoRestantes()) + " rodada(s)!");
-                    //PREPARAR PARA ESPERAR ACAO DO JOGADOR
+                    
+                  //PREPARAR PARA ESPERAR ACAO DO JOGADOR
                     esperarAcao = false;
                     modoTentarSorte = false;
                     modoHabeasCorpus = false;
+                    
+                    //BUSCA CARTA HABEAS CORPUS
+                    for(int p=0;p<cartas_nao_devolvidas_sorteoureves.size();p++)
+                    {
+                    	
+                    	if(cartas_nao_devolvidas_sorteoureves.get(p).getAction() == 6 && cartas_nao_devolvidas_sorteoureves.get(p).getOwner() == jogador.getId())
+                    	{
+                    		Botoes.mostrarBotao(Botoes.habeasCorpus);
+                    		
+                    	}
+                    }
+                    
+                    UserInterface.Dialogo.avisoGenerico("Voce ainda esta preso por mais " + Integer.toString(jogador.getDiasDePrisaoRestantes()) + " rodada(s)!");
+                    
                     //ESPERAR ACAO
                     while(!esperarAcao)
                     {
@@ -78,7 +96,20 @@ public class Rodada {
                     //MODO HABEAS CORPUS
                     if(modoHabeasCorpus)
                     {
+                        jogador.setPreso(false);
+                        jogador.setDiasDePrisaoRestantes(0);
+                        UserInterface.Dialogo.avisoGenerico("Voce utilizou sua carta de habeas corpus e saiu da prisão. Jogue normalmente na proxima rodada!");
                         
+                        //BUSCA CARTA HABEAS CORPUS PARA DEVOLVE-LA AO BARALHO
+                        for(int p=0;p<cartas_nao_devolvidas_sorteoureves.size();p++)
+                        {                        	
+                        	if(cartas_nao_devolvidas_sorteoureves.get(p).getAction() == 6)
+                        	{
+                        		cartas_nao_devolvidas_sorteoureves.get(p).setOwner(9);
+                        		cartasSorteReves.addLast(cartas_nao_devolvidas_sorteoureves.get(p));
+                        		
+                        	}
+                        }
                     }
                     //MODO TENTAR SORTE
                     else if(modoTentarSorte)
@@ -95,6 +126,7 @@ public class Rodada {
                         {
                             UserInterface.Dialogo.avisoGenerico("Sorte! Voce foi liberado!");
                             jogador.setPreso(false);
+                            jogador.setDiasDePrisaoRestantes(0);
                             //DESATIVAR CONTROLADORES
                             finalizarTurno = false;
                             modoHabeasCorpus = false;
@@ -110,6 +142,7 @@ public class Rodada {
                         else
                         {
                             UserInterface.Dialogo.avisoGenerico("Azar! Nao foi dessa vez!");
+                            jogador.setDiasDePrisaoRestantes(jogador.getDiasDePrisaoRestantes()-1);
                             //DESATIVAR CONTROLADORES
                             finalizarTurno = false;
                             modoHabeasCorpus = false;
@@ -175,7 +208,7 @@ public class Rodada {
                 RefreshGUI.atualizarTooltip(cartasTabuleiro, jogadores, jogador);
                 UserInterface.Tabuleiro.refresh();
 		//invoca efeito da carta da posicao do jogador
-		cartasTabuleiro.get(posicaoJogador).Efeito(jogador, jogadores,resultadoDados,cartasTabuleiro,cartasSorteReves,cartasPropriedade,cartasCompanhia);
+		cartasTabuleiro.get(posicaoJogador).Efeito(jogador, jogadores,resultadoDados,cartasTabuleiro,cartasSorteReves,cartasPropriedade,cartasCompanhia,cartas_nao_devolvidas_sorteoureves);
                 //Atualiza a GUI apos o efeito
                 RefreshGUI.atualizarJogadoresXY(jogadores, casasInterface);
                 RefreshGUI.atualizarLabels(jogadores, indiceJogador);
@@ -280,6 +313,7 @@ public class Rodada {
                 else
                 {
                     Botoes.mostrarBotao(Botoes.adicionarCasa);
+                    Botoes.mostrarBotao(Botoes.venderCasa);
                 }
                 //MOSTRAR BOTOES DA GUI
                 Botoes.removerBotao(Botoes.jogarDados);
@@ -297,6 +331,11 @@ public class Rodada {
                         Rodada.esperarAcao = true;
                         Rodada.modoCompraHotel = true;        
                     });
+                    //LISTENER PARA VENDER CASA
+                    Botoes.venderCasa.addActionListener((ActionEvent e) -> {
+                        Rodada.esperarAcao = true;
+                        Rodada.modoVenderCasa = true;        
+                    });
                     
                     //LISTENER PARA TERMINAR O TURNO
                     Botoes.finalizarTurno.addActionListener((ActionEvent e) -> {
@@ -310,15 +349,17 @@ public class Rodada {
                     //ATUALIZAR O NUMERO
                     cartasPropriedade.get(k).setNumeroCasas(cartasPropriedade.get(k).getNumeroCasas()+1);
                     //DEBITAR DO SALDO
-                    jogador.setSaldo(cartasPropriedade.get(k).getValorCompraDeCasa());
+                    jogador.setSaldo(cartasPropriedade.get(k).getValorCompraDeCasa() + jogador.getSaldo());
                     //NOTIFICAR
                     UserInterface.Dialogo.avisoGenerico(jogador.getName()+" construiu uma casa em "+cartasTabuleiro.get(posicaoJogador).getNome());
                     //ANULAR OS CONTROLADORES
                     Rodada.modoCompraCasa = false;
                     Rodada.esperarAcao = false;
+                    Rodada.modoVenderCasa = false;
                     Botoes.adicionarCasa.removeAll();
                     Botoes.removerBotao(Botoes.adicionarCasa);
                     Botoes.removerBotao(Botoes.adicionarHotel);
+                    Botoes.removerBotao(Botoes.venderCasa);
                 }
                 else if(modoCompraHotel)
                 {
@@ -326,13 +367,34 @@ public class Rodada {
                     //ATUALIZAR O NUMERO
                     cartasPropriedade.get(k).setNumeroCasas(cartasPropriedade.get(k).getNumeroCasas()+1);
                     //DEBITAR DO SALDO
-                    jogador.setSaldo(cartasPropriedade.get(k).getValorCompraDeHotel());
+                    jogador.setSaldo(cartasPropriedade.get(k).getValorCompraDeHotel() + jogador.getSaldo());
                     //NOTIFICAR
                     UserInterface.Dialogo.avisoGenerico(jogador.getName()+" construiu um hotel em "+cartasTabuleiro.get(posicaoJogador).getNome());
                     //ANULAR OS CONTROLADORES
                     Rodada.modoCompraCasa = false;
                     Rodada.esperarAcao = false;
+                    Rodada.modoVenderCasa = false;
                     Botoes.adicionarCasa.removeAll();
+                    Botoes.removerBotao(Botoes.adicionarCasa);
+                    Botoes.removerBotao(Botoes.adicionarHotel);
+                    Botoes.removerBotao(Botoes.venderCasa);
+                }
+                else if(modoVenderCasa)
+                {
+                    //PROCEDIMENTOS PARA VENDER A CASA
+                    //ATUALIZAR O NUMERO
+                    cartasPropriedade.get(k).setNumeroCasas(0);
+                    cartasPropriedade.get(k).setOwner(9);
+                    //CREDITAR NO SALDO
+                    jogador.setSaldo(cartasPropriedade.get(k).getValorDeCompra() / 2 + jogador.getSaldo());
+                    //NOTIFICAR
+                    UserInterface.Dialogo.avisoGenerico(jogador.getName()+" vendeu a propriedade"+cartasTabuleiro.get(posicaoJogador).getNome() + " por " + cartasPropriedade.get(k).getValorDeCompra() / 2);
+                    //ANULAR OS CONTROLADORES
+                    Rodada.modoCompraCasa = false;
+                    Rodada.esperarAcao = false;
+                    Rodada.modoVenderCasa = false;
+                    Botoes.adicionarCasa.removeAll();
+                    Botoes.removerBotao(Botoes.venderCasa);
                     Botoes.removerBotao(Botoes.adicionarCasa);
                     Botoes.removerBotao(Botoes.adicionarHotel);
                 }
@@ -351,9 +413,22 @@ public class Rodada {
             else if(("company".equals(cartasTabuleiro.get(posicaoJogador).getCategoria()))
                     && cartasTabuleiro.get(posicaoJogador).getOwner() == jogador.getId())
                 {
+            	
+            	//busca carta companhia referente
+            	int t =0;
+                for(int u=0;u<cartasCompanhia.size();u++)
+                {
+                	if(cartasCompanhia.get(u).getNome().compareTo(cartasTabuleiro.get(posicaoJogador).getNome()) == 0)
+                	{
+                		t = u;
+                	}
+                }
+            	
+            	
                 //MOSTRAR BOTOES DA GUI
                 Botoes.removerBotao(Botoes.jogarDados);
                 Botoes.mostrarBotao(Botoes.finalizarTurno);
+                Botoes.mostrarBotao(Botoes.venderCasa);
                 while(!esperarAcao)
                 {
                     //LISTENER PARA TERMINAR O TURNO
@@ -361,6 +436,13 @@ public class Rodada {
                         Rodada.esperarAcao = true;
                         Rodada.finalizarTurno = true;        
                     });
+                    
+                  //LISTENER PARA VENDER
+                    Botoes.venderCasa.addActionListener((ActionEvent e) -> {
+                        Rodada.esperarAcao = true;
+                        Rodada.modoVenderCompanhia = true;        
+                    });
+                    
                     
                 }
                 if(Rodada.finalizarTurno)
@@ -373,12 +455,33 @@ public class Rodada {
                     Botoes.removerBotao(Botoes.adicionarCasa);
                     Botoes.removerBotao(Botoes.adicionarHotel);
                 }
+                else if(Rodada.modoVenderCompanhia)
+                {
+                	
+                	//PROCEDIMENTOS PARA VENDER A COMPANHIA
+                    //ATUALIZAR O NUMERO                	
+                	cartasCompanhia.get(t).setOwner(9);
+                    //CREDITAR NO SALDO
+                    jogador.setSaldo(cartasCompanhia.get(t).getValorDeCompra() / 2 + jogador.getSaldo());
+                    //NOTIFICAR
+                    UserInterface.Dialogo.avisoGenerico(jogador.getName()+" vendeu a companhia"+cartasTabuleiro.get(posicaoJogador).getNome() + " por " + cartasCompanhia.get(t).getValorDeCompra() / 2);
+                    //ANULAR OS CONTROLADORES
+                    Rodada.modoVenderCompanhia = false;
+                    Rodada.esperarAcao = false;
+                    Rodada.finalizarTurno = false;
+                    Botoes.removerBotao(Botoes.venderCasa);
+                    Botoes.removerBotao(Botoes.adicionarCasa);
+                    Botoes.removerBotao(Botoes.adicionarHotel);
+                }
                 
                 }
                 //Anular os controladores para a proxima rodada
+                Rodada.modoVenderCompanhia = false;
+                
                 Rodada.rolarDados = false;
                 Botoes.jogarDados.removeAll();
                 Botoes.removerBotao(Botoes.jogarDados);
+                Botoes.removerBotao(Botoes.venderCasa);
             }		
                 }
              

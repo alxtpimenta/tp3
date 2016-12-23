@@ -49,7 +49,7 @@ public class Main
         UserInterface.Dialogo.boasVindas();
         
         jogadores = new ArrayList<>();    
-        gerador = new Random(); //gerador de nÃºmeros aleatÃ³rios
+        gerador = new Random(); //gerador de nÃƒÂºmeros aleatÃƒÂ³rios
         
     	arrayCores = new ArrayList<>();
     	arrayCores.add("Branco");
@@ -61,14 +61,14 @@ public class Main
 
         //Preenche a lista de jogadores usando a interface
         int ID = 0;
-        //GARANTE QUE A ENTRADA IRÁ SER SEMRPE UM INTEIRO MAIOR OU IGUAL DOIS E MENOR OU IGUAL A SEIS
+        //GARANTE QUE A ENTRADA IRÃ� SER SEMRPE UM INTEIRO MAIOR OU IGUAL DOIS E MENOR OU IGUAL A SEIS
         while(true)
         {
             numJogadoresLocais = UserInterface.Dialogo.quantidadeJogadoresLocais();
             if((numJogadoresLocais > Definicoes.MIN_JOGADORES-1) && (numJogadoresLocais < Definicoes.MAX_JOGADORES +1))
                 break;
             else
-                UserInterface.Dialogo.avisoGenerico("Entrada inválida!");
+                UserInterface.Dialogo.avisoGenerico("Entrada invalida!");
         }
         for(i = 0; i < numJogadoresLocais; i++)
         {
@@ -117,6 +117,8 @@ public class Main
         ArrayList<CartaPropriedade> cartasPropriedade = new ArrayList<>();
         //construcao do baralho so de companhias
         ArrayList<CartaCompanhia> cartasCompanhia = new ArrayList<>();
+        ArrayList<CartaSorteOuReves> cartas_nao_devolvidas_sorteoureves = new ArrayList<>();
+            
         cartasTabuleiro.forEach((card) -> {
             if(card.getCategoria().compareTo("property") == 0)
             {
@@ -168,19 +170,19 @@ public class Main
         //INICIALIZAR ELEMENTOS DA INTERFACE
         //EXIBIR LABELS
         UserInterface.Labels.exibirLabels();
-        //INÍCIO DO LOOP DE JOOGO
+        //INÃ�CIO DO LOOP DE JOOGO
         while(jogadores.size() > 1)
         {
             //ATUALIZA A INTERFACE
-            //ATUALIZAR POSIÇÃO DOS PINOS DE CADA JOGADOR
+            //ATUALIZAR POSIÃ‡ÃƒO DOS PINOS DE CADA JOGADOR
             RefreshGUI.atualizarJogadoresXY(jogadores, casasInterface);
             RefreshGUI.atualizarPinos(jogadores);
             RefreshGUI.atualizarTooltip(cartasTabuleiro, jogadores,jogadores.get(indiceJogador));
             RefreshGUI.atualizarLabels(jogadores, indiceJogador);
             UserInterface.Tabuleiro.refresh();
             UserInterface.Dialogo.avisoGenerico("Iniciando nova rodada: " + jogadores.get(indiceJogador).getName());
-            //FIM DA ATUALIZAÇÃO DA INTERFACE
-            nova_rodada.NovaRodada(jogadores.get(indiceJogador),jogadores,cartasTabuleiro,cartasSorteReves,cartasPropriedade,cartasCompanhia,casasInterface, indiceJogador);
+            //FIM DA ATUALIZAÃ‡ÃƒO DA INTERFACE
+            nova_rodada.NovaRodada(jogadores.get(indiceJogador),jogadores,cartasTabuleiro,cartasSorteReves,cartasPropriedade,cartasCompanhia,casasInterface, indiceJogador,cartas_nao_devolvidas_sorteoureves);
             //ATUALIZA A INTERFACE APOS A JOGADA
             RefreshGUI.atualizarTooltip(cartasTabuleiro, jogadores, jogadores.get(indiceJogador));
             RefreshGUI.atualizarJogadoresXY(jogadores, casasInterface);
@@ -193,7 +195,7 @@ public class Main
                 UserInterface.Dialogo.avisoGenerico("" + jogadores.get(indiceJogador).getName() + " faliu e saiu do jogo.");
                 //DESTITUIR PROPRIEDADES DO FALIDO
                 Setup.destituirPropriedades(cartasTabuleiro, jogadores.get(indiceJogador));
-                //REMOVER PEÃO DO TABULEIRO
+                //REMOVER PEÃƒO DO TABULEIRO
                 switch(jogadores.get(indiceJogador).getCor())
                 {
                     case Definicoes.BRANCO:
@@ -217,7 +219,7 @@ public class Main
                 //REMOVER DA LISTA
                 jogadores.remove(indiceJogador);
             }
-            //AVANÇAR JOGADOR
+            //AVANÃ‡AR JOGADOR
             indiceJogador++;
             if(indiceJogador >= jogadores.size())
             {

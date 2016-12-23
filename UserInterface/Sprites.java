@@ -29,12 +29,12 @@ public class Sprites
     public static void carregarSprites() throws IOException
     {
     	//modificar caminho da imagem (estava dando problema no meu computador)
-        Sprites.planoDeFundo = ImageIO.read(new File("background.png"));
-        Sprites.jogadorAmarelo = ImageIO.read(new File("amarelo.png"));
-        Sprites.jogadorAzul = ImageIO.read(new File("azul.png"));
-        Sprites.jogadorBranco = ImageIO.read(new File("branco.png"));
-        Sprites.jogadorPreto = ImageIO.read(new File("preto.png"));
-        Sprites.jogadorVerde = ImageIO.read(new File("verde.png"));
-        Sprites.jogadorVermelho = ImageIO.read(new File("vermelho.png"));
+        Sprites.planoDeFundo = ImageIO.read(new File("C:/Users/SALA/workspace/BancoImobiliario/src/Imagens/background.png"));
+        Sprites.jogadorAmarelo = ImageIO.read(new File("C:/Users/SALA/workspace/BancoImobiliario/src/Imagens/amarelo.png"));
+        Sprites.jogadorAzul = ImageIO.read(new File("C:/Users/SALA/workspace/BancoImobiliario/src/Imagens/azul.png"));
+        Sprites.jogadorBranco = ImageIO.read(new File("C:/Users/SALA/workspace/BancoImobiliario/src/Imagens/branco.png"));
+        Sprites.jogadorPreto = ImageIO.read(new File("C:/Users/SALA/workspace/BancoImobiliario/src/Imagens/preto.png"));
+        Sprites.jogadorVerde = ImageIO.read(new File("C:/Users/SALA/workspace/BancoImobiliario/src/Imagens/verde.png"));
+        Sprites.jogadorVermelho = ImageIO.read(new File("C:/Users/SALA/workspace/BancoImobiliario/src/Imagens/vermelho.png"));
     }
 }

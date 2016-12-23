@@ -38,7 +38,7 @@ public class CartaCompanhia extends Carta{
 	}
 	
 	@Override
-	public void Efeito(Jogador jogador,ArrayList<Jogador> jogadores, int resultado_dados,ArrayList<Carta> cartasTabuleiro, Deque<CartaSorteOuReves> cartasSorteReves,ArrayList<CartaPropriedade> cartasPropriedade, ArrayList<CartaCompanhia> cartasCompanhia)
+	public void Efeito(Jogador jogador,ArrayList<Jogador> jogadores, int resultado_dados,ArrayList<Carta> cartasTabuleiro, Deque<CartaSorteOuReves> cartasSorteReves,ArrayList<CartaPropriedade> cartasPropriedade, ArrayList<CartaCompanhia> cartasCompanhia ,ArrayList<CartaSorteOuReves> cartas_nao_devolvidas_sorteoureves)
 	{
 		//verifica se a carta companhia no tabuleiro nao pertence a ninguem e nem ao jogador jogando a rodada
 		if(cartasTabuleiro.get(jogador.getPosicaoTabuleiro()).getOwner() != Definicoes.SEM_PROPRIETARIO && cartasTabuleiro.get(jogador.getPosicaoTabuleiro()).getOwner() != jogador.getId())
