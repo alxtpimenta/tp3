@@ -24,7 +24,7 @@ public class Labels
     public static void iniciarLabels()
     {
         Font grande = new Font("SansSerif", Font.BOLD, 50);
-        Labels.jogadorAtivo.setBounds(73, 15, 340, 35);
+        Labels.jogadorAtivo.setBounds(73, 15, 340, 80);
         Labels.jogadorAtivo.setForeground(Color.white);
         Labels.jogadorAtivo.setText(null);
         Labels.jogadorAtivo.setHorizontalAlignment(SwingConstants.CENTER);

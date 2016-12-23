@@ -1,5 +1,6 @@
 package Elementos;
 
+import Propriedades.Definicoes;
 import java.util.ArrayList;
 import java.util.Deque;
 
@@ -37,18 +38,26 @@ public class CartaCompanhia extends Carta{
 	}
 	
 	@Override
-	public void Efeito(Jogador jogador,ArrayList<Jogador> jogadores, int resultado_dados,ArrayList<Carta> cartas_ordem_tabuleiro, Deque<CartaSorteOuReves> cartas_sorte_ou_reves,ArrayList<CartaPropriedade> cartas_propriedades, ArrayList<CartaCompanhia> cartas_companhias)
+	public void Efeito(Jogador jogador,ArrayList<Jogador> jogadores, int resultado_dados,ArrayList<Carta> cartasTabuleiro, Deque<CartaSorteOuReves> cartasSorteReves,ArrayList<CartaPropriedade> cartasPropriedade, ArrayList<CartaCompanhia> cartasCompanhia)
 	{
 		//verifica se a carta companhia no tabuleiro nao pertence a ninguem e nem ao jogador jogando a rodada
-		if(cartas_ordem_tabuleiro.get(jogador.getPosicaoTabuleiro()).getOwner() != 9 && cartas_ordem_tabuleiro.get(jogador.getPosicaoTabuleiro()).getOwner() != jogador.getId())
+		if(cartasTabuleiro.get(jogador.getPosicaoTabuleiro()).getOwner() != Definicoes.SEM_PROPRIETARIO && cartasTabuleiro.get(jogador.getPosicaoTabuleiro()).getOwner() != jogador.getId())
 		{
 			//faz uma busca para achar a carta companhia correspondente a carta do tabuleiro em questao
-			for(int j=0; j<cartas_companhias.size();j++)
+			for(int j=0; j<cartasCompanhia.size();j++)
 			{
-				if(cartas_companhias.get(j).getId() == cartas_ordem_tabuleiro.get(jogador.getPosicaoTabuleiro()).getId())
+				if(cartasCompanhia.get(j).getId() == cartasTabuleiro.get(jogador.getPosicaoTabuleiro()).getId())
 				{
-					UserInterface.Dialogo.avisoGenerico(jogador.getName()+" pagou " + resultado_dados * cartas_companhias.get(j).getValorDeAluguelBase() +" por parar em "+ cartas_companhias.get(j).getNome()+"!");
-					jogador.setSaldo(jogador.getSaldo() - resultado_dados * cartas_companhias.get(j).getValorDeAluguelBase());
+                                        int idProprietario = cartasTabuleiro.get(jogador.getPosicaoTabuleiro()).getOwner();
+                                        int i;
+					UserInterface.Dialogo.avisoGenerico(jogador.getName()+" pagou " + resultado_dados * cartasCompanhia.get(j).getValorDeAluguelBase() +" por parar em "+ cartasCompanhia.get(j).getNome()+"!");
+					jogador.setSaldo(jogador.getSaldo() - resultado_dados * cartasCompanhia.get(j).getValorDeAluguelBase());
+                                        for(i=0;i<jogadores.size();i++)
+                                            if(jogadores.get(i).getId() == idProprietario)
+                                            {
+                                                jogadores.get(i).setSaldo(jogadores.get(i).getSaldo() + resultado_dados * cartasCompanhia.get(j).getValorDeAluguelBase());
+                                                UserInterface.Dialogo.avisoGenerico(jogadores.get(i).getName()+" recebeu "+Integer.toString(resultado_dados * cartasCompanhia.get(j).getValorDeAluguelBase())+" de pagamento!");
+                                            }
 				}
 			
 			}

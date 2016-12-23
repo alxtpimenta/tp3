@@ -28,12 +28,9 @@ public class Main
     public static void main(String[] args) throws IOException 
     {
         int numJogadoresLocais = -1;
-        int numJogadoresComputador;
         ArrayList<Jogador> jogadores;
         ArrayList<String> arrayCores;
         String [] cores;
-        long tempoMaxMinu;
-        long horaAtual;
         int i;
         int dados;
         Random gerador;
@@ -73,7 +70,6 @@ public class Main
             else
                 UserInterface.Dialogo.avisoGenerico("Entrada inválida!");
         }
-        
         for(i = 0; i < numJogadoresLocais; i++)
         {
             String nomeJogadorLocal = UserInterface.Dialogo.nomeJogador(i+1);
@@ -114,84 +110,32 @@ public class Main
             
             jogadores.add(humanPlayer);
         }
-        
-        /*
-        numJogadoresComputador = UserInterface.Dialogo.quantidadeJogadoresComputador();
-        int j;
-        for(j=0;j<numJogadoresComputador;j++)
-        {
-        	String nomeJogadorComputador = UserInterface.Dialogo.nomeJogadorComputador(j+1);
-        	
-        	cores = new String[arrayCores.size()];
-            cores = arrayCores.toArray(cores);
-            int corJogadorComputador = UserInterface.Dialogo.corJogador(j+1, cores);
-            switch (corJogadorComputador){
-            	case 0: arrayCores.remove("Branco");
-            		break;
-            	case 1: arrayCores.remove("Preto");
-    			break;
-            	case 2: arrayCores.remove("Azul");
-            	break;
-            	case 3: arrayCores.remove("Amarelo");
-            	break;
-            	case 4: arrayCores.remove("Verde");
-            	break;
-            	case 5: arrayCores.remove("Vermelho");
-            	break;
-            	default:break;
-            }
-            
-            dados = gerador.nextInt(12)+1;
-            JogadorComputador computerPlayer = new JogadorComputador();
-            computerPlayer.setId(numero_jogadores);
-            computerPlayer.setCor(corJogadorComputador);
-            computerPlayer.setName(nomeJogadorComputador);
-            computerPlayer.setSaldo(Definicoes.QUANTIA_INICIAL);
-            computerPlayer.setResultadoDados(dados);
-            computerPlayer.setTipo("computador");
-            computerPlayer.setPosicaoTabuleiro(0);
-            computerPlayer.setPreso(false);
-            computerPlayer.setDiasDePrisaoRestantes(0);
-            computerPlayer.setX(casasInterface.get(Definicoes.CASA_INICIAL_GUI).x());
-            computerPlayer.setY(casasInterface.get(Definicoes.CASA_INICIAL_GUI).y());
-            numero_jogadores++;
-            
-            jogadores.add(computerPlayer);
-        }
-        */
-        
         //construcao do deque e das cartas na ordem do tabuleiro
-        ArrayList<Carta> cartas_na_ordem_do_tabuleiro = Setup.MontarBaralhoGeral();
-        Deque<CartaSorteOuReves> deque_cartas_sorte_ou_reves = Setup.MontarBaralhoSorteOuReves();
-        
+        ArrayList<Carta> cartasTabuleiro = Setup.MontarBaralhoGeral();
+        Deque<CartaSorteOuReves> cartasSorteReves = Setup.MontarBaralhoSorteOuReves();
         //construcao do baralho so de propriedade
-        ArrayList<CartaPropriedade> cartas_propriedades = new ArrayList<>();
+        ArrayList<CartaPropriedade> cartasPropriedade = new ArrayList<>();
         //construcao do baralho so de companhias
-        ArrayList<CartaCompanhia> cartas_companhia = new ArrayList<>();
-        cartas_na_ordem_do_tabuleiro.forEach((card) -> {
+        ArrayList<CartaCompanhia> cartasCompanhia = new ArrayList<>();
+        cartasTabuleiro.forEach((card) -> {
             if(card.getCategoria().compareTo("property") == 0)
             {
-                cartas_propriedades.add((CartaPropriedade)card);
+                cartasPropriedade.add((CartaPropriedade)card);
             }
             else if(card.getCategoria().compareTo("company") == 0)
             {
-                cartas_companhia.add((CartaCompanhia)card);
+                cartasCompanhia.add((CartaCompanhia)card);
             }
         });
-        
         Dados resultado_dados = new Dados();
-        
         //rolando dados para cada jogador, disputa de vez
         for(int k=0;k<jogadores.size();k++)
         {
         	jogadores.get(k).setResultadoDados(resultado_dados.RolarDados());
         }
-        
         //ordena jogadores de acordo com o numero tirado no dado. Esta ordem vai se manter ate o final
         Collections.sort(jogadores);
-        
-        //inicia nova rodada at� que s� tenha um jogador, que ser� o vencedor
-        int indice_jogador_da_vez = 0;
+        int indiceJogador = 0;
         //
         UserInterface.Dialogo.avisoGenerico("O jogador " + jogadores.get(0).getName() + " rolou os dados e tirou " + jogadores.get(0).getResultados()+", e sera o primeiro a jogar!");
         //System.out.println("Iniciando nova rodada: vez do " + jogadores.get(indice_jogador_da_vez).getName());
@@ -231,31 +175,57 @@ public class Main
             //ATUALIZAR POSIÇÃO DOS PINOS DE CADA JOGADOR
             RefreshGUI.atualizarJogadoresXY(jogadores, casasInterface);
             RefreshGUI.atualizarPinos(jogadores);
-            RefreshGUI.atualizarTooltip(cartas_na_ordem_do_tabuleiro, jogadores,jogadores.get(indice_jogador_da_vez));
-            RefreshGUI.atualizarLabels(jogadores, indice_jogador_da_vez);
+            RefreshGUI.atualizarTooltip(cartasTabuleiro, jogadores,jogadores.get(indiceJogador));
+            RefreshGUI.atualizarLabels(jogadores, indiceJogador);
             UserInterface.Tabuleiro.refresh();
-            UserInterface.Dialogo.avisoGenerico("Iniciando nova rodada: " + jogadores.get(indice_jogador_da_vez).getName());
+            UserInterface.Dialogo.avisoGenerico("Iniciando nova rodada: " + jogadores.get(indiceJogador).getName());
             //FIM DA ATUALIZAÇÃO DA INTERFACE
-            nova_rodada.NovaRodada(jogadores.get(indice_jogador_da_vez),jogadores,cartas_na_ordem_do_tabuleiro,deque_cartas_sorte_ou_reves,cartas_propriedades,cartas_companhia,casasInterface, indice_jogador_da_vez);
+            nova_rodada.NovaRodada(jogadores.get(indiceJogador),jogadores,cartasTabuleiro,cartasSorteReves,cartasPropriedade,cartasCompanhia,casasInterface, indiceJogador);
             //ATUALIZA A INTERFACE APOS A JOGADA
-            RefreshGUI.atualizarTooltip(cartas_na_ordem_do_tabuleiro, jogadores, jogadores.get(indice_jogador_da_vez));
+            RefreshGUI.atualizarTooltip(cartasTabuleiro, jogadores, jogadores.get(indiceJogador));
             RefreshGUI.atualizarJogadoresXY(jogadores, casasInterface);
             RefreshGUI.atualizarPinos(jogadores);
-            RefreshGUI.atualizarLabels(jogadores, indice_jogador_da_vez);
+            RefreshGUI.atualizarLabels(jogadores, indiceJogador);
             UserInterface.Tabuleiro.refresh();
             //VERIFICAR FALENCIA
-            if(jogadores.get(indice_jogador_da_vez).getSaldo() <= 0)
+            if(jogadores.get(indiceJogador).getSaldo() <= 0)
             {
-                jogadores.remove(indice_jogador_da_vez);
-                UserInterface.Dialogo.avisoGenerico("" + jogadores.get(indice_jogador_da_vez).getName() + "faliu e saiu do jogo.");
+                UserInterface.Dialogo.avisoGenerico("" + jogadores.get(indiceJogador).getName() + " faliu e saiu do jogo.");
+                //DESTITUIR PROPRIEDADES DO FALIDO
+                Setup.destituirPropriedades(cartasTabuleiro, jogadores.get(indiceJogador));
+                //REMOVER PEÃO DO TABULEIRO
+                switch(jogadores.get(indiceJogador).getCor())
+                {
+                    case Definicoes.BRANCO:
+                        UserInterface.Pecas.removerBranco();
+                       break;
+                  case Definicoes.PRETO:
+                        UserInterface.Pecas.removerPreto();
+                        break;
+                    case Definicoes.AZUL:
+                        UserInterface.Pecas.removerAzul();
+                        break;
+                    case Definicoes.AMARELO:
+                        UserInterface.Pecas.removerAmarelo();
+                        break;
+                       case Definicoes.VERDE:
+                       UserInterface.Pecas.removerVerde();
+                        break;
+                    case Definicoes.VERMELHO:
+                        UserInterface.Pecas.removerVermelho();
+                }
+                //REMOVER DA LISTA
+                jogadores.remove(indiceJogador);
             }
             //AVANÇAR JOGADOR
-            indice_jogador_da_vez++;
-            if(indice_jogador_da_vez >= jogadores.size())
+            indiceJogador++;
+            if(indiceJogador >= jogadores.size())
             {
-        	indice_jogador_da_vez = 0;
+        	indiceJogador = 0;
             }
         }
+        //FIM DE JOGO
+        UserInterface.Dialogo.avisoGenerico("Fim de jogo! "+jogadores.get(indiceJogador).getName()+" venceu!");
                 
     }
 }

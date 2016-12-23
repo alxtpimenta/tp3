@@ -38,18 +38,6 @@ public  class Dialogo
         //RETORNA A SAIDA
         return saida;
     }
-    public static int quantidadeJogadoresComputador()
-    {
-        //ARMAZENA OS DADOS INSERIDOS
-        String quantidade;
-        int saida;
-        //SOLICITA A ENTRADA DO USUARIO
-        quantidade = JOptionPane.showInputDialog(Textos.QTD_JOGADORES_COMPUTADOR);
-        //CONVERTE A SAIDA PARA INTEIRO
-        saida = Integer.parseInt(quantidade);
-        //RETORNA A SAIDA
-        return saida;
-    }
     
     public static String nomeJogador(int numJogador)
     {
@@ -57,16 +45,6 @@ public  class Dialogo
         String nome;
         //SOLICITAR ENTRADA DO USUARIO
         nome = JOptionPane.showInputDialog(Textos.INSERIR_NOME_LOCAL +" " + Integer.toString(numJogador));
-        //RETORNA O NOME DO JOGADOR
-        return nome;
-    }
-    
-    public static String nomeJogadorComputador(int numJogador)
-    {
-        //ARMAZENA OS DADOS INSERIDOS
-        String nome;
-        //SOLICITAR ENTRADA DO USUARIO
-        nome = JOptionPane.showInputDialog(Textos.INSERIR_NOME_COMPUTADOR + " " + Integer.toString(numJogador),"Computador " + numJogador);
         //RETORNA O NOME DO JOGADOR
         return nome;
     }

@@ -30,4 +30,6 @@ public class Definicoes
     public static final int AMARELO = 3;
     public static final int VERDE = 4;
     public static final int VERMELHO = 5;
+    
+    public static final int SEM_PROPRIETARIO = 9;
 }

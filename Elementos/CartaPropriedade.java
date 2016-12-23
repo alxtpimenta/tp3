@@ -1,5 +1,6 @@
 package Elementos;
 
+import Propriedades.Definicoes;
 import java.util.ArrayList;
 import java.util.Deque;
 
@@ -129,47 +130,84 @@ public class CartaPropriedade extends Carta{
 	
 	
 	@Override
-	public void Efeito(Jogador jogador,ArrayList<Jogador> jogadores, int resultado_dados,ArrayList<Carta> cartas_ordem_tabuleiro, Deque<CartaSorteOuReves> cartas_sorte_ou_reves,ArrayList<CartaPropriedade> cartas_propriedades, ArrayList<CartaCompanhia> cartas_companhias)
+	public void Efeito(Jogador jogador,ArrayList<Jogador> jogadores, int resultado_dados,ArrayList<Carta> cartasTabuleiro, Deque<CartaSorteOuReves> cartasSorteReves,ArrayList<CartaPropriedade> cartasPropriedade, ArrayList<CartaCompanhia> cartasCompanhia)
 	{
 		//verifica se a carta propriedade no tabuleiro nao pertence a ninguem e nem ao jogador jogando a rodada
-		if(cartas_ordem_tabuleiro.get(jogador.getPosicaoTabuleiro()).getOwner() != 9 && cartas_ordem_tabuleiro.get(jogador.getPosicaoTabuleiro()).getOwner() != jogador.getId())
+		if(cartasTabuleiro.get(jogador.getPosicaoTabuleiro()).getOwner() != Definicoes.SEM_PROPRIETARIO && cartasTabuleiro.get(jogador.getPosicaoTabuleiro()).getOwner() != jogador.getId())
 		{
 			//faz uma busca para achar a carta propriedade correspondente a carta do tabuleiro em questao
-			for(int j=0; j<cartas_propriedades.size();j++)
+			for(int j=0; j<cartasPropriedade.size();j++)
 			{
-				if(cartas_propriedades.get(j).getId() == cartas_ordem_tabuleiro.get(jogador.getPosicaoTabuleiro()).getId())
+				if(cartasPropriedade.get(j).getId() == cartasTabuleiro.get(jogador.getPosicaoTabuleiro()).getId())
 				{
-					//olha para o numero de casas para definir quanto pagar de aluguel
-					if(cartas_propriedades.get(j).getNumeroCasas() == 0)
-					{
-                                                UserInterface.Dialogo.avisoGenerico(jogador.getName()+" pagou aluguel no valor de: " + cartas_propriedades.get(j).getAluguel());
-                                                jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguel());
-					}
-					else if(cartas_propriedades.get(j).getNumeroCasas() == 1)
-					{
-						UserInterface.Dialogo.avisoGenerico(jogador.getName()+" pagou aluguel com uma casa no valor de: " + cartas_propriedades.get(j).getAluguelComUmaCasa());
-						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguelComUmaCasa());
-					}
-					else if(cartas_propriedades.get(j).getNumeroCasas() == 2)
-					{
-						UserInterface.Dialogo.avisoGenerico(jogador.getName()+" pagou aluguel com duas casas no valor de: " + cartas_propriedades.get(j).getAluguelComDuasCasas());
-						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguelComDuasCasas());
-					}
-					else if(cartas_propriedades.get(j).getNumeroCasas() == 3)
-					{
-						UserInterface.Dialogo.avisoGenerico(jogador.getName()+" pagou aluguel com tres casas no valor de: " + cartas_propriedades.get(j).getAluguelComTresCasas());
-						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguelComTresCasas());
-					}
-					else if(cartas_propriedades.get(j).getNumeroCasas() == 4)
-					{
-						UserInterface.Dialogo.avisoGenerico(jogador.getName()+" pagou aluguel com quatro casas no valor de: " + cartas_propriedades.get(j).getAluguelComQuatroCasas());
-						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguelComQuatroCasas());
-					}
-					else if(cartas_propriedades.get(j).getNumeroCasas() == 5)
-					{
-						UserInterface.Dialogo.avisoGenerico(jogador.getName()+" pagou aluguel com quatro casas e hotel no valor de: " + cartas_propriedades.get(j).getAluguelComHotel());
-						jogador.setSaldo(jogador.getSaldo() - cartas_propriedades.get(j).getAluguelComHotel());
-					}
+                                    //Determina o proprietario
+                                    int idProprietario = cartasTabuleiro.get(jogador.getPosicaoTabuleiro()).getOwner();
+                                    int i;
+                                    //olha para o numero de casas para definir quanto pagar de aluguel
+                                    switch (cartasPropriedade.get(j).getNumeroCasas()) {
+                                        case 0:
+                                            UserInterface.Dialogo.avisoGenerico(jogador.getName()+" pagou aluguel no valor de: " + cartasPropriedade.get(j).getAluguel());
+                                            jogador.setSaldo(jogador.getSaldo() - cartasPropriedade.get(j).getAluguel());
+                                            for(i=0;i<jogadores.size();i++)
+                                                if(jogadores.get(i).getId() == idProprietario)
+                                                {
+                                                    jogadores.get(i).setSaldo(jogadores.get(i).getSaldo() + cartasPropriedade.get(j).getAluguel());
+                                                    UserInterface.Dialogo.avisoGenerico(jogadores.get(i).getName()+" recebeu "+Integer.toString(cartasPropriedade.get(j).getAluguel())+" de pagamento!");
+                                                }
+                                            break;
+                                        case 1:
+                                            UserInterface.Dialogo.avisoGenerico(jogador.getName()+" pagou aluguel com uma casa no valor de: " + cartasPropriedade.get(j).getAluguelComUmaCasa());
+                                            jogador.setSaldo(jogador.getSaldo() - cartasPropriedade.get(j).getAluguelComUmaCasa());
+                                            for(i=0;i<jogadores.size();i++)
+                                                if(jogadores.get(i).getId() == idProprietario)
+                                                {
+                                                    jogadores.get(i).setSaldo(jogadores.get(i).getSaldo() + cartasPropriedade.get(j).getAluguelComUmaCasa());
+                                                    UserInterface.Dialogo.avisoGenerico(jogadores.get(i).getName()+" recebeu "+Integer.toString(cartasPropriedade.get(j).getAluguelComUmaCasa())+" de pagamento!");
+                                                }
+                                            break;
+                                        case 2:
+                                            UserInterface.Dialogo.avisoGenerico(jogador.getName()+" pagou aluguel com duas casas no valor de: " + cartasPropriedade.get(j).getAluguelComDuasCasas());
+                                            jogador.setSaldo(jogador.getSaldo() - cartasPropriedade.get(j).getAluguelComDuasCasas());
+                                            for(i=0;i<jogadores.size();i++)
+                                                if(jogadores.get(i).getId() == idProprietario)
+                                                {
+                                                    jogadores.get(i).setSaldo(jogadores.get(i).getSaldo() + cartasPropriedade.get(j).getAluguelComDuasCasas());
+                                                    UserInterface.Dialogo.avisoGenerico(jogadores.get(i).getName()+" recebeu "+Integer.toString(cartasPropriedade.get(j).getAluguelComDuasCasas())+" de pagamento!");
+                                                }
+                                            break;
+                                        case 3:
+                                            UserInterface.Dialogo.avisoGenerico(jogador.getName()+" pagou aluguel com tres casas no valor de: " + cartasPropriedade.get(j).getAluguelComTresCasas());
+                                            jogador.setSaldo(jogador.getSaldo() - cartasPropriedade.get(j).getAluguelComTresCasas());
+                                            for(i=0;i<jogadores.size();i++)
+                                                if(jogadores.get(i).getId() == idProprietario)
+                                                {
+                                                    jogadores.get(i).setSaldo(jogadores.get(i).getSaldo() + cartasPropriedade.get(j).getAluguelComTresCasas());
+                                                    UserInterface.Dialogo.avisoGenerico(jogadores.get(i).getName()+" recebeu "+Integer.toString(cartasPropriedade.get(j).getAluguelComTresCasas())+" de pagamento!");
+                                                }
+                                            break;
+                                        case 4:
+                                            UserInterface.Dialogo.avisoGenerico(jogador.getName()+" pagou aluguel com quatro casas no valor de: " + cartasPropriedade.get(j).getAluguelComQuatroCasas());
+                                            jogador.setSaldo(jogador.getSaldo() - cartasPropriedade.get(j).getAluguelComQuatroCasas());
+                                            for(i=0;i<jogadores.size();i++)
+                                                if(jogadores.get(i).getId() == idProprietario)
+                                                {
+                                                    jogadores.get(i).setSaldo(jogadores.get(i).getSaldo() + cartasPropriedade.get(j).getAluguelComQuatroCasas());
+                                                    UserInterface.Dialogo.avisoGenerico(jogadores.get(i).getName()+" recebeu "+Integer.toString(cartasPropriedade.get(j).getAluguelComQuatroCasas())+" de pagamento!");
+                                                }
+                                            break;
+                                        case 5:
+                                            UserInterface.Dialogo.avisoGenerico(jogador.getName()+" pagou aluguel com quatro casas e hotel no valor de: " + cartasPropriedade.get(j).getAluguelComHotel());
+                                            jogador.setSaldo(jogador.getSaldo() - cartasPropriedade.get(j).getAluguelComHotel());
+                                            for(i=0;i<jogadores.size();i++)
+                                                if(jogadores.get(i).getId() == idProprietario)
+                                                {
+                                                    jogadores.get(i).setSaldo(jogadores.get(i).getSaldo() + cartasPropriedade.get(j).getAluguelComHotel());
+                                                    UserInterface.Dialogo.avisoGenerico(jogadores.get(i).getName()+" recebeu "+Integer.toString(cartasPropriedade.get(j).getAluguelComHotel())+" de pagamento!");
+                                                }
+                                            break;
+                                        default:
+                                            break;
+                                    }
 				}
 			}
 			

@@ -1,27 +1,7 @@
 package Propriedades;
 
-import Builders.VisitanteCardBuilder;
-import Builders.SorteOuRevesAuxiliarCardbuilder;
-import Builders.RestituicaoCardBuilder;
-import Builders.ReceitaFederalCardBuilder;
-import Builders.PropriedadeCardBuilder;
-import Builders.PoliciaCardBuilder;
-import Builders.LuckCardBuilder;
-import Builders.InicioCardBuilder;
-import Builders.FeriasCardBuilder;
-import Builders.CompanhiaCardBuilder;
-import Elementos.Carta;
-import Elementos.CartaCompanhia;
-import Elementos.CartaFerias;
-import Elementos.CartaInicio;
-import Elementos.CartaPolicia;
-import Elementos.CartaPropriedade;
-import Elementos.CartaReceitaFederal;
-import Elementos.CartaRestituicaoImpostoDeRenda;
-import Elementos.CartaSorteOuReves;
-import Elementos.CartaSorteOuRevesAuxiliar;
-import Elementos.CartaVisitante;
-import Elementos.Casa;
+import Builders.*;
+import Elementos.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -169,6 +149,15 @@ public class Setup {
         scan.close();
         //DEPOIS RETORNA A LISTA
         return entrada;
+    }
+    
+    public static void destituirPropriedades(ArrayList<Carta> propriedades, Jogador proprietario)
+    {
+        for(int i = 0; i < propriedades.size(); i++)
+        {
+            if(propriedades.get(i).getOwner() == proprietario.getId())
+                propriedades.get(i).setOwner(Definicoes.SEM_PROPRIETARIO);
+        }
     }
 	
 	

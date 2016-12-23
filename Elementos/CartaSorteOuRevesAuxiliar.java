@@ -16,26 +16,21 @@ public class CartaSorteOuRevesAuxiliar extends Carta{
 		
             switch (card.getAction()) {
                 case 0:
-                    System.out.println(card.getNome());
                     jogador.setSaldo(jogador.getSaldo() - card.getQuantidade());
                     break;
                 case 1:
-                    System.out.println(card.getNome());
                     jogador.setSaldo(jogador.getSaldo() + card.getQuantidade());
                     break;
                 case 2:
-                    System.out.println(card.getNome());
                     jogador.setPosicaoTabuleiro(10);
                     jogador.setPreso(true);
                     jogador.setDiasDePrisaoRestantes(3);
                     break;
                 case 3:
-                    System.out.println(card.getNome());
                     jogador.setSaldo(jogador.getSaldo() + 200000);
                     jogador.setPosicaoTabuleiro(0);
                     break;
                 case 4:
-                    System.out.println(card.getNome());
                     if(resultado_dados % 2 == 0)
                     {
                         jogador.setSaldo(jogador.getSaldo() + 100000);
@@ -46,7 +41,6 @@ public class CartaSorteOuRevesAuxiliar extends Carta{
                     }
                     break;
                 case 5:
-                    System.out.println(card.getNome());
                     for(int i=0;i<jogadores.size();i++)
                     {
                         if(jogadores.get(i).getId() != jogador.getId())
@@ -57,15 +51,12 @@ public class CartaSorteOuRevesAuxiliar extends Carta{
                     }
                     break;
                 case 6:
-                    System.out.println(card.getNome());
                     card.setOwner(jogador.getId());
                     break;
                 case 7:
-                    System.out.println(card.getNome());
                     card.setOwner(jogador.getId());
                     break;
                 case 8:
-                    System.out.println(card.getNome());
                     //Rodada nova_rodada = new Rodada();
                     //cartas_sorte_ou_reves.add(card);
                     //nova_rodada.NovaRodada(jogador, jogadores, cartas_ordem_tabuleiro, cartas_sorte_ou_reves, cartas_propriedades, cartas_companhias);

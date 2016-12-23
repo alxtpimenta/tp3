@@ -6,6 +6,7 @@ import Elementos.CartaSorteOuReves;
 import Elementos.Casa;
 import Elementos.Dados;
 import Elementos.Jogador;
+import Propriedades.Definicoes;
 import Proxy.RefreshGUI;
 import UserInterface.Botoes;
 import java.awt.event.ActionEvent;
@@ -19,7 +20,6 @@ public class Rodada {
 	
     private static boolean rolarDados = false;
     private static boolean modoCompra = false;
-    //private static boolean propriedadeJogador = false;
     private static boolean esperarAcao = false;
     private static boolean finalizarTurno = false;
     private static boolean modoCompraHotel = false;
@@ -27,7 +27,7 @@ public class Rodada {
     private static boolean modoTentarSorte = false;
     private static boolean modoHabeasCorpus = false;
     
-    public void NovaRodada(Jogador jogador, ArrayList<Jogador> jogadores,ArrayList<Carta> cartas_ordem_tabuleiro, Deque<CartaSorteOuReves> cartas_sorte_ou_reves,ArrayList<CartaPropriedade> cartas_propriedades, ArrayList<CartaCompanhia> cartas_companhias,ArrayList<Casa> casasInterface, int ID)
+    public void NovaRodada(Jogador jogador, ArrayList<Jogador> jogadores,ArrayList<Carta> cartasTabuleiro, Deque<CartaSorteOuReves> cartasSorteReves,ArrayList<CartaPropriedade> cartasPropriedade, ArrayList<CartaCompanhia> cartasCompanhia,ArrayList<Casa> casasInterface, int indiceJogador)
 	{
                 //SE O JOGADOR ESTIVER PRESO
 		if(jogador.getPreso() == true)
@@ -151,46 +151,41 @@ public class Rodada {
                     Botoes.mostrarBotao(Botoes.jogarDados);
                     while(!rolarDados)
                     {
-                        Botoes.jogarDados.addActionListener(new ActionListener()
-                        {
-                            @Override
-                            public void actionPerformed(ActionEvent e) 
-                            {
-                        Rodada.rolarDados = true;
-                            } 
+                        Botoes.jogarDados.addActionListener((ActionEvent e) -> {
+                            Rodada.rolarDados = true; 
                         });
             }
             if(Rodada.rolarDados)
             {
 		//
 		Dados dados = new Dados();
-		int resultado_dados = dados.RolarDados();
-                UserInterface.Dialogo.jogarDados(resultado_dados);
-		int posicao_jogador = jogador.getPosicaoTabuleiro() + resultado_dados;
-		if(posicao_jogador > 39)
+		int resultadoDados = dados.RolarDados();
+                UserInterface.Dialogo.jogarDados(resultadoDados);
+		int posicaoJogador = jogador.getPosicaoTabuleiro() + resultadoDados;
+		if(posicaoJogador > 39)
 		{
-                    posicao_jogador = posicao_jogador - 40;
+                    posicaoJogador = posicaoJogador - 40;
 		}
 		//Nova posição do tabuleiro
-		jogador.setPosicaoTabuleiro(posicao_jogador);
+		jogador.setPosicaoTabuleiro(posicaoJogador);
                 //Atualiza a GUI antes do efeito da carta
                 RefreshGUI.atualizarJogadoresXY(jogadores, casasInterface);
-                RefreshGUI.atualizarLabels(jogadores, ID);
+                RefreshGUI.atualizarLabels(jogadores, indiceJogador);
                 RefreshGUI.atualizarPinos(jogadores);
-                RefreshGUI.atualizarTooltip(cartas_ordem_tabuleiro, jogadores, jogador);
+                RefreshGUI.atualizarTooltip(cartasTabuleiro, jogadores, jogador);
                 UserInterface.Tabuleiro.refresh();
 		//invoca efeito da carta da posicao do jogador
-		cartas_ordem_tabuleiro.get(posicao_jogador).Efeito(jogador, jogadores,resultado_dados,cartas_ordem_tabuleiro,cartas_sorte_ou_reves,cartas_propriedades,cartas_companhias);
+		cartasTabuleiro.get(posicaoJogador).Efeito(jogador, jogadores,resultadoDados,cartasTabuleiro,cartasSorteReves,cartasPropriedade,cartasCompanhia);
                 //Atualiza a GUI apos o efeito
                 RefreshGUI.atualizarJogadoresXY(jogadores, casasInterface);
-                RefreshGUI.atualizarLabels(jogadores, ID);
+                RefreshGUI.atualizarLabels(jogadores, indiceJogador);
                 RefreshGUI.atualizarPinos(jogadores);
-                RefreshGUI.atualizarTooltip(cartas_ordem_tabuleiro, jogadores, jogador);
+                RefreshGUI.atualizarTooltip(cartasTabuleiro, jogadores, jogador);
                 UserInterface.Tabuleiro.refresh();
                 //Se for uma propriedade ou companhia e o jogador nao for dono, ir para o modo de compra
-                if(("company".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria())
-                    || "property".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria()))
-                    && cartas_ordem_tabuleiro.get(posicao_jogador).getOwner() == 9)
+                if(("company".equals(cartasTabuleiro.get(posicaoJogador).getCategoria())
+                    || "property".equals(cartasTabuleiro.get(posicaoJogador).getCategoria()))
+                    && cartasTabuleiro.get(posicaoJogador).getOwner() == Definicoes.SEM_PROPRIETARIO)
                 {   
                     //Atualizar botoes
                     Botoes.mostrarBotao(Botoes.finalizarTurno);
@@ -200,58 +195,48 @@ public class Rodada {
                     while(!esperarAcao)
                     {
                        //ESPERAR ACAO DO JOGADOR
-                        Botoes.finalizarTurno.addActionListener(new ActionListener()
-                        {
-                            @Override
-                            public void actionPerformed(ActionEvent e) 
-                            {
-                                Rodada.esperarAcao = true;
-                             Rodada.finalizarTurno = true;
-                            }        
+                        Botoes.finalizarTurno.addActionListener((ActionEvent e) -> {
+                            Rodada.esperarAcao = true;
+                            Rodada.finalizarTurno = true;        
                         });
                     
                         //ACTION LISTENER DE COMPRA
-                        Botoes.comprar.addActionListener(new ActionListener()
-                        {
-                           @Override
-                            public void actionPerformed(ActionEvent e) 
-                            {
+                        Botoes.comprar.addActionListener((ActionEvent e) -> {
                             Rodada.esperarAcao = true;
                             Rodada.modoCompra = true;
-                            }        
                         });
                     }
                 if(modoCompra)
                 {
                     //REALIZAR COMPRA
-                	if("property".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria()))
+                	if("property".equals(cartasTabuleiro.get(posicaoJogador).getCategoria()))
                 	{
-	                    UserInterface.Dialogo.avisoGenerico(jogador.getName() + " comprou " + cartas_ordem_tabuleiro.get(posicao_jogador).getNome()+"!");
-	                    cartas_ordem_tabuleiro.get(posicao_jogador).setOwner(jogador.getId());
+	                    UserInterface.Dialogo.avisoGenerico(jogador.getName() + " comprou " + cartasTabuleiro.get(posicaoJogador).getNome()+"!");
+	                    cartasTabuleiro.get(posicaoJogador).setOwner(jogador.getId());
 	                    //busca valor de compra da carta correta
 	                    int k =0;
-	                    for(int i=0;i<cartas_propriedades.size();i++)
+	                    for(int i=0;i<cartasPropriedade.size();i++)
 	                    {
-	                    	if(cartas_propriedades.get(i).getNome().compareTo(cartas_ordem_tabuleiro.get(posicao_jogador).getNome()) == 0)
+	                    	if(cartasPropriedade.get(i).getNome().compareTo(cartasTabuleiro.get(posicaoJogador).getNome()) == 0)
 	                    	{
 	                    		k = i;
 	                    	}
 	                    }
-	                    jogador.setSaldo(jogador.getSaldo() -  cartas_propriedades.get(k).getValorDeCompra());
+	                    jogador.setSaldo(jogador.getSaldo() -  cartasPropriedade.get(k).getValorDeCompra());
                         }
-                        else if("company".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria()))
+                        else if("company".equals(cartasTabuleiro.get(posicaoJogador).getCategoria()))
                 	{
-	                    UserInterface.Dialogo.avisoGenerico(jogador.getName() + " comprou " + cartas_ordem_tabuleiro.get(posicao_jogador).getNome()+"!");
-	                    cartas_ordem_tabuleiro.get(posicao_jogador).setOwner(jogador.getId());
+	                    UserInterface.Dialogo.avisoGenerico(jogador.getName() + " comprou " + cartasTabuleiro.get(posicaoJogador).getNome()+"!");
+	                    cartasTabuleiro.get(posicaoJogador).setOwner(jogador.getId());
 	                    int k =0;
-	                    for(int i=0;i<cartas_companhias.size();i++)
+	                    for(int i=0;i<cartasCompanhia.size();i++)
 	                    {
-	                    	if(cartas_companhias.get(i).getNome().compareTo(cartas_ordem_tabuleiro.get(posicao_jogador).getNome()) == 0)
+	                    	if(cartasCompanhia.get(i).getNome().compareTo(cartasTabuleiro.get(posicaoJogador).getNome()) == 0)
 	                    	{
 	                    		k = i;
 	                    	}
 	                    }
-	                    jogador.setSaldo(jogador.getSaldo() -  cartas_companhias.get(k).getValorDeCompra());
+	                    jogador.setSaldo(jogador.getSaldo() -  cartasCompanhia.get(k).getValorDeCompra());
                         }
                     //ANULAR CONTROLADORES
                     Rodada.esperarAcao = false;
@@ -272,65 +257,62 @@ public class Rodada {
                 }
             }
             //Se a propriedade for do jogador
-            else if(("property".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria()))
-                    && cartas_ordem_tabuleiro.get(posicao_jogador).getOwner() == jogador.getId())
+            else if(("property".equals(cartasTabuleiro.get(posicaoJogador).getCategoria()))
+                    && cartasTabuleiro.get(posicaoJogador).getOwner() == jogador.getId())
             {
             	//busca carta propriedade referente
             	int k =0;
-                for(int i=0;i<cartas_propriedades.size();i++)
+                for(int i=0;i<cartasPropriedade.size();i++)
                 {
-                	if(cartas_propriedades.get(i).getNome().compareTo(cartas_ordem_tabuleiro.get(posicao_jogador).getNome()) == 0)
+                	if(cartasPropriedade.get(i).getNome().compareTo(cartasTabuleiro.get(posicaoJogador).getNome()) == 0)
                 	{
                 		k = i;
                 	}
                 }
-                if(cartas_propriedades.get(k).getNumeroCasas() >= 4)
+                if(cartasPropriedade.get(k).getNumeroCasas() >= (Definicoes.NUM_MAX_CASAS + Definicoes.NUM_MAX_HOTEIS))
                 {
-                	
-                	 Botoes.mostrarBotao(Botoes.adicionarHotel);
+                	 //NÃO ADICIONAR NENHUM BOTÃO
+                }
+                else if(cartasPropriedade.get(k).getNumeroCasas() >= Definicoes.NUM_MAX_CASAS)
+                {
+                    Botoes.mostrarBotao(Botoes.adicionarHotel);
+                }
+                else
+                {
+                    Botoes.mostrarBotao(Botoes.adicionarCasa);
                 }
                 //MOSTRAR BOTOES DA GUI
                 Botoes.removerBotao(Botoes.jogarDados);
                 Botoes.mostrarBotao(Botoes.finalizarTurno);
-                Botoes.mostrarBotao(Botoes.adicionarCasa);
                 //ESPERAR AÇÃO DO JOGADOR
                 while(!esperarAcao)
                 {
                     //LISTENER PARA COMPRAR CASA
-                    Botoes.adicionarCasa.addActionListener(new ActionListener()
-                    {
-                        @Override
-                        public void actionPerformed(ActionEvent e) 
-                        {
-                            Rodada.esperarAcao = true;
-                            Rodada.modoCompraCasa = true;
-                        }        
+                    Botoes.adicionarCasa.addActionListener((ActionEvent e) -> {
+                        Rodada.esperarAcao = true;
+                        Rodada.modoCompraCasa = true;        
                     });
                     //LISTENER PARA COMPRAR HOTEL
-                    Botoes.adicionarHotel.addActionListener(new ActionListener()
-                    {
-                        @Override
-                        public void actionPerformed(ActionEvent e) 
-                        {
-                            Rodada.esperarAcao = true;
-                            Rodada.modoCompraHotel = true;
-                        }        
+                    Botoes.adicionarHotel.addActionListener((ActionEvent e) -> {
+                        Rodada.esperarAcao = true;
+                        Rodada.modoCompraHotel = true;        
                     });
                     
                     //LISTENER PARA TERMINAR O TURNO
-                    Botoes.finalizarTurno.addActionListener(new ActionListener()
-                    {
-                        @Override
-                        public void actionPerformed(ActionEvent e) 
-                        {
-                            Rodada.esperarAcao = true;
-                            Rodada.finalizarTurno = true;
-                        }        
+                    Botoes.finalizarTurno.addActionListener((ActionEvent e) -> {
+                        Rodada.esperarAcao = true;
+                        Rodada.finalizarTurno = true;        
                     });
                 }
                 if(modoCompraCasa)
                 {
                     //PROCEDIMENTOS PARA COMPRAR A CASA
+                    //ATUALIZAR O NUMERO
+                    cartasPropriedade.get(k).setNumeroCasas(cartasPropriedade.get(k).getNumeroCasas()+1);
+                    //DEBITAR DO SALDO
+                    jogador.setSaldo(cartasPropriedade.get(k).getValorCompraDeCasa());
+                    //NOTIFICAR
+                    UserInterface.Dialogo.avisoGenerico(jogador.getName()+" construiu uma casa em "+cartasTabuleiro.get(posicaoJogador).getNome());
                     //ANULAR OS CONTROLADORES
                     Rodada.modoCompraCasa = false;
                     Rodada.esperarAcao = false;
@@ -340,12 +322,18 @@ public class Rodada {
                 }
                 else if(modoCompraHotel)
                 {
-                    //PROCEDIMENTOS PARA COMPRAR O HOTEL
+                    //PROCEDIMENTOS PARA COMPRAR A CASA
+                    //ATUALIZAR O NUMERO
+                    cartasPropriedade.get(k).setNumeroCasas(cartasPropriedade.get(k).getNumeroCasas()+1);
+                    //DEBITAR DO SALDO
+                    jogador.setSaldo(cartasPropriedade.get(k).getValorCompraDeHotel());
+                    //NOTIFICAR
+                    UserInterface.Dialogo.avisoGenerico(jogador.getName()+" construiu um hotel em "+cartasTabuleiro.get(posicaoJogador).getNome());
                     //ANULAR OS CONTROLADORES
-                    Rodada.modoCompraHotel = false;
+                    Rodada.modoCompraCasa = false;
                     Rodada.esperarAcao = false;
-                    Botoes.adicionarHotel.removeAll();
-                    Botoes.removerBotao(Botoes.adicionarHotel);
+                    Botoes.adicionarCasa.removeAll();
+                    Botoes.removerBotao(Botoes.adicionarCasa);
                     Botoes.removerBotao(Botoes.adicionarHotel);
                 }
                 else if(Rodada.finalizarTurno)
@@ -360,8 +348,8 @@ public class Rodada {
                 }
             }
             //Se a companhia for do jogador
-            else if(("company".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria()))
-                    && cartas_ordem_tabuleiro.get(posicao_jogador).getOwner() == jogador.getId())
+            else if(("company".equals(cartasTabuleiro.get(posicaoJogador).getCategoria()))
+                    && cartasTabuleiro.get(posicaoJogador).getOwner() == jogador.getId())
                 {
                 //MOSTRAR BOTOES DA GUI
                 Botoes.removerBotao(Botoes.jogarDados);
@@ -369,14 +357,9 @@ public class Rodada {
                 while(!esperarAcao)
                 {
                     //LISTENER PARA TERMINAR O TURNO
-                    Botoes.finalizarTurno.addActionListener(new ActionListener()
-                    {
-                        @Override
-                        public void actionPerformed(ActionEvent e) 
-                        {
-                            Rodada.esperarAcao = true;
-                            Rodada.finalizarTurno = true;
-                        }        
+                    Botoes.finalizarTurno.addActionListener((ActionEvent e) -> {
+                        Rodada.esperarAcao = true;
+                        Rodada.finalizarTurno = true;        
                     });
                     
                 }
