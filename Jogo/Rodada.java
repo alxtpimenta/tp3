@@ -359,6 +359,7 @@ public class Rodada {
                     Botoes.removerBotao(Botoes.adicionarHotel);
                 }
             }
+            //Se a companhia for do jogador
             else if(("company".equals(cartas_ordem_tabuleiro.get(posicao_jogador).getCategoria()))
                     && cartas_ordem_tabuleiro.get(posicao_jogador).getOwner() == jogador.getId())
                 {
@@ -394,7 +395,12 @@ public class Rodada {
                 //Anular os controladores para a proxima rodada
                 Rodada.rolarDados = false;
                 Botoes.jogarDados.removeAll();
+                Botoes.removerBotao(Botoes.jogarDados);
             }		
                 }
+             
+        Botoes.removerBotao(Botoes.jogarDados);
+        Botoes.jogarDados.removeAll();
+        Rodada.rolarDados = false;
     }
 }
