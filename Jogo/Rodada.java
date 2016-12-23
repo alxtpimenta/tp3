@@ -360,6 +360,7 @@ public class Rodada {
                     Rodada.modoCompraCasa = false;
                     Rodada.esperarAcao = false;
                     Rodada.modoVenderCasa = false;
+					Rodada.modoCompraHotel = false;
                     Botoes.adicionarCasa.removeAll();
                     Botoes.removerBotao(Botoes.adicionarCasa);
                     Botoes.removerBotao(Botoes.adicionarHotel);
