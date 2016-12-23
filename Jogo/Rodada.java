@@ -9,6 +9,8 @@ import Elementos.Jogador;
 import Propriedades.Definicoes;
 import Proxy.RefreshGUI;
 import UserInterface.Botoes;
+import UserInterface.Tabuleiro;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -28,6 +30,20 @@ public class Rodada {
     private static boolean modoHabeasCorpus = false;
     private static boolean modoVenderCasa = false;
     private static boolean modoVenderCompanhia = false;
+    private static Rodada instancia = null;
+    
+    //Instanciar o singleton da rodada
+    public static Rodada inicializarRodada()
+    {
+        if(instancia == null)
+        {
+            instancia = new Rodada();
+            return instancia;
+        }
+        else
+            return null;
+    }
+    
     
     
     public void NovaRodada(Jogador jogador, ArrayList<Jogador> jogadores,ArrayList<Carta> cartasTabuleiro, Deque<CartaSorteOuReves> cartasSorteReves,ArrayList<CartaPropriedade> cartasPropriedade, ArrayList<CartaCompanhia> cartasCompanhia,ArrayList<Casa> casasInterface, int indiceJogador,ArrayList<CartaSorteOuReves> cartas_nao_devolvidas_sorteoureves)
