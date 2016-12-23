@@ -98,7 +98,7 @@ public class Rodada {
                     {
                         jogador.setPreso(false);
                         jogador.setDiasDePrisaoRestantes(0);
-                        UserInterface.Dialogo.avisoGenerico("Voce utilizou sua carta de habeas corpus e saiu da prisão. Jogue normalmente na proxima rodada!");
+                        UserInterface.Dialogo.avisoGenerico("Voce utilizou sua carta de habeas corpus e saiu da prisao. Jogue normalmente na proxima rodada!");
                         
                         //BUSCA CARTA HABEAS CORPUS PARA DEVOLVE-LA AO BARALHO
                         for(int p=0;p<cartas_nao_devolvidas_sorteoureves.size();p++)
@@ -315,6 +315,10 @@ public class Rodada {
                     Botoes.mostrarBotao(Botoes.adicionarCasa);
                     Botoes.mostrarBotao(Botoes.venderCasa);
                 }
+                Rodada.esperarAcao = false;
+                Rodada.modoCompraCasa = false;
+                Rodada.modoCompraHotel = false;
+                Rodada.finalizarTurno = false;
                 //MOSTRAR BOTOES DA GUI
                 Botoes.removerBotao(Botoes.jogarDados);
                 Botoes.mostrarBotao(Botoes.finalizarTurno);
@@ -384,11 +388,11 @@ public class Rodada {
                     //PROCEDIMENTOS PARA VENDER A CASA
                     //ATUALIZAR O NUMERO
                     cartasPropriedade.get(k).setNumeroCasas(0);
-                    cartasPropriedade.get(k).setOwner(9);
+                    cartasPropriedade.get(k).setOwner(Definicoes.SEM_PROPRIETARIO);
                     //CREDITAR NO SALDO
-                    jogador.setSaldo(cartasPropriedade.get(k).getValorDeCompra() / 2 + jogador.getSaldo());
+                    jogador.setSaldo(cartasPropriedade.get(k).getValorHipoteca() + jogador.getSaldo());
                     //NOTIFICAR
-                    UserInterface.Dialogo.avisoGenerico(jogador.getName()+" vendeu a propriedade"+cartasTabuleiro.get(posicaoJogador).getNome() + " por " + cartasPropriedade.get(k).getValorDeCompra() / 2);
+                    UserInterface.Dialogo.avisoGenerico(jogador.getName()+" vendeu a propriedade "+cartasTabuleiro.get(posicaoJogador).getNome() + " por " + cartasPropriedade.get(k).getValorHipoteca());
                     //ANULAR OS CONTROLADORES
                     Rodada.modoCompraCasa = false;
                     Rodada.esperarAcao = false;
@@ -429,6 +433,9 @@ public class Rodada {
                 Botoes.removerBotao(Botoes.jogarDados);
                 Botoes.mostrarBotao(Botoes.finalizarTurno);
                 Botoes.mostrarBotao(Botoes.venderCasa);
+                Rodada.esperarAcao = false;
+                Rodada.finalizarTurno = false;
+                Rodada.modoCompraHotel = false;
                 while(!esperarAcao)
                 {
                     //LISTENER PARA TERMINAR O TURNO
@@ -456,15 +463,14 @@ public class Rodada {
                     Botoes.removerBotao(Botoes.adicionarHotel);
                 }
                 else if(Rodada.modoVenderCompanhia)
-                {
-                	
-                	//PROCEDIMENTOS PARA VENDER A COMPANHIA
+                {	
+                    //PROCEDIMENTOS PARA VENDER A COMPANHIA
                     //ATUALIZAR O NUMERO                	
-                	cartasCompanhia.get(t).setOwner(9);
+                    cartasCompanhia.get(t).setOwner(Definicoes.SEM_PROPRIETARIO);
                     //CREDITAR NO SALDO
-                    jogador.setSaldo(cartasCompanhia.get(t).getValorDeCompra() / 2 + jogador.getSaldo());
+                    jogador.setSaldo(cartasCompanhia.get(t).getValorHipoteca() + jogador.getSaldo());
                     //NOTIFICAR
-                    UserInterface.Dialogo.avisoGenerico(jogador.getName()+" vendeu a companhia"+cartasTabuleiro.get(posicaoJogador).getNome() + " por " + cartasCompanhia.get(t).getValorDeCompra() / 2);
+                    UserInterface.Dialogo.avisoGenerico(jogador.getName()+" vendeu a companhia "+cartasTabuleiro.get(posicaoJogador).getNome() + " por " + cartasCompanhia.get(t).getValorHipoteca());
                     //ANULAR OS CONTROLADORES
                     Rodada.modoVenderCompanhia = false;
                     Rodada.esperarAcao = false;
